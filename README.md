@@ -4,3 +4,13 @@ This project will be using
 - HTML
 - CSS
 - JS
+- bootswatch/bootstrap
+
+## Requirement
+- min 4 pages
+- must use at least ONE bootswatch element
+- formulaire
+
+## Ideas for website
+Boutique de chaussure
+nom du site : Adadis
