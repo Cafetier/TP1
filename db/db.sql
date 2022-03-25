@@ -12,7 +12,7 @@ CREATE TABLE Gender(
 
 CREATE TABLE ProductImage(
     IMAGEID BIGINT NOT NULL AUTO_INCREMENT,
-    ImageName TEXT NOT NULL,
+    ImageName VARCHAR(255) NOT NULL,
     PRIMARY KEY(IMAGEID)
 );
 
@@ -105,6 +105,24 @@ CREATE TABLE ImageProduct(
 -- Index
 CREATE UNIQUE INDEX UK_Email
 ON User (Email);
+
+CREATE UNIQUE INDEX UK_GenderName
+ON Gender (GenderName);
+
+CREATE UNIQUE INDEX UK_ImageName
+ON ProductImage (ImageName);
+
+CREATE UNIQUE INDEX UK_BrandName
+ON Brand (BrandName);
+
+CREATE UNIQUE INDEX UK_ColorName
+ON Color (ColorName);
+
+CREATE UNIQUE INDEX UK_ProductName
+ON ProductType (TypeName);
+
+
+
 
 CREATE INDEX FK_Product
 ON Product (COLORID, BRANDID, IMAGEID, TYPEID);

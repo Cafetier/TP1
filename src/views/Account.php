@@ -1,8 +1,8 @@
 <?php 
-$PageTitle = 'Index';
+$PageTitle = 'Your Account';
 require "../template/header.php";
 ?>
 
-Hello World !
+<h1>Your Account</h1>
 
 <?php require_once('../template/footer.php'); ?>
