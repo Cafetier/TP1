@@ -40,7 +40,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="About.php">À propos</a>
                         </li>
-                        
+
                         <?php if($user->IsLoggedIn()) : ?>
                             <!-- Account -->
                             <li class="nav-item dropdown">

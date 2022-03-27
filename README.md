@@ -22,3 +22,11 @@ bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 - Forgot password would be cool
 - Use work css, js, cdn...
 - A 'unlisted' function instead of deleting
+- 404 page
+- Constant debug
+- Footer
+- Async php database
+- Async js product
+
+
+Storing hex code for color : https://www.itsolutionstuff.com/post/mysql-hexadecimal-color-code-store-in-binary-datatype

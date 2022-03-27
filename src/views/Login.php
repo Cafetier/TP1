@@ -19,6 +19,8 @@ $pw = $_POST['password'];
 
 try{
     $user->Login($email, $pw);  //login the user
+    header("Location: Index.php");  //redirect to the main page
+    exit();
 }
 catch(Error $e){
     echo($e->getMessage());
