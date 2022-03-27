@@ -22,11 +22,16 @@ bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 - Forgot password would be cool
 - Use work css, js, cdn...
 - A 'unlisted' function instead of deleting
+- DB size should be a table
 - 404 page
 - Constant debug
 - Footer
 - Async php database
 - Async js product
+- Finish lucidchart about php class
+- Female/male shoes db ?
 
 
 Storing hex code for color : https://www.itsolutionstuff.com/post/mysql-hexadecimal-color-code-store-in-binary-datatype
+
+Database schema : https://lucid.app/lucidchart/8c993271-8345-4c3d-92a4-f496740a3991/edit?invitationId=inv_716db6c2-8fc1-47ac-bd14-c1fc1626d4db
