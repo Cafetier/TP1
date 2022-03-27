@@ -23,7 +23,9 @@ class Database{
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conn;
         } catch(PDOException $e) {
-            exit("Connection failed: " . $e->getMessage());
+            // give more info if debug is true
+            if (__DEBUG__) exit("Connection failed: " . $e->getMessage());
+            exit("There was an error");
         }
     }
 
@@ -45,7 +47,7 @@ class Database{
         if ($sth->execute($SQLValue)) {
             return $sth->fetch(PDO::FETCH_ASSOC);
         } else {
-            exit("Error: " . $DBConn->error);
+            exit($DBConn->error);
         }
     }
 }

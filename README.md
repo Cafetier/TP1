@@ -21,15 +21,13 @@ bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 - UI using bootstrap and bootswatch
 - Forgot password would be cool
 - Use work css, js, cdn...
-- A 'unlisted' function instead of deleting
-- DB size should be a table
 - 404 page
-- Constant debug
 - Footer
 - Async php database
 - Async js product
 - Finish lucidchart about php class
 - Female/male shoes db ?
+- background fetch db product each 10s
 
 
 Storing hex code for color : https://www.itsolutionstuff.com/post/mysql-hexadecimal-color-code-store-in-binary-datatype

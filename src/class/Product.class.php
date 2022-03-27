@@ -38,14 +38,9 @@ class Product extends Database
      * 
      * Add a product to the db
      * 
-     * @param string    $pName         Name of the product (max 255 char)
-     * @param string    $pDescription  Description of product
-     * @param string    $pColor        Name of the color
-     * @param string    $pBrand        Name of the brand
-     * @param string    $pType         Name of the type of product
      * 
      */
-    public function AddProduct($pName, $pDescription, $pColor, $pBrand, $pType){
+    public function AddProduct(){
         // check if there is an exact same
     }
 
@@ -65,14 +60,9 @@ class Product extends Database
      * Update information of the product
      * 
      * @param int $ProductID    ID of the product
-     * @param string    $pName         Name of the product (max 255 char)
-     * @param string    $pDescription  Description of product
-     * @param string    $pColor        Name of the color
-     * @param string    $pBrand        Name of the brand
-     * @param string    $pType         Name of the type of product
      * 
      */
-    public function UpdateProduct($ProductID, $pName, $pDescription, $pColor, $pBrand, $pType){
+    public function UpdateProduct($ProductID){
 
     }
 }
