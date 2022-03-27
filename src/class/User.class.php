@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * 
+ * This file handles all user interaction
+ * Child class of Database (DB.class.php)
+ * 
+ * @author Dany Gauthier
+ * 
+ */
+
 class User extends Database{
     function __construct()
     {
@@ -13,15 +22,14 @@ class User extends Database{
      * 
      * @param string    $Email      Email of the user
      * 
-     * @author          Dany Gauthier
      * @return array    returns the user if he exists
      * 
      */
     private function UserExist($Email){
         if (empty($Email)) return;  // check if param empty
         // query and return query
-        $user = $this->Query($this->db_conn, "SELECT Email FROM User WHERE Email = ?", [$Email]);
-        return $user[0];
+        $user = $this->Query($this->db_conn, "SELECT * FROM User WHERE Email = ?", [$Email]);
+        return $user;
     }
 
     /**
@@ -35,8 +43,6 @@ class User extends Database{
      * @param string    $BirthDate
      * @param string    $Gender
      * 
-     * @author          Dany Gauthier
-     * 
      */
     public function Register($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender){
     }
@@ -49,10 +55,26 @@ class User extends Database{
      * @param string    $Email
      * @param string    $Password
      * 
-     * @author          Dany Gauthier
-     * 
      */
     public function Login($Email, $Password){
+        // check if inputs are not empty
+        if (empty($Email || $Password)) throw new Error('Inputs must not be empty');
+
+        // check if the user exist in db
+        $dbUser = $this->UserExist($Email);
+        if (empty($dbUser)) throw new Error('User does not exist');
+        
+        // check if hashed password is the same as db
+        $pwDB = $dbUser['Password'];
+        if (!password_verify($Password, $pwDB)) throw new Error('There was an error');
+
+        $this->LogOut(); // destroy active session if there is
+        session_start(); // start sessions handler
+        // Set sessions attributes to user id
+        $_SESSION['USERID'] = $dbUser['USERID'];
+        $_SESSION['LastName'] = $dbUser['LastName'];
+        $_SESSION['FirstName'] = $dbUser['FirstName'];
+        $_SESSION['Email'] = $dbUser['Email'];
     }
 
 
@@ -67,15 +89,13 @@ class User extends Database{
      * @param string    $BirthDate
      * @param string    $Gender
      * 
-     * @author          Dany Gauthier
-     * 
      */
     public function UpdateInformations($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender){
     }
     
     /**
      * 
-     * Check if the user as a session id, if he is logged in
+     * Check if the user as a session id
      * 
      * @return bool
      * 
@@ -90,7 +110,8 @@ class User extends Database{
 
     /**
      * 
-     * Log out the user, destroy active session and unset them
+     * Log out the user, 
+     * destroy active session and unset them
      * 
      */
     public function LogOut(){

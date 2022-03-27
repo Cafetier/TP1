@@ -1,0 +1,8 @@
+/* Generic */
+.preloader *{
+    transition: none!important;
+}
+
+.navbar{
+    margin-bottom: 15px!important;
+}

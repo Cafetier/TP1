@@ -15,8 +15,8 @@ INSERT INTO Color (ColorName)
 VALUES ('Red'), ('Blue'), ('Green');
 
 INSERT INTO Product 
-(ProductName, ProductDescription, COLORID, BRANDID, IMAGEID, TYPEID)
-VALUES ('Superstar', 'Cool stuff', 1, 1, 1, 3);
+(ProductName, ProductDescription, COLORID, BRANDID, TYPEID)
+VALUES ('Superstar', 'Cool stuff', 1, 1, 3);
 
 INSERT INTO User 
 (LastName, FirstName, Email, Password, BirthDate, GENDERID)

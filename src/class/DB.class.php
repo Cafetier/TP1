@@ -1,11 +1,19 @@
 <?php
 
+/**
+ * 
+ * Database file used to manage connection of the database
+ * This is a parent classs
+ * 
+ * @author Dany Gauthier
+ * 
+ */
+
 class Database{
     /**
      * 
      * Used to connect to database using PDO
      * 
-     * @author          Dany Gauthier
      * @return object   Connection of the database
      */
     protected function Connect(){
@@ -27,7 +35,6 @@ class Database{
      * @param string    $SQLQuery  SQL QUERY (Needs to be ? for value)
      * @param array     $SQLValue  SQL VALUE (value of ?)
      * 
-     * @author          Dany Gauthier
      * @return object   the result of the query
      * 
      */

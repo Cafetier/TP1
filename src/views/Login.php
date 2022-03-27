@@ -5,35 +5,21 @@ require "../template/header.php";
 
 <h1>Login</h1>
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
-    <input type="text" placeholder="First Name">
-    <input type="text" placeholder="Last Name">
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
-    <div>
-        Genre
-        <label for="">
-            Man
-            <input type="radio" checked name="" id="">
-        </label>
-        <label for="">
-            Woman
-            <input type="radio" name="" id="">
-        </label>
-        <label for="">
-            Other
-            <input type="radio" name="" id="">
-        </label>
-    </div>
-
+    <input type="email" placeholder="Email" name="email">
+    <input type="password" placeholder="Password" name="password">
     <button type="submit">Submit</button>
-    <button type="reset">Reset</button>
 </form>
 
 <?php require_once('../template/footer.php'); ?>
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] != "POST") exit();
-$name = $_POST['Username'];
-$pw = $_POST['Password'];
+$email = $_POST['email'];
+$pw = $_POST['password'];
 
-$user->Login($name, $pw);  //login the user
+try{
+    $user->Login($email, $pw);  //login the user
+}
+catch(Error $e){
+    echo($e->getMessage());
+}
