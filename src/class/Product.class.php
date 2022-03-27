@@ -46,6 +46,27 @@ class Product extends Database
 
     /**
      * 
+     * Get all products
+     * 
+     * 
+     */
+    public function GetAllProduct($nbProduct, $Filters){
+        // check if there is an exact same
+    }
+
+    /**
+     * 
+     * Get all products
+     * 
+     * @param int $ProductID    Product id of the wanted product
+     * 
+     */
+    public function GetProduct($ProductID){
+        // check if there is an exact same
+    }
+
+    /**
+     * 
      * Remove a product from the database
      * 
      * @param int $ProductID    ID of the product

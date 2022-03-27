@@ -17,17 +17,31 @@ nom du site : Adadis
 bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 
 ## What is left to do 
+### PHP
 - Register  (don't know what is the requirement til March 29th 2022)
-- UI using bootstrap and bootswatch
+- Separate nav to template
 - Forgot password would be cool
-- Use work css, js, cdn...
-- 404 page
-- Footer
 - Async php database
 - Async js product
 - Finish lucidchart about php class
 - Female/male shoes db ?
 - background fetch db product each 10s
+- write custom rule for url extention (so it shows only the name of the file, not extention, it would
+look more like c# mvc)
+ex : localhost/Login or AssomptionChaussure/Login
+- better way to handle error (use bootstrap's)
+- better way to use links
+- Active page
+
+### Design
+- [nav] Register and Connection should be right aligned
+- [nav] Sticky nav
+- [nav, footer] same as container width (section)
+- [error] cooler 404 page
+- [more] More footer stuff
+- Favicon
+- Fix transition on chrome
+
 
 
 Storing hex code for color : https://www.itsolutionstuff.com/post/mysql-hexadecimal-color-code-store-in-binary-datatype

@@ -5,19 +5,20 @@
     if(isset($_GET['logout']) && $_SERVER["REQUEST_METHOD"] === "GET"){
         $user->LogOut();
         unset($_GET['logout']);  //unset the logout
-        header("Location: Index.php");  //redirect to the main page
+        header("Location: Index");  //redirect to the main page
         exit();
     }
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="x-ua-compatible" content="IE=Edge" />
         <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
         <link rel="stylesheet" href="../../public/css/style.css">
         <title><?php echo $PageTitle; ?></title>
     </head>
@@ -32,13 +33,13 @@
                     <ul class="navbar-nav me-auto">
                         <!-- Home -->
                         <li class="nav-item">
-                            <a class="nav-link active" href="Index.php">Accueil
+                            <a class="nav-link active" href="Index">Accueil
                                 <span class="visually-hidden">(current)</span>
                             </a>
                         </li>
                         <!-- More -->
                         <li class="nav-item">
-                            <a class="nav-link" href="About.php">À propos</a>
+                            <a class="nav-link" href="About">À propos</a>
                         </li>
 
                         <?php if($user->IsLoggedIn()) : ?>
@@ -46,7 +47,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon compte</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="Account.php">Modifier votre compte</a>
+                                    <a class="dropdown-item" href="Account">Modifier votre compte</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="?logout">Se déconnecter</a>
                                 </div>
@@ -54,15 +55,16 @@
                         <?php else : ?>
                             <!-- Login -->
                             <li class="nav-item">
-                                <a class="nav-link" href="Login.php">Se connecter</a>
+                                <a class="nav-link" href="Login">Se connecter</a>
                             </li>
 
                             <!-- Register -->
                             <li class="nav-item">
-                                <a class="nav-link" href="Register.php">S'inscrire</a>
+                                <a class="nav-link" href="Register">S'inscrire</a>
                             </li>
                         <?php endif; ?>
                     </ul>
                 </div>
             </div>
         </nav>
+        <section class="container">

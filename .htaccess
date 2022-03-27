@@ -1,0 +1,8 @@
+# not found error redirect to error page
+ErrorDocument 404 http://localhost/TP1/src/views/Error.php?error=404
+
+# hides the php extention in the url
+RewriteEngine on 
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME}\.php -f 
+RewriteRule ^(.*)$ $1.php

@@ -1,4 +1,33 @@
 /* Generic */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, span, p, div {
+    cursor: default;
+}
+
+a, select, input[type=checkbox], input::-webkit-calendar-picker-indicator, input[type=month] {
+    cursor: pointer;
+}
+
+body, html {
+    margin: 0;
+    padding: 0!important;
+    width: 100%;
+    min-height: 100vh;
+}
+
 .preloader *{
     transition: none!important;
 }
