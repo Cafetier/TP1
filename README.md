@@ -26,12 +26,17 @@ bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 - Finish lucidchart about php class
 - Female/male shoes db ?
 - background fetch db product each 10s
-- write custom rule for url extention (so it shows only the name of the file, not extention, it would
-look more like c# mvc)
+- Remove sub directory in url and not show index page
 ex : localhost/Login or AssomptionChaussure/Login
 - better way to handle error (use bootstrap's)
 - better way to use links
 - Active page
+- Search function shoes
+- After 5 tries for logging in, show message 'You seem to have forgotten something important, 
+here's a little help : Forgot Password'
+- [Product] Add filter search (GetAllProduct)
+- [Database] Optionnal value query
+- HTTPS htaccess
 
 ### Design
 - [nav] Register and Connection should be right aligned

@@ -29,9 +29,9 @@ VALUES
 INSERT INTO User 
 (LastName, FirstName, Email, Password, BirthDate, GENDERID)
 VALUES 
-('Gauthier', 'Dany', 'danygauthier57@yahoo.ca', 'Abc123', '2002-06-08', 1),
-('Doe', 'John', 'john.doe@exemple.com', 'Abc123', '2002-06-08', 1),
-('Doe', 'Jane', 'jane.doe@exemple.com', 'Abc123', '2002-06-08', 1);
+('Gauthier', 'Dany', 'danygauthier57@yahoo.ca', '$2y$10$tHhqhrzl1rE6HXNHPX3cP.JNjSIXhGKb.C/moQ4rOcHCDkDY7sYZC', '2002-06-08', 1),
+('Doe', 'John', 'john.doe@exemple.com', '$2y$10$cqIjtwlAgdecF4U5oO3hJeyqwIBnnh7o1J9x9chg.nhfIlxOgT88e', '2002-06-08', 1),
+('Doe', 'Jane', 'jane.doe@exemple.com', '$2y$10$uwzVtW9PAqiadLK5ILkzje2Dv2/6fHUykfBPw/ljARxPIGIZlF63m', '2002-06-08', 1);
 
 INSERT INTO Wishlist (PRODUCTID, USERID)
 VALUES (1, 1);
