@@ -27,7 +27,7 @@ class Product extends Database
      * @return object   The product informations if it exists
      * 
      */
-    private function ProductExist($ProductID){
+    public function GetProduct($ProductID){
         if (empty($ProductID)) return;  // check if param empty
         // query and return query
         $product = $this->Query($this->db_conn, "SELECT * FROM Product WHERE PRODUCTID = ?", [$ProductID]);
@@ -67,23 +67,12 @@ class Product extends Database
         if (empty($nbProduct)) throw new Error('There must be a number of Product to return');
         
         // query and return query
-        $products = $this->Query($this->db_conn, 'SELECT * FROM Product', []);
+        $products = $this->Query($this->db_conn, 'SELECT * FROM Product ORDER BY Product.DateCreated DESC', []);
 
         // --- Old query ---
         // SELECT * FROM Product 
         // WHERE Product.BRANDID IN(SELECT Brand.BRANDID FROM Brand WHERE Brand.BrandName = ?)
         return $products;
-    }
-
-    /**
-     * 
-     * Get all products
-     * 
-     * @param int $ProductID    Product id of the wanted product
-     * 
-     */
-    public function GetProduct($ProductID){
-        
     }
 
     /**

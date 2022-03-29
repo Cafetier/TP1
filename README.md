@@ -27,7 +27,8 @@ bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 - Female/male shoes db ?
 - background fetch db product each 10s
 - Remove sub directory in url and not show index page
-ex : localhost/Login or AssomptionChaussure/Login
+ex : localhost/Login
+localhost/Product/[id]
 - better way to handle error (use bootstrap's)
 - better way to use links
 - Active page
@@ -35,8 +36,6 @@ ex : localhost/Login or AssomptionChaussure/Login
 - After 5 tries for logging in, show message 'You seem to have forgotten something important, 
 here's a little help : Forgot Password'
 - [Product] Add filter search (GetAllProduct)
-- [Database] Optionnal value query
-- HTTPS htaccess
 
 ### Design
 - [nav] Register and Connection should be right aligned
@@ -46,6 +45,14 @@ here's a little help : Forgot Password'
 - [more] More footer stuff
 - Favicon
 - Fix transition on chrome
+- [Home] A filter menu
+
+
+### Xavier
+- Page active
+- Formulaire d'enregistrement et validation
+- Contenu de la page a propos
+- Page d'accueil
 
 
 
