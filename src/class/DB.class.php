@@ -41,6 +41,10 @@ class Database{
      * 
      */
     protected function Query($DBConn, $SQLQuery, $SQLValue){
+        // count the number of ? (prepared var) in query
+        if (substr_count($SQLQuery, '?') !== count($SQLValue)) 
+            throw new Error('Number of param does not match number of value');
+
         // prepare the sql
         $sth = $DBConn->prepare($SQLQuery);
         // check if the code ran successfully

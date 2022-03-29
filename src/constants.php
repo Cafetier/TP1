@@ -24,3 +24,6 @@ define('__ROOT__', dirname(dirname(__FILE__)));
  * 
  */
 define('__DEBUG__',true);
+
+// absolute link to images in server
+define('srvimg', __ROOT__.'/public/img/');
