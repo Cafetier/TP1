@@ -1,4 +1,3 @@
-        </section>
         <!-- Footer -->
         <footer class="page-footer font-small blue">
             <!-- Copyright -->

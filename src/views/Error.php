@@ -12,10 +12,12 @@ $e = $_GET['error'];
 
 $PageTitle = $e.' Error';
 require "../template/header.php";
+require "../template/nav.php";
 ?>
+<section class="container">
+    <a href="Index">Retourner l'accueil</a>
 
-<a href="Index">Retourner l'accueil</a>
-
-<h1><?php echo $e; ?> Error</h1>
+    <h1><?php echo $e; ?> Error</h1>
+</section>
 
 <?php require_once('../template/footer.php'); ?>

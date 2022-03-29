@@ -1,6 +1,7 @@
 <?php 
 $PageTitle = 'Détails';
 require "../template/header.php";
+require "../template/nav.php";
 ?>
 
 <?php
@@ -21,5 +22,7 @@ require "../template/header.php";
 
     print_r($product_info);
 ?>
+
+<section class="container"></section>
 
 <?php require_once('../template/footer.php'); ?>

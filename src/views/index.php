@@ -1,16 +1,19 @@
 <?php 
 $PageTitle = 'Index';
 require "../template/header.php";
+require "../template/nav.php";
 ?>
 
-<h1>Index</h1>
+<section class="container">
+    <h1>Index</h1>
 
-<?php
-try {
-    print_r($product->GetAllProduct(50, []));
-} catch (Error $e) {
-    echo $e;
-}
-?>
+    <?php
+    try {
+        print_r($product->GetAllProduct(50, []));
+    } catch (Error $e) {
+        echo $e;
+    }
+    ?>
+</section>
 
 <?php require_once('../template/footer.php'); ?>

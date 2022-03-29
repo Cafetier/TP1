@@ -19,11 +19,9 @@ bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 ## What is left to do 
 ### PHP
 - Register  (don't know what is the requirement til March 29th 2022)
-- Separate nav to template
-- Forgot password would be cool
-- Async php database
-- Async js product
 - Finish lucidchart about php class
+- Forgot password would be cool
+- Async js product
 - Female/male shoes db ?
 - background fetch db product each 10s
 - Remove sub directory in url and not show index page
@@ -33,17 +31,19 @@ localhost/Product/[id]
 - better way to use links
 - Active page
 - Search function shoes
-- After 5 tries for logging in, show message 'You seem to have forgotten something important, 
-here's a little help : Forgot Password'
 - [Product] Add filter search (GetAllProduct)
 - Wishlist
 - Cart
 - Remove index.php and make htaccess redirect to the real index
+- Good idea to rename function to more generic (Get instead of GetProduct) ?
+- Better get all product (with table...)
+- Async php database
 
 ### Design
 - [nav] Register and Connection should be right aligned
 - [nav] Sticky nav
 - [nav, footer] same as container width (section)
+- [footer] need to be at bottom of page
 - [error] cooler 404 page
 - [more] More footer stuff
 - Favicon
