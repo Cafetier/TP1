@@ -29,7 +29,7 @@ class User extends Database{
         if (empty($Email)) return;  // check if param empty
         // query and return query
         $user = $this->Query($this->db_conn, "SELECT * FROM User WHERE Email = ?", [$Email]);
-        return $user;
+        return $user[0];
     }
 
     /**

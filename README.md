@@ -36,6 +36,8 @@ localhost/Product/[id]
 - After 5 tries for logging in, show message 'You seem to have forgotten something important, 
 here's a little help : Forgot Password'
 - [Product] Add filter search (GetAllProduct)
+- Wishlist
+- Cart
 
 ### Design
 - [nav] Register and Connection should be right aligned
@@ -53,6 +55,7 @@ here's a little help : Forgot Password'
 - Formulaire d'enregistrement et validation
 - Contenu de la page a propos
 - Page d'accueil
+- Mon compte
 
 
 

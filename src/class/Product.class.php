@@ -31,7 +31,7 @@ class Product extends Database
         if (empty($ProductID)) return;  // check if param empty
         // query and return query
         $product = $this->Query($this->db_conn, "SELECT * FROM Product WHERE PRODUCTID = ?", [$ProductID]);
-        return $product;
+        return $product[0];
     }
 
     /**

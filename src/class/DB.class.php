@@ -49,7 +49,7 @@ class Database{
         $sth = $DBConn->prepare($SQLQuery);
         // check if the code ran successfully
         if ($sth->execute($SQLValue)) {
-            return $sth->fetch(PDO::FETCH_ASSOC);
+            return $sth->fetchAll(PDO::FETCH_ASSOC);
         } else {
             exit($DBConn->error);
         }
