@@ -9,7 +9,11 @@ This project will be using
 ## Requirement
 - min 4 pages
 - must use at least ONE bootswatch element
-- formulaire
+- Must use custom css
+- min 1 formulaire (avec tout type inputs)
+- file inclusion
+- sessions
+- verification
 
 ## Ideas for website
 Boutique de chaussure
@@ -19,6 +23,7 @@ bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 ## What is left to do 
 ### PHP
 - Register  (don't know what is the requirement til March 29th 2022)
+- NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING
 - Finish lucidchart about php class
 - Active page
 - Better get all product (with table...)
@@ -60,6 +65,13 @@ localhost/Product/[id]
 
 
 
+## Resources
 Storing hex code for color : https://www.itsolutionstuff.com/post/mysql-hexadecimal-color-code-store-in-binary-datatype
 
 Database schema : https://lucid.app/lucidchart/8c993271-8345-4c3d-92a4-f496740a3991/edit?invitationId=inv_716db6c2-8fc1-47ac-bd14-c1fc1626d4db
+
+
+## Production
+Be SURE to do all the steps below before going into prod :
+- NO default password in database
+- Create special user for application in db
