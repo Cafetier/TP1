@@ -67,7 +67,7 @@ class Product extends Database
         if (empty($nbProduct)) throw new Error('There must be a number of Product to return');
         
         // query and return query
-        $products = $this->Query($this->db_conn, 'SELECT * FROM Product ORDER BY Product.DateCreated DESC', []);
+        $products = $this->Query($this->db_conn, 'SELECT * FROM Product WHERE Listed = 1 ORDER BY Product.DateCreated DESC', []);
 
         // --- Old query ---
         // SELECT * FROM Product 
@@ -77,13 +77,29 @@ class Product extends Database
 
     /**
      * 
-     * Remove a product from the database
+     * Remove a product from the database (it actually just unlist them)
      * 
      * @param int $ProductID    ID of the product
      * 
      */
     public function RemoveProduct($ProductID){
+        // check if empty param
+        if (empty($ProductID)) throw new Error('ID must not be empty');
 
+        // check if exist in db
+        if (empty($this->GetProduct($ProductID))) 
+            throw new Error('This product doesnt exist in database');
+
+        // unlist the product if it isnt already
+        try {
+            $this->Query($this->db_conn, 
+            "UPDATE Product SET Listed = 0
+            WHERE Listed != 0 AND PRODUCTID = ?;", 
+            [$ProductID]);
+            echo 'Deleted this product';
+        } catch (Error $e) {
+            echo $e;
+        }
     }
 
     /**

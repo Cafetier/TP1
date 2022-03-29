@@ -38,6 +38,7 @@ here's a little help : Forgot Password'
 - [Product] Add filter search (GetAllProduct)
 - Wishlist
 - Cart
+- Remove index.php and make htaccess redirect to the real index
 
 ### Design
 - [nav] Register and Connection should be right aligned
