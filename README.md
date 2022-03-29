@@ -20,24 +20,24 @@ bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 ### PHP
 - Register  (don't know what is the requirement til March 29th 2022)
 - Finish lucidchart about php class
-- Forgot password would be cool
-- Async js product
-- Female/male shoes db ?
-- background fetch db product each 10s
+- Active page
+- Better get all product (with table...)
 - Remove sub directory in url and not show index page
 ex : localhost/Login
 localhost/Product/[id]
-- better way to handle error (use bootstrap's)
-- better way to use links
-- Active page
-- Search function shoes
+- Remove index.php and make htaccess redirect to the real index
 - [Product] Add filter search (GetAllProduct)
+- Search function shoes
 - Wishlist
 - Cart
-- Remove index.php and make htaccess redirect to the real index
+- Forgot password
 - Good idea to rename function to more generic (Get instead of GetProduct) ?
-- Better get all product (with table...)
+- better way to handle error (use bootstrap's)
+- better way to use links
+- background fetch db product each 10s
+- Async js product
 - Async php database
+- Female/male shoes db ?
 
 ### Design
 - [nav] Register and Connection should be right aligned
@@ -53,10 +53,10 @@ localhost/Product/[id]
 
 ### Xavier
 - Page active
-- Formulaire d'enregistrement et validation
+- Formulaire d'enregistrement et validation (php/js)
 - Contenu de la page a propos
-- Page d'accueil
-- Mon compte
+- Affichage des produits dans la page principal
+- Ajouter les inputs de la page Mon compte
 
 
 
