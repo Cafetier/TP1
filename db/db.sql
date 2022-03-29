@@ -1,7 +1,7 @@
 -- DB
 DROP DATABASE IF EXISTS OnlineStore;
 CREATE DATABASE OnlineStore;
--- SELECT DATABASE OnlineStore;
+USE OnlineStore;
 
 -- Tables
 CREATE TABLE Gender(
