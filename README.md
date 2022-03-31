@@ -23,7 +23,8 @@ bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 ## What is left to do 
 ### PHP
 - Register  (don't know what is the requirement til March 29th 2022)
-- NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING
+- NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING (using js without refreshing)
+- connection should only open one connection at a time
 - Finish lucidchart about php class
 - Active page
 - Better get all product (with table...)
