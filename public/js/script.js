@@ -1,7 +1,39 @@
-window.addEventListener('DOMContentLoaded', (event) => {
+/**
+ * 
+ * This function async submit a form using its method and values
+ * 
+ * @param object form the form you need to submit
+ * 
+ */
+async function SubmitForm(form){
+    // Post data using the Fetch API
+    fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+    })
+    .catch((e) => {
+      console.log(e)
+    });
+}
+
+// assign js submit 
+const assign_form_submit = async function(){
+    document.querySelectorAll('form').forEach(e=>{
+        console.log(e);
+        e.onsubmit = async ee=>{
+            ee.preventDefault();
+            const form = ee.target;
+            await SubmitForm(form);
+        };
+    });
+}
+
+window.addEventListener('DOMContentLoaded', (e) => {
     // remove the preloader
     //document.querySelector('.preloader').classList.remove("preloader");
 
+    //assign js async submit
+    assign_form_submit();
     // assign masks to pattern elem
     new Inputmask();
     const elem_pattern = document.querySelectorAll('[pattern]');
