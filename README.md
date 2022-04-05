@@ -22,8 +22,11 @@ Un à deux formulaire(s) d'envoi de données, qui contiennent au moins :
 
 ## Ideas for website
 Boutique de chaussure
-nom du site : Adadis
 bootswatch theme : Quartz (https://bootswatch.com/quartz/)
+nom du site : Shoes pro shop (like bass pro shop)
+Promo
+- Buy 1 get one half
+- order 200 or more get a free tshirt
 
 ## What is left to do 
 ### PHP
