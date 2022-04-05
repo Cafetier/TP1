@@ -7,13 +7,18 @@ This project will be using
 - bootswatch/bootstrap
 
 ## Requirement
-- min 4 pages
-- must use at least ONE bootswatch element
-- Must use custom css
-- min 1 formulaire (avec tout type inputs)
-- file inclusion
-- sessions
-- verification
+- Une liste (ordonnée ou non) (select)
+- Deux tableaux (table, td, tr)
+- Deux images (img)
+
+Un à deux formulaire(s) d'envoi de données, qui contiennent au moins :
+- Quatre zones de texte (input text)
+- Une liste déroulante (select)
+- Un champ adresse email (email)
+- Un champ mot de passe (password)
+- Des boutons radio et checkbox
+- Un bouton annuler (qui permet d'annuler la saisie)
+- Deux boutons submit
 
 ## Ideas for website
 Boutique de chaussure
@@ -22,7 +27,7 @@ bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 
 ## What is left to do 
 ### PHP
-- Register  (don't know what is the requirement til March 29th 2022)
+- Register
 - NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING (using js without refreshing)
 - connection should only open one connection at a time
 - Finish lucidchart about php class

@@ -6,24 +6,30 @@
  * 
  */
 async function SubmitForm(form){
-    // Post data using the Fetch API
     fetch(form.action, {
         method: form.method,
+        headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
         body: new FormData(form),
     })
     .catch((e) => {
-      console.log(e)
+        throw new Error(e);
     });
 }
 
 // assign js submit 
-const assign_form_submit = async function(){
+async function AssignAsyncForms(){
     document.querySelectorAll('form').forEach(e=>{
-        console.log(e);
-        e.onsubmit = async ee=>{
+        e.onsubmit = async ee => {
             ee.preventDefault();
             const form = ee.target;
-            await SubmitForm(form);
+            console.log('asking db...');
+            try{
+                await SubmitForm(form);
+                console.log('successfully entered in db');
+            }
+            catch(e){
+                console.log(e);
+            }
         };
     });
 }
@@ -33,7 +39,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     //document.querySelector('.preloader').classList.remove("preloader");
 
     //assign js async submit
-    assign_form_submit();
+    AssignAsyncForms();
     // assign masks to pattern elem
     new Inputmask();
     const elem_pattern = document.querySelectorAll('[pattern]');
