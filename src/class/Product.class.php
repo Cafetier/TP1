@@ -58,6 +58,7 @@ class Product extends Database
         * @param double    ['Size']                 Size of the shoe (10.5, 8.0...)
         * @param string    ['Type']                 Type of shoe (Running, everyday...)
         * @param array     ['Price[min, max]']      Price of the shoe (ex : $Price[50.00, 70.00])
+        * @param string    ['Order']                Price of the shoe (either : ASC or DESC)
      * 
      * @return object   All the products in order of new to old (date added)
      * 
@@ -65,9 +66,35 @@ class Product extends Database
     public function GetAllProduct($nbProduct, $Filter){
         // check if nbProduct is empty
         if (empty($nbProduct)) throw new Error('There must be a number of Product to return');
-        
+
+        // sql start
+        $sqlquery = 'SELECT * FROM Product WHERE Listed = 1 ';
+
+        // if there is brand
+        if(isset($Filter['Brand']))
+            $sqlquery = $sqlquery.'AND Product.BRANDID IN(SELECT Brand.BRANDID FROM Brand WHERE Brand.BrandName = ?) ';
+
+        // color
+        if(isset($Filter['ColorHex']));
+
+        // size
+        if(isset($Filter['Size']) && ctype_digit($Filter['Size']));
+
+        // Type
+        if(isset($Filter['Type']));
+
+        // Price
+        if(isset($Filter['Price']));
+
+        // order
+        if(isset($Filter['Order'])) 
+            $sqlquery = $sqlquery.'ORDER BY Product.DateCreated '.$Filter['Order'].' ';
+            print_r($sqlquery);
+            unset($Filter['Order']);  // remove the key in array filter to not treat it as prepared value
+
+
         // query and return query
-        $products = $this->Query($this->db_conn, 'SELECT * FROM Product WHERE Listed = 1 ORDER BY Product.DateCreated DESC', []);
+        $products = $this->Query($this->db_conn, $sqlquery, array_values($Filter));
 
         // --- Old query ---
         // SELECT * FROM Product 

@@ -22,6 +22,7 @@ bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 
 ## What is left to do 
 ### PHP
+- A seller can have product, so people can create listing of shoes
 - Register  (don't know what is the requirement til March 29th 2022)
 - NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING
 - Finish lucidchart about php class

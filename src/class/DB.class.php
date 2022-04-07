@@ -51,7 +51,8 @@ class Database{
         if ($sth->execute($SQLValue)) {
             return $sth->fetchAll(PDO::FETCH_ASSOC);
         } else {
-            exit($DBConn->error);
+            // doesnt give error if error in query if debug is false
+            if (__DEBUG__) exit($DBConn->error);
         }
     }
 }
