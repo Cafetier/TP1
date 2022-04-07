@@ -7,27 +7,39 @@ This project will be using
 - bootswatch/bootstrap
 
 ## Requirement
-- min 4 pages
-- must use at least ONE bootswatch element
-- Must use custom css
-- min 1 formulaire (avec tout type inputs)
-- file inclusion
-- sessions
-- verification
+- Une liste (ordonnée ou non) (select)
+- Deux tableaux (table, td, tr)
+- Deux images (img)
+
+Un à deux formulaire(s) d'envoi de données, qui contiennent au moins :
+- Quatre zones de texte (input text)
+- Une liste déroulante (select)
+- Un champ adresse email (email)
+- Un champ mot de passe (password)
+- Des boutons radio et checkbox
+- Un bouton annuler (qui permet d'annuler la saisie)
+- Deux boutons submit
 
 ## Ideas for website
 Boutique de chaussure
-nom du site : Adadis
 bootswatch theme : Quartz (https://bootswatch.com/quartz/)
+nom du site : Shoes pro shop (like bass pro shop)
+Promo
+- Buy 1 get one half
+- order 200 or more get a free tshirt
 
 ## What is left to do 
 ### PHP
 - A seller can have product, so people can create listing of shoes
-- Register  (don't know what is the requirement til March 29th 2022)
 - NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING
 - Finish lucidchart about php class
 - Active page
 - Better get all product (with table...)
+- Register
+- faire un picturama sur la page d'accueil à propos des promotions
+- NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING (using js without refreshing)
+- Better get all product (join table...)
+- Validation of passed string (email, password...)
 - Remove sub directory in url and not show index page
 ex : localhost/Login
 localhost/Product/[id]
@@ -58,7 +70,8 @@ localhost/Product/[id]
 
 
 ### Xavier
-- Page active
+- Page active (dans le menu de navigation)
+- Picturama de promo sur la page d'accueil
 - Formulaire d'enregistrement et validation (php/js)
 - Contenu de la page a propos
 - Affichage des produits dans la page principal
