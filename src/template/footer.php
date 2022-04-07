@@ -2,7 +2,7 @@
         <footer class="page-footer font-small blue">
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3">
-                © <?php echo date("Y"); ?> Copyright Dany Gauthier | Xavier Jean
+                © <?php echo date("Y"); ?> Copyright - Dany Gauthier | Xavier Jean
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

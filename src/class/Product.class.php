@@ -54,7 +54,7 @@ class Product extends Database
      * @param int       $nbProduct                  Number of product you want returning (batch of 50, 20, 10...)
      * @param object    $Filter                     Filter you want applied (all below)
         * @param string    ['Brand']                Brand of the product (Adidas, reebok...)
-        * @param string    ['ColorHex']             Hex color of the product (#fff...)
+        * @param string    ['ColorName']            The name of the color
         * @param double    ['Size']                 Size of the shoe (10.5, 8.0...)
         * @param string    ['Type']                 Type of shoe (Running, everyday...)
         * @param array     ['Price[min, max]']      Price of the shoe (ex : $Price[50.00, 70.00])
@@ -68,37 +68,51 @@ class Product extends Database
         if (empty($nbProduct)) throw new Error('There must be a number of Product to return');
 
         // sql start
-        $sqlquery = 'SELECT * FROM Product WHERE Listed = 1 ';
+        $sqlquery = 'SELECT p.PRODUCTID,p.ProductName,p.ProductDescription,p.Price,
+        p.DateCreated, p.Listed, b.BrandName, t.TypeName, i.ImageName, s.Size, c.ColorName 
+        FROM Product p 
+        LEFT JOIN Brand b ON p.BRANDID = b.BRANDID 
+        LEFT JOIN pType t ON p.TYPEID = t.TYPEID 
+        LEFT JOIN pImage_Product ip ON p.PRODUCTID=ip.PRODUCTID 
+        LEFT JOIN pImage i ON i.IMAGEID=ip.IMAGEID 
+        LEFT JOIN Color_Product cp ON cp.PRODUCTID=p.PRODUCTID 
+        LEFT JOIN Color c ON c.COLORID=cp.COLORID 
+        LEFT JOIN pSize_Product sp ON sp.PRODUCTID=p.PRODUCTID 
+        LEFT JOIN pSize s ON s.SIZEID=sp.SIZEID 
+        WHERE p.Listed = 1 ';
 
         // if there is brand
         if(isset($Filter['Brand']))
-            $sqlquery = $sqlquery.'AND Product.BRANDID IN(SELECT Brand.BRANDID FROM Brand WHERE Brand.BrandName = ?) ';
+            $sqlquery = $sqlquery.'AND b.BrandName = ? ';
 
         // color
-        if(isset($Filter['ColorHex']));
+        if(isset($Filter['ColorName']))
+            $sqlquery = $sqlquery.'AND c.ColorName = ? ';
 
         // size
-        if(isset($Filter['Size']) && ctype_digit($Filter['Size']));
+        if(isset($Filter['Size']) && ctype_digit($Filter['Size']))
+            $sqlquery = $sqlquery.'AND ? > s.Size < ? ';
 
         // Type
-        if(isset($Filter['Type']));
+        if(isset($Filter['Type']))
+            $sqlquery = $sqlquery.'AND t.TypeName = ? ';
 
         // Price
         if(isset($Filter['Price']));
 
         // order
-        if(isset($Filter['Order'])) 
-            $sqlquery = $sqlquery.'ORDER BY Product.DateCreated '.$Filter['Order'].' ';
-            print_r($sqlquery);
-            unset($Filter['Order']);  // remove the key in array filter to not treat it as prepared value
-
+        if(isset($Filter['Order']))
+            $sqlquery = $sqlquery.'ORDER BY p.DateCreated '.$Filter['Order'];
+            unset($Filter['Order']);  // unset order
 
         // query and return query
-        $products = $this->Query($this->db_conn, $sqlquery, array_values($Filter));
+        try{
+            $products = $this->Query($this->db_conn, $sqlquery, array_values($Filter));
+        }
+        catch (Error $e){
+            echo $e;
+        }
 
-        // --- Old query ---
-        // SELECT * FROM Product 
-        // WHERE Product.BRANDID IN(SELECT Brand.BRANDID FROM Brand WHERE Brand.BrandName = ?)
         return $products;
     }
 

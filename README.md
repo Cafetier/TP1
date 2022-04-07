@@ -30,15 +30,10 @@ Promo
 
 ## What is left to do 
 ### PHP
-- A seller can have product, so people can create listing of shoes
 - NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING
-- Finish lucidchart about php class
-- Active page
-- Better get all product (with table...)
 - Register
+- better error
 - faire un picturama sur la page d'accueil à propos des promotions
-- NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING (using js without refreshing)
-- Better get all product (join table...)
 - Validation of passed string (email, password...)
 - Remove sub directory in url and not show index page
 ex : localhost/Login
@@ -51,6 +46,7 @@ localhost/Product/[id]
 - Forgot password
 - Good idea to rename function to more generic (Get instead of GetProduct) ?
 - better way to handle error (use bootstrap's)
+- Fix get product so filters work
 - better way to use links
 - background fetch db product each 10s
 - Async js product
