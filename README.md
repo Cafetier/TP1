@@ -31,8 +31,10 @@ Promo
 ## What is left to do 
 ### PHP
 - Register
+- faire un picturama sur la page d'accueil à propos des promotions
 - NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING (using js without refreshing)
 - Better get all product (join table...)
+- Validation of passed string (email, password...)
 - Remove sub directory in url and not show index page
 ex : localhost/Login
 localhost/Product/[id]
@@ -64,6 +66,7 @@ localhost/Product/[id]
 
 ### Xavier
 - Page active (dans le menu de navigation)
+- Picturama de promo sur la page d'accueil
 - Formulaire d'enregistrement et validation (php/js)
 - Contenu de la page a propos
 - Affichage des produits dans la page principal
