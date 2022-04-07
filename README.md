@@ -32,10 +32,7 @@ Promo
 ### PHP
 - Register
 - NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING (using js without refreshing)
-- connection should only open one connection at a time
-- Finish lucidchart about php class
-- Active page
-- Better get all product (with table...)
+- Better get all product (join table...)
 - Remove sub directory in url and not show index page
 ex : localhost/Login
 localhost/Product/[id]
@@ -66,7 +63,7 @@ localhost/Product/[id]
 
 
 ### Xavier
-- Page active
+- Page active (dans le menu de navigation)
 - Formulaire d'enregistrement et validation (php/js)
 - Contenu de la page a propos
 - Affichage des produits dans la page principal

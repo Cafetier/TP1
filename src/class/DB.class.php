@@ -54,4 +54,19 @@ class Database{
             exit($DBConn->error);
         }
     }
+
+
+    /**
+     * 
+     * Check if string is json 
+     * 
+     * @param string $string    the string you want to test
+     * 
+     * @return object the decoded json or nothing
+     * 
+     */
+    public function isJson($string) {
+        $json_data = json_decode($string, true);
+        if($json_data !== null) return $json_data;
+    }
 }

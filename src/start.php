@@ -14,6 +14,7 @@ require_once __ROOT__.'/src/class/DB.class.php';
 require_once __ROOT__.'/src/class/User.class.php';
 require_once __ROOT__.'/src/class/Product.class.php';
 
+$db = new Database();
 $user = new User(); // init database class
 $product = new Product(); // init database class
 

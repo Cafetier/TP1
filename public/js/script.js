@@ -6,14 +6,21 @@
  * 
  */
 async function SubmitForm(form){
-    fetch(form.action, {
+    const f = new FormData(form);
+    let object = {};
+    f.forEach((value, key) => object[key] = value);
+    const json = JSON.stringify(object);
+    const r = await fetch(form.action, {
         method: form.method,
-        headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
-        body: new FormData(form),
+        headers: {"Content-type": "application/json"},
+        body: json
     })
     .catch((e) => {
         throw new Error(e);
     });
+    const data = await r.text();
+    console.log(data);
+    return data;
 }
 
 // assign js submit 
@@ -24,7 +31,8 @@ async function AssignAsyncForms(){
             const form = ee.target;
             console.log('asking db...');
             try{
-                await SubmitForm(form);
+                const r = await SubmitForm(form);
+                if (r === null) window.location.href = "Index";  // this should not be here
                 console.log('successfully entered in db');
             }
             catch(e){
@@ -39,7 +47,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
     //document.querySelector('.preloader').classList.remove("preloader");
 
     //assign js async submit
-    AssignAsyncForms();
+    // AssignAsyncForms();
+
+    
     // assign masks to pattern elem
     new Inputmask();
     const elem_pattern = document.querySelectorAll('[pattern]');

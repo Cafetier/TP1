@@ -27,10 +27,15 @@ require "../template/nav.php";
 
 
 <?php require_once('../template/footer.php'); ?>
-<script>
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] != "POST") exit();
+$json = $db->isJson(file_get_contents('php://input'));
+if (!empty($json)){
+    $_POST['email'] = $json['email'];
+    $_POST['password'] = $json['password'];
+}
+
 $email = $_POST['email'];
 $pw = $_POST['password'];
 
@@ -40,9 +45,7 @@ try{
     exit();
 }
 catch(Error $e){
-    //$_GET['error'] = $e->getMessage();
     // find a way to append get value to url without refresh
-    header("Location: ?error=".$e->getMessage());  //show error in url
+    echo $e->getMessage();
 }
 ?>
-</script>
