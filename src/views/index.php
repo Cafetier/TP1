@@ -9,7 +9,7 @@ require "../template/nav.php";
 
     <?php
     try {
-        print_r($product->GetAllProduct(50, ['Brand' => 'Reebok', 'Order' => 'DESC']));
+        print_r($product->GetAllProduct(50, ['Order' => 'DESC']));
     } catch (Error $e) {
         echo $e;
     }
