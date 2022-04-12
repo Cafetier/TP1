@@ -14,6 +14,9 @@ class User extends Database{
     {
         // create a db connection using parent function
         $this->db_conn = $this->Connect();
+
+        // name regex which support multilanguage
+        $this->NameRegex = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u";
     }
 
     /**
@@ -29,7 +32,7 @@ class User extends Database{
         if (empty($Email)) return;  // check if param empty
         // query and return query
         $user = $this->Query($this->db_conn, "SELECT * FROM User WHERE Email = ?", [$Email]);
-        return $user[0];
+        if(!empty($user)) return $user[0];
     }
 
     /**
@@ -45,6 +48,41 @@ class User extends Database{
      * 
      */
     public function Register($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender){
+        // check if inputs are empty
+        if (empty($FirstName || $LastName || $Email || $Password || $BirthDate || $Gender)) 
+            throw new Error('Inputs must not be empty');
+
+        // check if email using php filter_var()
+        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) 
+            throw new Error('Email is not a normal format');
+
+        // check if names match name regex
+        if (!preg_match($this->NameRegex, $FirstName) && !preg_match($this->NameRegex, $LastName))
+            throw new Error('Name must not contain special letter');
+
+        // check if email already exists in db
+        $dbUser = $this->UserExist($Email);
+        print_r($dbUser);
+        if (!empty($dbUser)) throw new Error('This email is already taken');
+
+        // check if birth date > 1900 and more than the date of a 16 yo today
+        $timeBirthDate = strtotime($BirthDate);
+        if (strtotime("1900-01-01") < $timeBirthDate && $timeBirthDate < date('Y-m-d'))
+            throw new Error('Your birth date is incorrect');
+
+        // hash password
+        $hashed_pwd = password_hash($Password, PASSWORD_DEFAULT);
+
+        // create record in db
+        try {
+            $this->Query($this->db_conn, "INSERT INTO User 
+            (LastName, FirstName, Email, Password, BirthDate, GENDERID)
+            VALUES 
+            (?, ?, ?, ?, ?, ?)", 
+            [$LastName, $FirstName, $Email, $hashed_pwd, $BirthDate, $Gender]);
+        } catch (Error $e) {
+            if (__DEBUG__) echo $e;
+        }
     }
 
 
@@ -59,6 +97,9 @@ class User extends Database{
     public function Login($Email, $Password){
         // check if inputs are not empty
         if (empty($Email || $Password)) throw new Error('Inputs must not be empty');
+
+        // check if email using php filter_var()
+        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) throw new Error('Inputs must not be empty');
 
         // check if the user exist in db
         $dbUser = $this->UserExist($Email);
@@ -75,6 +116,19 @@ class User extends Database{
         $_SESSION['LastName'] = $dbUser['LastName'];
         $_SESSION['FirstName'] = $dbUser['FirstName'];
         $_SESSION['Email'] = $dbUser['Email'];
+    }
+
+    /**
+     * 
+     * Get a list of all genders
+     * 
+     * @return object a list of all genders
+     * 
+     */
+    public function GetAllGenders(){
+        // query and return query
+        $genders = $this->Query($this->db_conn, "SELECT * FROM gender", []);
+        return $genders;
     }
 
 

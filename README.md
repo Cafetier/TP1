@@ -33,6 +33,7 @@ Promo
 - NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING
 - Register
 - better error
+- Register if 16 yo or more
 - faire un picturama sur la page d'accueil à propos des promotions
 - Validation of passed string (email, password...)
 - Remove sub directory in url and not show index page
