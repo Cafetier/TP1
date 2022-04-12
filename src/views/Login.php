@@ -2,6 +2,12 @@
 $PageTitle = 'Connection';
 require "../template/header.php";
 require "../template/nav.php";
+
+// if logged redirect to index
+if($user->IsLoggedIn()){
+    header("Location: Index");  //redirect to the main page
+    exit();
+}
 ?>
 
 <section class="container">

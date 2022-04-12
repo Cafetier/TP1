@@ -22,4 +22,3 @@ require "../template/nav.php";
     fetchProducts();
     setInterval(fetchProducts, 60000);
 </script>
-</script>

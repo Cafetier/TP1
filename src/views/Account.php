@@ -2,6 +2,12 @@
 $PageTitle = 'Votre compte';
 require "../template/header.php";
 require "../template/nav.php";
+
+// if not logged redirect to register
+if(!$user->IsLoggedIn()){
+    header("Location: Register");  //redirect to the main page
+    exit();
+}
 ?>
 
 <section class="container">

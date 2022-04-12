@@ -173,20 +173,4 @@ class User extends Database{
         session_unset();
         session_destroy();
     }
-
-    public function AddProductWishlist(){
-
-    }
-
-    public function RemoveProductWishlist(){
-        
-    }
-
-    public function AddProductCart(){
-
-    }
-
-    public function RemoveProductCart(){
-        
-    }
 }
