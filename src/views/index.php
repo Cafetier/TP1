@@ -6,14 +6,20 @@ require "../template/nav.php";
 
 <section class="container">
     <h1>Index</h1>
-
-    <?php
-    try {
-        print_r($product->GetAllProduct(50, ['Order' => 'DESC']));
-    } catch (Error $e) {
-        echo $e;
-    }
-    ?>
 </section>
 
 <?php require_once('../template/footer.php'); ?>
+
+
+<script>
+    // fetch elem each 30s
+    async function fetchProducts(){
+        const response = await fetch('_getproducts.php')
+        .then(r => r.json())
+        .then(data => console.log(data));
+        return response;
+    }
+    fetchProducts();
+    setInterval(fetchProducts, 60000);
+</script>
+</script>

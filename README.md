@@ -30,33 +30,26 @@ Promo
 
 ## What is left to do 
 ### PHP
-- NEED TO KEEP FORM VALUE WHEN WRONG SUBMITING
-- Register
 - better error
 - Register if 16 yo or more
 - faire un picturama sur la page d'accueil à propos des promotions
-- Validation of passed string (email, password...)
+- Wishlist
+- Cart
+- async Search function shoes
+- [Product] Add filter search (GetAllProduct)
+- Forgot password
 - Remove sub directory in url and not show index page
 ex : localhost/Login
 localhost/Product/[id]
 - Remove index.php and make htaccess redirect to the real index
-- [Product] Add filter search (GetAllProduct)
-- Search function shoes
-- Wishlist
-- Cart
-- Forgot password
-- Good idea to rename function to more generic (Get instead of GetProduct) ?
 - better way to handle error (use bootstrap's)
 - Fix get product so filters work
-- better way to use links
-- background fetch db product each 10s
-- Async js product
-- Async php database
 - Female/male shoes db ?
 
 ### Design
 - [nav] Register and Connection should be right aligned
 - [nav] Sticky nav
+- [nav] responsive hamburger cursor : pointer
 - [nav, footer] same as container width (section)
 - [footer] need to be at bottom of page
 - [error] cooler 404 page
@@ -69,7 +62,6 @@ localhost/Product/[id]
 ### Xavier
 - Page active (dans le menu de navigation)
 - Picturama de promo sur la page d'accueil
-- Formulaire d'enregistrement et validation (php/js)
 - Contenu de la page a propos
 - Affichage des produits dans la page principal
 - Ajouter les inputs de la page Mon compte
