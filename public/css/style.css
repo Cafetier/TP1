@@ -28,10 +28,34 @@ body, html {
     min-height: 100vh;
 }
 
+section{
+    min-height: calc(100vh - 180px);
+    height: auto;
+}
+
 .preloader *{
     transition: none!important;
 }
 
 .navbar{
     margin-bottom: 15px!important;
+}
+
+#connection_page, #register_page{
+    max-width: 800px;
+}
+
+#connection_page > *:not(:first-child),
+#register_page > *:not(:first-child){
+    margin-top: 15px;
+}
+
+#register_page button[type=reset]{
+    max-width: 400px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#register_page button{
+    width: 100%;
 }

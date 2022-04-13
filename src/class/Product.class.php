@@ -36,6 +36,58 @@ class Product extends Database
 
     /**
      * 
+     * This gets all the brand from the bd
+     * 
+     * @return object all the brands from db
+     * 
+     */
+    public function GetBrands(){
+        // query and return query
+        $brands = $this->Query($this->db_conn, "SELECT * FROM brand", []);
+        return $brands;
+    }
+
+    /**
+     * 
+     * This gets all the types in db
+     * 
+     * @return object all the types from db
+     * 
+     */
+    public function GetTypes(){
+        // query and return query
+        $types = $this->Query($this->db_conn, "SELECT * FROM ptype", []);
+        return $types;
+    }
+
+    /**
+     * 
+     * This gets all the colors avalailable in db
+     * 
+     * @return object all the colors from db
+     * 
+     */
+    public function GetColors(){
+        // query and return query
+        $brands = $this->Query($this->db_conn, "SELECT * FROM color", []);
+        return $brands;
+    }
+
+    /**
+     * 
+     * This gets all the sizes in db
+     * 
+     * @return object all the sizes from db
+     * 
+     */
+    public function GetSizes(){
+        // query and return query
+        $brands = $this->Query($this->db_conn, "SELECT * FROM psize", []);
+        return $brands;
+    }
+
+    /**
+     * 
      * Add a product to the db
      * 
      * 

@@ -36,6 +36,7 @@ Promo
 - [Register] if 16 yo or more, cannot signup
 - [Index] faire un picturama promotions
 - [Index] async Search function shoes
+- Add admin in db to add products
 - Remove sub directory in url and not show index page
 ex : localhost/Login
 localhost/Product/[id]
@@ -48,7 +49,6 @@ localhost/Product/[id]
 - [nav] Register and Connection should be right aligned
 - [nav] Sticky nav
 - [nav] responsive hamburger cursor : pointer
-- [nav, footer] same as container width (section)
 - [footer] need to be at bottom of page
 - [error] cooler 404 page
 - [more] More footer stuff
