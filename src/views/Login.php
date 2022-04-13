@@ -16,7 +16,7 @@ if($user->IsLoggedIn()){
         <div class="form-group">
             <!-- Email -->
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" value="<?php echo $_POST['email'] ?? '' ?>">
+                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="Email" value="<?php echo $_POST['email'] ?? '' ?>">
                 <label for="floatingInput">Email</label>
             </div>
             <!-- Password -->

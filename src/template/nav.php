@@ -12,6 +12,10 @@
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
+                <!-- Nouveaute -->
+                <li class="nav-item">
+                    <a class="nav-link" href="MainPage">Nouveauté</a>
+                </li>
                 <!-- More -->
                 <li class="nav-item">
                     <a class="nav-link" href="About">À propos</a>

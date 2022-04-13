@@ -7,18 +7,18 @@ This project will be using
 - bootswatch/bootstrap
 
 ## Requirement
-- Une liste (ordonnée ou non) (select)
+~~- Une liste (ordonnée ou non) (select)~~
 - Deux tableaux (table, td, tr)
 - Deux images (img)
 
 Un à deux formulaire(s) d'envoi de données, qui contiennent au moins :
-- Quatre zones de texte (input text)
-- Une liste déroulante (select)
-- Un champ adresse email (email)
-- Un champ mot de passe (password)
+~~- Quatre zones de texte (input text)~~
+~~- Une liste déroulante (select)~~
+~~- Un champ adresse email (email)~~
+~~- Un champ mot de passe (password)~~
 - Des boutons radio et checkbox
-- Un bouton annuler (qui permet d'annuler la saisie)
-- Deux boutons submit
+~~- Un bouton annuler (qui permet d'annuler la saisie)~~
+~~- Deux boutons submit~~
 
 ## Ideas for website
 Boutique de chaussure
@@ -36,6 +36,7 @@ Promo
 - [Register] if 16 yo or more, cannot signup
 - [Index] faire un picturama promotions
 - [Index] async Search function shoes
+- Add Phone number bd...
 - Add admin in db to add products
 - Remove sub directory in url and not show index page
 ex : localhost/Login
@@ -47,11 +48,13 @@ localhost/Product/[id]
 
 ### Design
 - [nav] Register and Connection should be right aligned
+- [nav] Add logo at left of bar
 - [nav] Sticky nav
 - [nav] responsive hamburger cursor : pointer
+- [nav] little bar that separate login and register
 - [footer] need to be at bottom of page
 - [error] cooler 404 page
-- [more] More footer stuff
+- [more] Bigger footer with color
 - Favicon
 - Fix transition on chrome
 - [Home] A filter menu
@@ -62,8 +65,6 @@ localhost/Product/[id]
 - Traduction, fautes
 - Picturama de promo sur la page d'accueil
 - Contenu de la page a propos
-- Affichage des produits dans la page principal
-- Ajouter les inputs de la page Mon compte
 
 
 

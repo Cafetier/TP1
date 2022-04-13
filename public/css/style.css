@@ -21,6 +21,10 @@ a, select, input[type=checkbox], input::-webkit-calendar-picker-indicator, input
     cursor: pointer;
 }
 
+.carousel button span{
+    cursor: pointer!important;    
+}
+
 body, html {
     margin: 0;
     padding: 0!important;
@@ -41,13 +45,12 @@ section{
     margin-bottom: 15px!important;
 }
 
-#connection_page, #register_page{
+#connection_page, #register_page, #account_page{
     max-width: 800px;
 }
 
-#connection_page > *:not(:first-child),
-#register_page > *:not(:first-child){
-    margin-top: 15px;
+h1{
+    margin-bottom: 15px;
 }
 
 #register_page button[type=reset]{
