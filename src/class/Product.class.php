@@ -101,6 +101,10 @@ class Product extends Database
         if(isset($Filter['Price']));
 
         // order
+        /**
+         * 
+         * THATS FCKNG DANGEROUS MUST CHANGE THAT TO AVOID SQL INJECTION
+         */
         if(isset($Filter['Order']))
             $sqlquery = $sqlquery.'ORDER BY p.DateCreated '.$Filter['Order'];
             unset($Filter['Order']);  // unset order

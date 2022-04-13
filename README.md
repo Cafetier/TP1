@@ -30,8 +30,9 @@ Promo
 
 ## What is left to do 
 ### PHP
-- better error
+- Account, show input in value information already in bd
 - Register if 16 yo or more
+- better error
 - faire un picturama sur la page d'accueil à propos des promotions
 - Wishlist
 - Cart
@@ -44,6 +45,7 @@ localhost/Product/[id]
 - Remove index.php and make htaccess redirect to the real index
 - better way to handle error (use bootstrap's)
 - Fix get product so filters work
+- Better error handling
 - Female/male shoes db ?
 
 ### Design
@@ -61,6 +63,7 @@ localhost/Product/[id]
 
 ### Xavier
 - Page active (dans le menu de navigation)
+- Traduction, fautes
 - Picturama de promo sur la page d'accueil
 - Contenu de la page a propos
 - Affichage des produits dans la page principal
