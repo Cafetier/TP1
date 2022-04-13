@@ -30,23 +30,19 @@ Promo
 
 ## What is left to do 
 ### PHP
-- Account, show input in value information already in bd
-- Register if 16 yo or more
-- better error
-- faire un picturama sur la page d'accueil à propos des promotions
-- Wishlist
-- Cart
-- async Search function shoes
-- [Product] Add filter search (GetAllProduct)
-- Forgot password
+- [Index] _getproducts needs to set param of function with get value
+- [Index] sql query should only return the first 50
+- [Account] show input in value information already in bd
+- [Register] if 16 yo or more, cannot signup
+- [Index] faire un picturama promotions
+- [Index] async Search function shoes
 - Remove sub directory in url and not show index page
 ex : localhost/Login
 localhost/Product/[id]
 - Remove index.php and make htaccess redirect to the real index
-- better way to handle error (use bootstrap's)
-- Fix get product so filters work
 - Better error handling
 - Female/male shoes db ?
+- Forgot password
 
 ### Design
 - [nav] Register and Connection should be right aligned
