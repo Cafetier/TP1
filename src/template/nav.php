@@ -14,7 +14,7 @@
                 </li>
                 <!-- Nouveaute -->
                 <li class="nav-item">
-                    <a class="nav-link" href="MainPage">Nouveauté</a>
+                    <a class="nav-link" href="MainPage">Magasiner</a>
                 </li>
                 <!-- More -->
                 <li class="nav-item">
@@ -24,7 +24,7 @@
                 <?php if($user->IsLoggedIn()) : ?>
                     <!-- Account -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon compte</a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['Email'] ?> </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="Cart">Panier</a>
                             <a class="dropdown-item" href="Wishlist">Liste de souhait</a>

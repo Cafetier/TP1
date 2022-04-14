@@ -30,12 +30,15 @@ Promo
 
 ## What is left to do 
 ### PHP
-- [Index] _getproducts needs to set param of function with get value
+- [Index] _getproducts filters
+- [Account] Modify account
 - [Index] sql query should only return the first 50
+- [nav] show email account instead of my account
 - [Account] show input in value information already in bd
 - [Register] if 16 yo or more, cannot signup
 - [Index] faire un picturama promotions
 - [Index] async Search function shoes
+- Show successfull alert when good thing
 - Add Phone number bd...
 - Add admin in db to add products
 - Remove sub directory in url and not show index page
@@ -52,10 +55,8 @@ localhost/Product/[id]
 - [nav] Sticky nav
 - [nav] responsive hamburger cursor : pointer
 - [nav] little bar that separate login and register
-- [footer] need to be at bottom of page
 - [error] cooler 404 page
-- [more] Bigger footer with color
-- Favicon
+- [footer] Bigger footer with color
 - Fix transition on chrome
 - [Home] A filter menu
 
@@ -63,7 +64,6 @@ localhost/Product/[id]
 ### Xavier
 - Page active (dans le menu de navigation)
 - Traduction, fautes
-- Picturama de promo sur la page d'accueil
 - Contenu de la page a propos
 
 
@@ -72,6 +72,13 @@ localhost/Product/[id]
 Storing hex code for color : https://www.itsolutionstuff.com/post/mysql-hexadecimal-color-code-store-in-binary-datatype
 
 Database schema : https://lucid.app/lucidchart/8c993271-8345-4c3d-92a4-f496740a3991/edit?invitationId=inv_716db6c2-8fc1-47ac-bd14-c1fc1626d4db
+
+color palette : https://coolors.co/252323-70798c-f5f1ed-dad2bc-a99985
+
+### fonts
+Poster          : Eras
+Logo            : Harlow Solid Italic
+Web             : 
 
 
 ## Production

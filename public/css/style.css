@@ -41,6 +41,13 @@ section{
     transition: none!important;
 }
 
+.custom_float_alert{
+    max-width: 500px!important;
+    width: 100%!important;
+    position: fixed!important;
+    right: 20px!important;
+}
+
 .navbar{
     margin-bottom: 15px!important;
 }
@@ -53,9 +60,10 @@ h1{
     margin-bottom: 15px;
 }
 
-#register_page button[type=reset]{
+#register_page input[type=submit]{
     max-width: 400px;
     margin: auto;
+    width: 100%;
     margin-top: 20px;
 }
 
