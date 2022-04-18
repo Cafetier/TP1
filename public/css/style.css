@@ -33,6 +33,13 @@ a, select, input[type=checkbox], input::-webkit-calendar-picker-indicator, input
     cursor: pointer;
 }
 
+.grid-3 img{
+    width: 100%;
+    height: 250px;
+    display: block;
+    aspect-ratio: 1 / 1;
+}
+
 .carousel button span{
     cursor: pointer!important;    
 }
@@ -57,6 +64,7 @@ section{
     min-height: calc(100vh - 160px);
     height: auto;
     padding-top: 15px!important;
+    padding-bottom: 50px;
     background-color: var(--grulio);
 }
 
@@ -81,7 +89,6 @@ a{
 .grid-4, .grid-3, .grid-2, .grid{
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
 }
 
@@ -95,15 +102,15 @@ a{
     }
 
 .grid-4{
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .grid-3{
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .grid-2{
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .grid{
@@ -178,6 +185,15 @@ a{
     position: fixed!important;
     right: 20px!important;
     margin-top: 20px;
+    z-index: 999;
+}
+
+.alert{
+    background-color: #70798c61!important;
+}
+
+.alert-primary::after{
+    background-color: #e83260;
 }
 
 .small-container{

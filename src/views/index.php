@@ -6,8 +6,8 @@ require "../template/nav.php";
 // fetch brand data
 $brands = $product->GetBrands();
 
-// splice the array at 6 brand
-\array_splice($brands, 6);
+// splice the array at 8 brand
+\array_splice($brands, 8);
 
 include_once "../template/alert.php";
 ?>
@@ -46,7 +46,7 @@ include_once "../template/alert.php";
     </div>
 
     <!-- Random shoes -->
-    <h1>Here is a suggestion of shoes</h1>
+    <h1>Suggestion of shoes</h1>
     <div class="grid">
         <div>
             <!-- Images -->

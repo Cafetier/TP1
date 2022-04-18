@@ -59,6 +59,7 @@ localhost/Product/[id]
 - Page active (dans le menu de navigation)
 - Traduction anglaise
 - Contenu de la page a propos
+- [Index] Suggestion de soulier
 - [nav] Register and Connection should be right aligned
 - [nav] little bar that separate login and register (hr)
 - Breadcrumbs

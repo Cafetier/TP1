@@ -69,7 +69,7 @@ class Product extends Database
      */
     public function GetColors(){
         // query and return query
-        $brands = $this->Query($this->db_conn, "SELECT * FROM color", []);
+        $brands = $this->Query($this->db_conn, "SELECT c.COLORID, c.ColorName, HEX(c.Hex) as color_hex FROM color c", []);
         return $brands;
     }
 
@@ -100,10 +100,10 @@ class Product extends Database
      * 
      * Get all products
      * 
-     * Only $nbProduct is NECESSARY, the rest is OPTIONAL (It is used as filters)
+     * Only $ProductOffset is NECESSARY, the rest is OPTIONAL (It is used as filters)
      * Example of filter : $Filter = [['Brand'] => 'Adidas'...]
      * 
-     * @param int       $nbProduct                  Number of product you want returning (batch of 50, 20, 10...)
+     * @param int       $ProductOffset              Fetch 50 product from the offset point
      * @param object    $Filter                     Filter you want applied (all below)
         * @param string    ['Brand']                Brand of the product (Adidas, reebok...)
         * @param string    ['ColorName']            The name of the color
@@ -115,9 +115,10 @@ class Product extends Database
      * @return object   All the products in order of new to old (date added)
      * 
      */
-    public function GetAllProduct($nbProduct, $Filter){
-        // check if nbProduct is empty
-        if (empty($nbProduct)) throw new Error('There must be a number of product');
+    public function GetAllProduct($ProductOffset, $Filter){
+        // check if ProductOffset is empty or is not a number
+        if (!empty($ProductOffset) && !ctype_digit($ProductOffset)) 
+            throw new Error('There must be a number of product');
 
         // sql start
         $sqlquery = 'SELECT p.PRODUCTID,p.ProductName,p.ProductDescription,p.Price,
@@ -131,7 +132,7 @@ class Product extends Database
         LEFT JOIN Color c ON c.COLORID=cp.COLORID 
         LEFT JOIN pSize_Product sp ON sp.PRODUCTID=p.PRODUCTID 
         LEFT JOIN pSize s ON s.SIZEID=sp.SIZEID 
-        WHERE p.Listed = 1 ';
+        WHERE p.Listed = 1 AND P.PRODUCTID <= 50 ';
 
         // if there is brand
         if(isset($Filter['Brand']))
@@ -156,6 +157,7 @@ class Product extends Database
         /**
          * 
          * THATS FCKNG DANGEROUS MUST CHANGE THAT TO AVOID SQL INJECTION
+         * 
          */
         if(isset($Filter['Order']))
             $sqlquery = $sqlquery.'ORDER BY p.DateCreated '.$Filter['Order'];
