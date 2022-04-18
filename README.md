@@ -36,6 +36,7 @@ Promo
 - [Register] if 16 yo or more, cannot signup
 - [Index] faire un picturama promotions
 - [Index] async Search function shoes
+- Add async cart/wishlist add/remove (with new pages)
 - Add admin in db to add products
 - Remove sub directory in url and not show index page
 ex : localhost/Login
