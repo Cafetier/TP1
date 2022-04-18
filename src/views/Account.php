@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     try {
         $user->UpdateInformations($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender);
+        $success = 'Your informations was successfully updated';
     } catch (Error $e) {
         $error = $e->getMessage();
     }
@@ -38,7 +39,7 @@ $user_info = $user->UserExist($_SESSION['Email']);
 include_once "../template/alert.php";
 ?>
 
-<section class="container" id="account_page">
+<section class="container small-container">
     <h1>Votre compte</h1>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
         

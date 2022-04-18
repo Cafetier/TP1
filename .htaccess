@@ -7,8 +7,8 @@ ErrorDocument 404 /TP1/src/views/Error.php?error=404
 ErrorDocument 500 /TP1/src/views/Error.php?error=500
 
 # Change default directory page
-Options -Indexes
-DirectoryIndex src/views/Index.php /Index
+# Options -Indexes
+# DirectoryIndex src/views/Index.php /Index
  
 
 # remove the php extention in the url

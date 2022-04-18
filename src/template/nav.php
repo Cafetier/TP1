@@ -1,6 +1,6 @@
 <!-- Nav -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,6 +8,9 @@
             <ul class="navbar-nav me-auto">
                 <!-- Logo -->
                 <li class="nav-item">
+                    <a class="nav-link" href="Index">
+                        <img src="../../public/img/logo_full.svg" alt="Shoes Pro Shop Logo">
+                    </a>
                 </li>
                 <!-- Home -->
                 <li class="nav-item">
@@ -17,7 +20,7 @@
                 </li>
                 <!-- Nouveaute -->
                 <li class="nav-item">
-                    <a class="nav-link" href="MainPage">Magasiner</a>
+                    <a class="nav-link" href="Shop">Magasiner</a>
                 </li>
                 <!-- More -->
                 <li class="nav-item">

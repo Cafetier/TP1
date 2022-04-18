@@ -44,7 +44,7 @@ include_once "../template/alert.php";
 ?>
 
 
-<section class="container" id="register_page">
+<section class="container small-container" id="register_page">
     <h1>S'enregister</h1>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
         <div class="form-group">

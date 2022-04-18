@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 include_once "../template/alert.php";
 ?>
 
-<section class="container" id="connection_page">
+<section class="container small-container">
     <h1>Connection</h1>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" class="container">
         <div class="form-group">

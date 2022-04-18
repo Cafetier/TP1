@@ -1,12 +1,20 @@
 <?php 
-$PageTitle = 'Index';
+$PageTitle = 'Home';
 require "../template/header.php";
 require "../template/nav.php";
+
+// fetch brand data
+$brands = $product->GetBrands();
+
+// splice the array at 6 brand
+\array_splice($brands, 6);
 
 include_once "../template/alert.php";
 ?>
 
-<section class="container">
+<section class="container" id="index_page">
+    <h1>Promotions</h1>
+    <!-- Promo container --> 
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -24,6 +32,27 @@ include_once "../template/alert.php";
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+    </div>
+
+
+    <!-- Shop by Brand -->
+    <h1>Shop brands</h1>
+    <div class="grid-3" id="shop_brand">
+        <?php foreach($brands as $k=>$v): ?>
+            <a href="Shop?brand=<?php echo $v['BrandName'] ?>">
+                <h4><?php echo $v['BrandName'] ?></h4>
+            </a>
+        <?php endforeach; ?>
+    </div>
+
+    <!-- Random shoes -->
+    <h1>Here is a suggestion of shoes</h1>
+    <div class="grid">
+        <div>
+            <!-- Images -->
+            <!-- Name -->
+            <!-- Price -->
+        </div>
     </div>
 </section>
 

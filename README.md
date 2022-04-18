@@ -30,16 +30,13 @@ Promo
 
 ## What is left to do 
 ### PHP
-- [Index] _getproducts filters
-- [Account] Modify account
+- Faire logo dans illustrator (re-export)
 - [Index] sql query should only return the first 50
 - [nav] show email account instead of my account
 - [Account] show input in value information already in bd
-- [Register] if 16 yo or more, cannot signup
-- [Index] faire un picturama promotions
+- [Register] if 16 yo or less, cannot signup
 - [Connection] On login, update date to now in db
 - Alert, stocker information dans les sessions (erreur/success)
-- [Index] async Search function shoes
 - Show successfull alert when good thing (inscription successfull, changed information successfully)
 - Add async cart/wishlist add/remove (with new pages)
 - Show successfull alert when good thing
@@ -51,24 +48,20 @@ localhost/Product/[id]
 - Remove index.php and make htaccess redirect to the real index
 - Better error handling
 - Female/male shoes db ?
-- Forgot password
 
 ### Design
-- [nav] Register and Connection should be right aligned
-- [nav] Add logo at left of bar
-- [nav] Sticky nav
-- [nav] responsive hamburger cursor : pointer
-- [nav] little bar that separate login and register
 - [error] cooler 404 page
-- [footer] Bigger footer with color
 - Fix transition on chrome
 - [Home] A filter menu
 
 
 ### Xavier
 - Page active (dans le menu de navigation)
-- Traduction, fautes
+- Traduction anglaise
 - Contenu de la page a propos
+- [nav] Register and Connection should be right aligned
+- [nav] little bar that separate login and register (hr)
+- Breadcrumbs
 
 
 
