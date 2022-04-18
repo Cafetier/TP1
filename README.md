@@ -41,6 +41,8 @@ Promo
 - Alert, stocker information dans les sessions (erreur/success)
 - [Index] async Search function shoes
 - Show successfull alert when good thing (inscription successfull, changed information successfully)
+- Add async cart/wishlist add/remove (with new pages)
+- Show successfull alert when good thing
 - Add Phone number bd...
 - Add admin in db to add products
 - Remove sub directory in url and not show index page

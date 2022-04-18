@@ -59,6 +59,12 @@ class User extends Database{
         if (!preg_match($this->NameRegex, $FirstName) && !preg_match($this->NameRegex, $LastName))
             throw new Error('Name must not contain special letter');
 
+        // check if gender is a number (for genderid)
+
+        
+
+
+
         // check if email already exists in db
         $dbUser = $this->UserExist($Email);
         if (!empty($dbUser)) throw new Error('This email is already taken');
