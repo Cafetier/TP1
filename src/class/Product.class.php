@@ -117,7 +117,7 @@ class Product extends Database
      */
     public function GetAllProduct($nbProduct, $Filter){
         // check if nbProduct is empty
-        if (empty($nbProduct)) throw new Error('There must be a number of Product to return');
+        if (empty($nbProduct)) throw new Error('There must be a number of product');
 
         // sql start
         $sqlquery = 'SELECT p.PRODUCTID,p.ProductName,p.ProductDescription,p.Price,
@@ -181,11 +181,11 @@ class Product extends Database
      */
     public function RemoveProduct($ProductID){
         // check if empty param
-        if (empty($ProductID)) throw new Error('ID must not be empty');
+        if (empty($ProductID)) throw new Error('Must provide a product id');
 
         // check if exist in db
         if (empty($this->GetProduct($ProductID))) 
-            throw new Error('This product doesnt exist in database');
+            throw new Error('This product does not exist in the database');
 
         // unlist the product if it isnt already
         try {

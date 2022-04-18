@@ -23,7 +23,7 @@ class Cart extends Database{
     public function Add($ProductID, $UserID){
         // check if inputs are not empty and are numbers
         if (empty($UserID || $ProductID) && ctype_digit($UserID && $ProductID))
-            throw new Error('Must not be empty and must be numbers');
+            throw new Error('Param must not be empty and must be numbers');
 
         // query the db to remove the product
         try {
@@ -44,7 +44,7 @@ class Cart extends Database{
     public function Remove($ProductID, $UserID){
         // check if inputs are not empty and are numbers
         if (empty($UserID || $ProductID) && ctype_digit($UserID && $ProductID))
-            throw new Error('Must not be empty and must be numbers');
+            throw new Error('Param must not be empty and must be numbers');
 
         // query the db to remove the product
         try {
@@ -66,7 +66,7 @@ class Cart extends Database{
     public function GetAll($UserID){
         // check if inputs are not empty and are numbers
         if (empty($UserID) && ctype_digit($UserID))
-            throw new Error('Must not be empty and must be numbers');
+            throw new Error('Param must not be empty and must be numbers');
 
         $sql_query = 'SELECT u.USERID, c.DateAdded,   
         p.PRODUCTID, p.ProductName, p.ProductDescription, p.Price, p.DateCreated,

@@ -2,6 +2,8 @@
 $PageTitle = 'Magasiner';
 require "../template/header.php";
 require "../template/nav.php";
+
+include_once "../template/alert.php";
 ?>
 
 <section class="container">
@@ -12,12 +14,10 @@ require "../template/nav.php";
 
 
 <script>
-    // fetch elem each 30s
     async function fetchProducts(){
         const response = await fetch('_getproducts.php')
         .then(r => r.json())
         .then(data => console.log(data));
-        return response;
     }
     fetchProducts();
 </script>

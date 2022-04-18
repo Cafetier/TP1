@@ -13,6 +13,8 @@ $e = $_GET['error'];
 $PageTitle = $e.' Error';
 require "../template/header.php";
 require "../template/nav.php";
+
+include_once "../template/alert.php";
 ?>
 <section class="container">
     <a href="Index">Retourner l'accueil</a>

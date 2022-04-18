@@ -9,7 +9,7 @@ This project will be using
 ## Requirement
 ~~- Une liste (ordonnée ou non) (select)~~
 - Deux tableaux (table, td, tr)
-- Deux images (img)
+~~- Deux images (img)~~
 
 Un à deux formulaire(s) d'envoi de données, qui contiennent au moins :
 ~~- Quatre zones de texte (input text)~~
@@ -37,8 +37,10 @@ Promo
 - [Account] show input in value information already in bd
 - [Register] if 16 yo or more, cannot signup
 - [Index] faire un picturama promotions
+- [Connection] On login, update date to now in db
+- Alert, stocker information dans les sessions (erreur/success)
 - [Index] async Search function shoes
-- Show successfull alert when good thing
+- Show successfull alert when good thing (inscription successfull, changed information successfully)
 - Add Phone number bd...
 - Add admin in db to add products
 - Remove sub directory in url and not show index page

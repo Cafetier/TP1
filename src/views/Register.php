@@ -28,25 +28,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $BirthDate  = $_POST['BirthDate'] ?? '';
     $Gender     = $_POST['Gender'] ?? '';
     
-    if ($Password !== $ConfPwd) $error = 'Password must match';
+    if ($Password != $ConfPwd) $error = 'Password must match';
     
     try {
         $user->Register($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender);
         header("Location: Login");  //redirect to the login page
+        $success = "You have successfully created an account";
         exit();
     } catch (Error $e) {
         $error = $e->getMessage();
     }
 }
+
+include_once "../template/alert.php";
 ?>
 
-<?php if(isset($error)): ?>
-    <!-- Error -->
-    <div class="custom_float_alert alert alert-dismissible alert-primary">
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <strong>Oh snap!</strong> <?php echo $error ?>
-    </div>
-<?php endif; ?>
 
 <section class="container" id="register_page">
     <h1>S'enregister</h1>

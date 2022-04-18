@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $BirthDate  = $_POST['BirthDate'] ?? '';
     $Gender     = $_POST['Gender'] ?? '';
     
-    if ($Password !== $ConfPwd) $error = 'Password must match';
+    if ($Password != $ConfPwd) $error = 'Password must match';
     
     try {
         $user->UpdateInformations($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender);
@@ -34,15 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 // fetch data from bd
 $user_info = $user->UserExist($_SESSION['Email']);
-?>
 
-<?php if(isset($error)): ?>
-    <!-- Error -->
-    <div class="custom_float_alert alert alert-dismissible alert-primary">
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <strong>Oh snap!</strong> <?php echo $error ?>
-    </div>
-<?php endif; ?>
+include_once "../template/alert.php";
+?>
 
 <section class="container" id="account_page">
     <h1>Votre compte</h1>
@@ -73,7 +67,7 @@ $user_info = $user->UserExist($_SESSION['Email']);
             </div>
             <!-- Password -->
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" placeholder="Mot de passe" name="Password">
+                <input type="password" class="form-control" placeholder="Nouveau mot de passe" name="Password">
                 <label>Nouveau mot de passe</label>
             </div>
             <!-- Conf password -->

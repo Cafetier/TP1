@@ -30,15 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $error = $e->getMessage();
     }
 }
-?>
 
-<!-- Error -->
-<?php if(isset($error)): ?>
-    <div class="custom_float_alert alert alert-dismissible alert-primary">
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <?php echo $error ?>
-    </div>
-<?php endif; ?>
+include_once "../template/alert.php";
+?>
 
 <section class="container" id="connection_page">
     <h1>Connection</h1>

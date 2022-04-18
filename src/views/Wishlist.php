@@ -11,6 +11,8 @@ if(!$user->IsLoggedIn()){
 
 // get all wishlisted items linked to the account in the session
 $wishlist_items = $cart->GetAll($_SESSION['USERID']);
+
+include_once "../template/alert.php";
 ?>
 <section class="container">
     <h1>Wishlist</h1>

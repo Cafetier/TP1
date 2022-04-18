@@ -53,8 +53,7 @@ class User extends Database{
             throw new Error('Inputs must not be empty');
 
         // check if email using php filter_var()
-        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) 
-            throw new Error('Email is not a normal format');
+        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) throw new Error('Email is not valid');
 
         // check if names match name regex
         if (!preg_match($this->NameRegex, $FirstName) && !preg_match($this->NameRegex, $LastName))
@@ -98,15 +97,15 @@ class User extends Database{
         if (empty($Email || $Password)) throw new Error('Inputs must not be empty');
 
         // check if email using php filter_var()
-        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) throw new Error('Inputs must not be empty');
+        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) throw new Error('Email is not valid');
 
         // check if the user exist in db
         $dbUser = $this->UserExist($Email);
-        if (empty($dbUser)) throw new Error('User does not exist');
+        if (empty($dbUser)) throw new Error('This user does not exist');
         
         // check if hashed password is the same as db
         $pwDB = $dbUser['Password'];
-        if (!password_verify($Password, $pwDB)) throw new Error('There was an error');
+        if (!password_verify($Password, $pwDB)) throw new Error('Password does not match');
 
         $this->LogOut(); // destroy active session if there is
         session_start(); // start sessions handler
@@ -144,6 +143,45 @@ class User extends Database{
      * 
      */
     public function UpdateInformations($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender){
+        $sqlquery = 'UPDATE User SET LastName = ?, FirstName = ?, Email = ?, BirthDate = ?, GENDERID = ?';
+        $param = [$LastName, $FirstName, $Email, $BirthDate, $Gender];
+        // check if inputs are empty
+        if (empty($FirstName || $LastName || $Email || $BirthDate || $Gender)) 
+            throw new Error('Inputs must not be empty');
+
+        // check if email using php filter_var()
+        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) throw new Error('Email is not valid');
+
+        // check if names match name regex
+        if (!preg_match($this->NameRegex, $FirstName) && !preg_match($this->NameRegex, $LastName))
+            throw new Error('Name must not contain special letter');
+
+        // check if birth date > 1900 and more than the date of a 16 yo today
+        $timeBirthDate = strtotime($BirthDate);
+        if (strtotime("1900-01-01") < $timeBirthDate && $timeBirthDate < date('Y-m-d'))
+            throw new Error('Birth date incorrect');
+
+        // if password not empty
+        if (!empty($Password)){
+            $sqlquery = $sqlquery.', Password = ?';  // append to query
+
+            // hash password
+            $hashed_pwd = password_hash($Password, PASSWORD_DEFAULT);
+
+            // append to array
+            array_push($param, $hashed_pwd);
+        }
+
+        // push email at the end
+        array_push($param, $Email);
+
+        // update record in db
+        try {
+            $this->Query($this->db_conn, $sqlquery." WHERE Email = ?", 
+            $param);
+        } catch (Error $e) {
+            if (__DEBUG__) echo $e;
+        }
     }
     
     /**

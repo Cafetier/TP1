@@ -6,6 +6,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor03">
             <ul class="navbar-nav me-auto">
+                <!-- Logo -->
+                <li class="nav-item">
+                </li>
                 <!-- Home -->
                 <li class="nav-item">
                     <a class="nav-link active" href="Index">Accueil

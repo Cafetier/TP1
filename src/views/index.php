@@ -2,6 +2,8 @@
 $PageTitle = 'Index';
 require "../template/header.php";
 require "../template/nav.php";
+
+include_once "../template/alert.php";
 ?>
 
 <section class="container">
