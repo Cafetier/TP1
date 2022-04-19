@@ -30,6 +30,7 @@ Promo
 
 ## What is left to do 
 ### PHP
+- Better product get all (https://stackoverflow.com/questions/49279952/how-to-join-arrays-with-mysql-from-3-tables-of-many-to-many-relationship)
 - Faire logo dans illustrator (re-export)
 - Ajouter pagination
 - [Shop] Add a visual for sizes filter
