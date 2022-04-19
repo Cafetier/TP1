@@ -39,7 +39,7 @@ include_once "../template/alert.php";
     <h1>Shop brands</h1>
     <div class="grid-3" id="shop_brand">
         <?php foreach($brands as $k=>$v): ?>
-            <a href="Shop?brand=<?php echo $v['BrandName'] ?>">
+            <a href="Shop?Brand=<?php echo $v['BrandName'] ?>">
                 <h4><?php echo $v['BrandName'] ?></h4>
             </a>
         <?php endforeach; ?>

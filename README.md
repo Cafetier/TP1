@@ -12,57 +12,60 @@ This project will be using
 ~~- Deux images (img)~~
 
 Un à deux formulaire(s) d'envoi de données, qui contiennent au moins :
-~~- Quatre zones de texte (input text)~~
-~~- Une liste déroulante (select)~~
-~~- Un champ adresse email (email)~~
-~~- Un champ mot de passe (password)~~
-- Des boutons radio et checkbox
-~~- Un bouton annuler (qui permet d'annuler la saisie)~~
-~~- Deux boutons submit~~
+- ~~Quatre zones de texte (input text)~~
+- ~~Une liste déroulante (select)~~
+- ~~Un champ adresse email (email)~~
+- ~~Un champ mot de passe (password)~~
+- ~~Des boutons radio et checkbox~~
+- ~~Un bouton annuler (qui permet d'annuler la saisie)~~
+- ~~Deux boutons submit~~
 
 ## Ideas for website
 Boutique de chaussure
 bootswatch theme : Quartz (https://bootswatch.com/quartz/)
 nom du site : Shoes pro shop (like bass pro shop)
 Promo
-- Buy 1 get one half
-- order 200 or more get a free tshirt
+- ~~Buy 1 get one half~~
+- ~~order 200 or more get a free tshirt~~
 
 ## What is left to do 
 ### PHP
 - Faire logo dans illustrator (re-export)
-- [Index] sql query should only return the first 50
-- [nav] show email account instead of my account
+- Ajouter pagination
+- [Shop] Add a visual for sizes filter
+- Offset product (Product.class)
+- [Shop] sql query should only return the first 50
 - [Account] show input in value information already in bd
 - [Register] if 16 yo or less, cannot signup
 - [Connection] On login, update date to now in db
-- Alert, stocker information dans les sessions (erreur/success)
 - Show successfull alert when good thing (inscription successfull, changed information successfully)
-- Add async cart/wishlist add/remove (with new pages)
-- Show successfull alert when good thing
 - Add Phone number bd...
 - Add admin in db to add products
 - Remove sub directory in url and not show index page
 ex : localhost/Login
 localhost/Product/[id]
 - Remove index.php and make htaccess redirect to the real index
-- Better error handling
 - Female/male shoes db ?
 
 ### Design
 - [error] cooler 404 page
-- Fix transition on chrome
-- [Home] A filter menu
+- [Home] Hover card for brands
+- [Shop] Hover card product
+- [Shop] No product better style
 
 
 ### Xavier
 - Page active (dans le menu de navigation)
 - Traduction anglaise
+- Faire la page produit
 - Contenu de la page a propos
+    - faire deux tableaux a linterieur
 - [Index] Suggestion de soulier
 - [nav] Register and Connection should be right aligned
 - [nav] little bar that separate login and register (hr)
 - Breadcrumbs
+- [Shop] Change color of size slider point
+- [Footer] Better aligned text in footer
 
 
 

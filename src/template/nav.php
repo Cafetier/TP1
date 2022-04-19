@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarColor03">
             <ul class="navbar-nav me-auto">
                 <!-- Logo -->
-                <li class="nav-item">
+                <li class="nav-item logo-nav">
                     <a class="nav-link" href="Index">
                         <img src="../../public/img/logo_full.svg" alt="Shoes Pro Shop Logo">
                     </a>
