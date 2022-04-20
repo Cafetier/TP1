@@ -30,16 +30,18 @@ Promo
 
 ## What is left to do 
 ### PHP
-- Better product get all (https://stackoverflow.com/questions/49279952/how-to-join-arrays-with-mysql-from-3-tables-of-many-to-many-relationship)
-- Faire logo dans illustrator (re-export)
-- Ajouter pagination
-- [Shop] Add a visual for sizes filter
+- Nullable checkbox for each filter (so you can deactivate the filter)
+- [Shop] Reset btn doesnt work
+- Combine images/colors/sizes into array
+- [Shop] Filter size do not return just 10.5, but 10 too
 - Offset product (Product.class)
 - [Shop] sql query should only return the first 50
 - [Account] show input in value information already in bd
+- [Index] Suggestion de soulier
 - [Register] if 16 yo or less, cannot signup
 - [Connection] On login, update date to now in db
 - Show successfull alert when good thing (inscription successfull, changed information successfully)
+- Ajouter pagination
 - Add Phone number bd...
 - Add admin in db to add products
 - Remove sub directory in url and not show index page
@@ -47,26 +49,27 @@ ex : localhost/Login
 localhost/Product/[id]
 - Remove index.php and make htaccess redirect to the real index
 - Female/male shoes db ?
+- Breadcrumbs
 
 ### Design
-- [error] cooler 404 page
+- [nav] Register and Connection should be right aligned
+- [nav] little bar that separate login and register (hr)
+- [Shop] Change color of size slider point
+- [Shop] No product better style
 - [Home] Hover card for brands
 - [Shop] Hover card product
-- [Shop] No product better style
+- [error] cooler 404 page
+- [Shop] margin-top pagination
 
 
 ### Xavier
-- Page active (dans le menu de navigation)
+- [nav] Page active (dans le menu de navigation)
 - Traduction anglaise
-- Faire la page produit
+- Page produit
 - Contenu de la page a propos
     - faire deux tableaux a linterieur
-- [Index] Suggestion de soulier
-- [nav] Register and Connection should be right aligned
-- [nav] little bar that separate login and register (hr)
-- Breadcrumbs
-- [Shop] Change color of size slider point
 - [Footer] Better aligned text in footer
+- [Shop] Ajouter images de produits
 
 
 

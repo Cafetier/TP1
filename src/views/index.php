@@ -39,34 +39,18 @@ include_once "../template/alert.php";
     <h1>Shop brands</h1>
     <div class="grid-3" id="shop_brand">
         <?php foreach($brands as $k=>$v): ?>
-            <a href="Shop?Brand=<?php echo $v['BrandName'] ?>">
+            <a href="Shop?Brand%5B%5D=<?php echo $v['BrandName'] ?>">
                 <h4><?php echo $v['BrandName'] ?></h4>
             </a>
         <?php endforeach; ?>
     </div>
 
-    <!-- Random shoes -->
+    <!-- Random shoes
     <h1>Suggestion of shoes</h1>
     <div class="grid">
         <div>
-            <!-- Images -->
-            <!-- Name -->
-            <!-- Price -->
         </div>
-    </div>
+    </div> -->
 </section>
 
 <?php require_once('../template/footer.php'); ?>
-
-
-<script>
-    // fetch elem each 30s
-    async function fetchProducts(){
-        const response = await fetch('_getproducts.php')
-        .then(r => r.json())
-        .then(data => console.log(data));
-        return response;
-    }
-    fetchProducts();
-    setInterval(fetchProducts, 60000);
-</script>

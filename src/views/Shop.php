@@ -11,16 +11,28 @@ $categories['Colors'] = $product->GetColors();
 $categories['Sizes'] = $product->GetSizes();
 
 // check if there is GET values and append to filters
+/**
+ * 
+ * This needs to move into Product->GetAllProduct
+ * 
+ * 
+ */
 $filters = [];
 foreach ($_GET as $k => $v) {
     if (empty($v)) continue;
     switch ($k) {
         case 'Brand':
+            // convert to array if it is not already
+            if (!is_array($v)) break;
             $filters['Brand'] = $v;
             break;
             
-        case 'Colorname':
+        case 'Color':
             $filters['ColorName'] = $v;
+            break;
+
+        case 'Name':
+            $filters['Name'] = $v;
             break;
 
         case 'Size':
@@ -32,11 +44,13 @@ foreach ($_GET as $k => $v) {
             break;
 
         case 'Price':
+            // check if not array and not contains only 2 numbers
+            if (!is_array($v) || !ctype_digit($v[0]) || !ctype_digit($v[1])) break;
             $filters['Price'] = $v;
             break;
 
         case 'Order':
-            $filters['Order'] = $v;
+            if ($v === 'DESC' || $v === 'ASC') $filters['Order'] = $v;
             break;
     }
 }
@@ -44,11 +58,10 @@ foreach ($_GET as $k => $v) {
 // fetch products
 try{
     $products = $product->GetAllProduct(0, $filters);
-    print_r($products);
 }
 catch(Error $e){
     $error = $e->getMessage();
-}    
+}
 
 // alert overlay
 include_once "../template/alert.php";
@@ -60,18 +73,23 @@ include_once "../template/alert.php";
         <h3>Filters</h3>
         <hr>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="get">
+            <!-- Rechercher -->
+            <div class="filter-title"><h5>Rechercher</h5></div>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="SearchInput" name="Name" placeholder="Rechercher" value="<?php echo $_GET['Name'] ?? '' ?>">
+                <label for="SearchInput">Rechercher</label>
+            </div>
             <!-- Brand -->
-            <h5>Brand</h5>
+            <div class="filter-title"><h5>Brand</h5></div>
             <div class="grid-2">
                 <?php foreach ($categories['Brands'] as $k => $v): ?>
                     <label class="form-check-label" for="<?php echo $v['BrandName'] ?>">
                         <!-- Input -->
                         <input class="form-check-input" type="checkbox" 
-                        name="Brand" 
+                        name="Brand[]" 
                         value="<?php echo $v['BrandName'] ?>" id="<?php echo $v['BrandName'] ?>"
 
-                        <?php if(($_GET['Brand'] ?? null) === $v['BrandName']) echo 'checked' ?>
-
+                        <?php if(is_array($_GET['Brand'] ?? '') && in_array($v['BrandName'], $_GET['Brand'] ?? [])) echo 'checked' ?>
                         >
 
                         <!-- Text -->
@@ -81,41 +99,67 @@ include_once "../template/alert.php";
             </div>
 
             <!-- Types -->
-            <h5>Types</h5>
+            <div class="filter-title"><h5>Types</h5></div>
             <?php foreach ($categories['Types'] as $k => $v): ?>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="Type" value="<?php echo $v['TypeName'] ?>">
+                        <input type="radio" class="form-check-input" name="Type" value="<?php echo $v['TypeName'] ?>"
+                        <?php if(($_GET['Type'] ?? '') === $v['TypeName']) echo 'checked' ?>
+                        >
                         <?php echo $v['TypeName'] ?>
                     </label>
                 </div>
             <?php endforeach; ?>
 
             <!-- Colors -->
-            <h5>Colors</h5>
-            <select class="form-select" name="ColorName">
-                <option value="" hidden selected>Color</option>
+            <div class="filter-title"><h5>Colors</h5></div>
+            <select class="form-select" name="Color">
+                <option value="" hidden>Color</option>
                 <?php foreach ($categories['Colors'] as $k => $v): ?>
-                    <option value="<?php echo $v['ColorName'] ?>"><?php echo $v['ColorName'] ?></option>
+                    <option value="<?php echo $v['ColorName'] ?>" <?php if($_GET['Color'] === $v['ColorName']) echo 'selected' ?>>
+                        <?php echo $v['ColorName'] ?>
+                    </option>
                 <?php endforeach; ?>
             </select>
 
             <!-- Sizes -->
-            <h5>Sizes</h5>
-            <div>
-                <input type="range" class="form-range" min="5" max="13" step="0.5" name="Size">
+            <div class="filter-title"><h5>Sizes</h5><h6>9.5</h6></div>
+            <div id="sizes_div">
+                <div>
+                    <span>5</span>
+                    <span>13</span>
+                </div>
+                <input type="range" class="form-range" 
+                min="5" max="13" step="0.5" name="Size" 
+                value="<?php echo !empty($_GET['Size'])? $_GET['Size'] : '' ?>">
             </div>
 
             <!-- Price -->
-            <h5>Price</h5>
-            <div>
+            <div class="filter-title"><h5>Price</h5></div>
+            <!-- min -->
+            <div class="form-floating ">
+                <input type="number" class="form-control" id="floatingInput" name="Price[]" placeholder="Min" value="<?php echo $_GET['Price'][1] ?? '' ?>">
+                <label for="floatingInput">Min</label>
+            </div>
+            <!-- max -->
+            <div class="form-floating">
+                <input type="number" name="Price[]" class="form-control" id="floatingPassword" placeholder="Max" value="<?php echo $_GET['Price'][0] ?? '' ?>">
+                <label for="floatingPassword">Max</label>
             </div>
 
-
-            <!-- Submit btn -->
-            <div class="row">
-                <div class="col text-center">
-                    <button type="submit" class="btn btn-primary col ">Update</button>
+            <!-- Submit && reset -->
+            <div>
+                <!-- Submit btn -->
+                <div class="row">
+                    <div class="col text-center">
+                        <button type="submit" class="btn btn-primary col ">Update</button>
+                    </div>
+                </div>
+                <!-- Reset btn -->
+                <div class="row">
+                    <div class="col text-center">
+                        <button type="reset" class="btn btn-primary col ">Reset</button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -163,8 +207,8 @@ include_once "../template/alert.php";
                 </a>
             <?php endforeach; ?>
         </div>
-        <?php if (array_filter($products)): ?>
-            <!-- Pagination -->
+        <!-- <?php //if (array_filter($products)): ?>
+            Pagination
             <div class="d-flex justify-content-center">
                 <ul class="pagination pagination-lg">
                     <li class="page-item disabled">
@@ -190,7 +234,7 @@ include_once "../template/alert.php";
                     </li>
                 </ul>
             </div>
-        <?php endif;?>
+        <?php //endif;?> -->
     </div>
 </section>
 
@@ -205,7 +249,12 @@ include_once "../template/alert.php";
     // }
     // fetchProducts();
 
-    // change price format
-
-    // show sizes number
+    // change price text on input
+    const size_txt = document.querySelector(".filter-title > h6");
+    const size_input = document.querySelector("#sizes_div > input[type=range]");
+    size_txt.textContent = size_input.value;
+    size_input.oninput = e =>{
+        const t = e.target;
+        size_txt.textContent = t.value;
+    };
 </script>

@@ -105,7 +105,8 @@ class Product extends Database
      * 
      * @param int       $ProductOffset              Fetch 50 product from the offset point
      * @param object    $Filter                     Filter you want applied (all below)
-        * @param string    ['Brand']                Brand of the product (Adidas, reebok...)
+        * @param string    ['Name']                 Search the name of the product ex : Superstar
+        * @param array     ['Brand']                Brand of the product ex : [Adidas, Reebok]
         * @param string    ['ColorName']            The name of the color
         * @param double    ['Size']                 Size of the shoe (10.5, 8.0...)
         * @param string    ['Type']                 Type of shoe (Running, everyday...)
@@ -119,6 +120,8 @@ class Product extends Database
         // check if ProductOffset is empty or is not a number
         if (!empty($ProductOffset) && !ctype_digit($ProductOffset)) 
             throw new Error('There must be a number of product');
+
+        $param = [];
 
         // sql start
         $sqlquery = 'SELECT p.PRODUCTID,p.ProductName,p.ProductDescription,p.Price,
@@ -134,44 +137,80 @@ class Product extends Database
         LEFT JOIN pSize s ON s.SIZEID=sp.SIZEID 
         WHERE p.Listed = 1 AND P.PRODUCTID <= 50 ';
 
-        // if there is brand
-        if(isset($Filter['Brand']))
-            $sqlquery = $sqlquery.'AND b.BrandName = ? ';
+        // NAME
+        if(isset($Filter['Name'])){
+            // append to sql query where statement
+            $sqlquery = $sqlquery.'AND p.ProductName LIKE ? ';
 
-        // color
-        if(isset($Filter['ColorName']))
+            // append to array
+            array_push($param, '%'.$Filter['Name'].'%');
+        }
+
+        // if brand is an array and exists
+        if(isset($Filter['Brand']) && is_array($Filter['Brand'])){
+            foreach ($Filter['Brand'] as $k => $v) {
+                // append to sql query where statement
+                // if first then add a AND instead of or
+                $k === 0?
+                    $sqlquery = $sqlquery.'AND b.BrandName = ? ':
+                    $sqlquery = $sqlquery.'OR b.BrandName = ? ';
+
+                // append to param array
+                array_push($param, $v);
+            }
+        }
+
+        // if color exists
+        if(isset($Filter['ColorName'])){
+            // append to sql query where statement
             $sqlquery = $sqlquery.'AND c.ColorName = ? ';
 
+            // append to param array
+            array_push($param, $Filter['ColorName']);
+        }
+
         // size
-        if(isset($Filter['Size']) && ctype_digit($Filter['Size']))
-            $sqlquery = $sqlquery.'AND ? > s.Size < ? ';
+        if(isset($Filter['Size']) && ctype_digit($Filter['Size'])){
+            // append to sql query where statement
+            $sqlquery = $sqlquery.'AND s.Size = ? ';
+
+            // append to param array
+            array_push($param, $Filter['Size']);
+        }
 
         // Type
-        if(isset($Filter['Type']))
+        if(isset($Filter['Type'])){
+            // append to sql query where statement
             $sqlquery = $sqlquery.'AND t.TypeName = ? ';
 
-        // Price
-        if(isset($Filter['Price']));
+            // append to param array
+            array_push($param, $Filter['Type']);
+        }
 
-        // order
-        /**
-         * 
-         * THATS FCKNG DANGEROUS MUST CHANGE THAT TO AVOID SQL INJECTION
-         * 
-         */
-        if(isset($Filter['Order']))
+        // Price
+        if(isset($Filter['Price'])){
+            // append to sql query where statement
+            $sqlquery = $sqlquery.'AND p.Price > ? AND p.Price < ? ';
+
+            // append to param array
+            foreach ($Filter['Price'] as $v) array_push($param, $v); 
+        }
+
+        // WORKS Order
+        if(isset($Filter['Order'])){
+            // append to sql query where statement
             $sqlquery = $sqlquery.'ORDER BY p.DateCreated '.$Filter['Order'];
             unset($Filter['Order']);  // unset order
+        }
 
         // query and return query
         try{
-            $products = $this->Query($this->db_conn, $sqlquery, array_values($Filter));
+            $products = $this->Query($this->db_conn, $sqlquery, $param);
+            return $products;
         }
         catch (Error $e){
             echo $e;
         }
-
-        return $products;
     }
 
     /**
@@ -195,7 +234,6 @@ class Product extends Database
             "UPDATE Product SET Listed = 0
             WHERE Listed != 0 AND PRODUCTID = ?;", 
             [$ProductID]);
-            echo 'Deleted this product';
         } catch (Error $e) {
             echo $e;
         }
