@@ -13,6 +13,17 @@ table, caption, tbody, tfoot, thead, tr, th, td{
     padding: 0;
 }
 
+/* Hide number for number input */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 h1, h2, h3, h4, h5, h6, span, p, div {
     cursor: default;
 }
@@ -327,9 +338,13 @@ h1{
         margin-right: 10px;
     }
 
-    #filter_side form > *:not(:first-child){
+    #filter_side form > * > *:not(:first-child){
         margin-top: 10px;
         margin-bottom: 0;
+    }
+
+    #filter_side form button[type=reset]{
+        margin-top: 0!important;
     }
 
     #filter_side form > *:last-child{
@@ -383,7 +398,14 @@ h1{
     }
 
     .filter-title > *:not(:first-child){
-        padding-left: 10px;
+        margin-left: 10px!important;
+    }
+
+    .filter-title > div{
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        width: 100%;
     }
 
 .product-card{

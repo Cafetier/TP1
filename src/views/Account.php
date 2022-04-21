@@ -87,7 +87,7 @@ include_once "../template/alert.php";
                 <select required class="form-select" name="Gender">
                     <option value="" hidden>Gender</option>
                     <?php foreach($genders as $k=>$v): ?>
-                        <option value="<?php echo $k ?>" <?php if (isset($_POST['Gender']) && $_POST['Gender']==$k || $user_info['GENDERID'] == $k) echo "selected" ?>><?php echo $v["GenderName"] ?></option>
+                        <option value="<?php echo $v['GENDERID'] ?>" <?php if (isset($_POST['Gender']) && $_POST['Gender']==$k || $user_info['GENDERID'] == $k) echo "selected" ?>><?php echo $v["GenderName"] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

@@ -74,77 +74,106 @@ include_once "../template/alert.php";
         <hr>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="get">
             <!-- Rechercher -->
-            <div class="filter-title"><h5>Rechercher</h5></div>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="SearchInput" name="Name" placeholder="Rechercher" value="<?php echo $_GET['Name'] ?? '' ?>">
-                <label for="SearchInput">Rechercher</label>
+            <div>
+                <div class="filter-title">
+                    <h5>Rechercher</h5>
+                    <div><input type="checkbox" class="form-check-input" name="Name" value=""></div>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="SearchInput" name="Name" placeholder="Rechercher" value="<?php echo $_GET['Name'] ?? '' ?>">
+                    <label for="SearchInput">Rechercher</label>
+                </div>
             </div>
             <!-- Brand -->
-            <div class="filter-title"><h5>Brand</h5></div>
-            <div class="grid-2">
-                <?php foreach ($categories['Brands'] as $k => $v): ?>
-                    <label class="form-check-label" for="<?php echo $v['BrandName'] ?>">
-                        <!-- Input -->
-                        <input class="form-check-input" type="checkbox" 
-                        name="Brand[]" 
-                        value="<?php echo $v['BrandName'] ?>" id="<?php echo $v['BrandName'] ?>"
+            <div>
+                <div class="filter-title">
+                    <h5>Brand</h5>
+                    <div><input type="checkbox" class="form-check-input" name="Brand[]" value=""></div>
+                </div>
+                <div class="grid-2">
+                    <?php foreach ($categories['Brands'] as $k => $v): ?>
+                        <label class="form-check-label" for="<?php echo $v['BrandName'] ?>">
+                            <!-- Input -->
+                            <input class="form-check-input" type="checkbox" 
+                            name="Brand[]" 
+                            value="<?php echo $v['BrandName'] ?>" id="<?php echo $v['BrandName'] ?>"
 
-                        <?php if(is_array($_GET['Brand'] ?? '') && in_array($v['BrandName'], $_GET['Brand'] ?? [])) echo 'checked' ?>
-                        >
+                            <?php if(is_array($_GET['Brand'] ?? '') && in_array($v['BrandName'], $_GET['Brand'] ?? [])) echo 'checked' ?>
+                            >
 
-                        <!-- Text -->
-                        <?php echo $v['BrandName'] ?>
-                    </label>
+                            <!-- Text -->
+                            <?php echo $v['BrandName'] ?>
+                        </label>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <!-- Types -->
+            <div>
+                <div class="filter-title">
+                    <h5>Types</h5>
+                    <div><input type="checkbox" class="form-check-input" name="Type" value=""></div>
+                </div>
+                <?php foreach ($categories['Types'] as $k => $v): ?>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="Type" value="<?php echo $v['TypeName'] ?>"
+                            <?php if(($_GET['Type'] ?? '') === $v['TypeName']) echo 'checked' ?>
+                            >
+                            <?php echo $v['TypeName'] ?>
+                        </label>
+                    </div>
                 <?php endforeach; ?>
             </div>
-
-            <!-- Types -->
-            <div class="filter-title"><h5>Types</h5></div>
-            <?php foreach ($categories['Types'] as $k => $v): ?>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="Type" value="<?php echo $v['TypeName'] ?>"
-                        <?php if(($_GET['Type'] ?? '') === $v['TypeName']) echo 'checked' ?>
-                        >
-                        <?php echo $v['TypeName'] ?>
-                    </label>
-                </div>
-            <?php endforeach; ?>
-
             <!-- Colors -->
-            <div class="filter-title"><h5>Colors</h5></div>
-            <select class="form-select" name="Color">
-                <option value="" hidden>Color</option>
-                <?php foreach ($categories['Colors'] as $k => $v): ?>
-                    <option value="<?php echo $v['ColorName'] ?>" <?php if($_GET['Color'] === $v['ColorName']) echo 'selected' ?>>
-                        <?php echo $v['ColorName'] ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+            <div>
+                <div class="filter-title">
+                    <h5>Colors</h5>
+                    <div><input type="checkbox" class="form-check-input" name="Color" value=""></div>
+                </div>
+                <select class="form-select" name="Color">
+                    <option value="" hidden>Color</option>
+                    <?php foreach ($categories['Colors'] as $k => $v): ?>
+                        <option value="<?php echo $v['ColorName'] ?>" <?php if(($_GET['Color'] ?? '') === $v['ColorName']) echo 'selected' ?>>
+                            <?php echo $v['ColorName'] ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
             <!-- Sizes -->
-            <div class="filter-title"><h5>Sizes</h5><h6>9.5</h6></div>
-            <div id="sizes_div">
-                <div>
-                    <span>5</span>
-                    <span>13</span>
+            <div>
+                <div class="filter-title">
+                    <h5>Sizes</h5>
+                    <h6>9.5</h6>
+                    <div><input type="checkbox" class="form-check-input" name="Size" value=""></div>
                 </div>
-                <input type="range" class="form-range" 
-                min="5" max="13" step="0.5" name="Size" 
-                value="<?php echo !empty($_GET['Size'])? $_GET['Size'] : '' ?>">
+                <div id="sizes_div">
+                    <div>
+                        <span>5</span>
+                        <span>13</span>
+                    </div>
+                    <input type="range" class="form-range" 
+                    min="5" max="13" step="0.5" name="Size" 
+                    value="<?php echo !empty($_GET['Size'])? $_GET['Size'] : '' ?>">
+                </div>
             </div>
 
             <!-- Price -->
-            <div class="filter-title"><h5>Price</h5></div>
-            <!-- min -->
-            <div class="form-floating ">
-                <input type="number" class="form-control" id="floatingInput" name="Price[]" placeholder="Min" value="<?php echo $_GET['Price'][1] ?? '' ?>">
-                <label for="floatingInput">Min</label>
-            </div>
-            <!-- max -->
-            <div class="form-floating">
-                <input type="number" name="Price[]" class="form-control" id="floatingPassword" placeholder="Max" value="<?php echo $_GET['Price'][0] ?? '' ?>">
-                <label for="floatingPassword">Max</label>
+            <div>
+                <div class="filter-title">
+                    <h5>Price</h5>
+                    <div><input type="checkbox" class="form-check-input" name="Price[]" value=""></div>
+                </div>
+                <!-- min -->
+                <div class="form-floating ">
+                    <input type="number" class="form-control" id="floatingInput" name="Price[]" placeholder="Min" value="<?php echo $_GET['Price'][1] ?? '' ?>">
+                    <label for="floatingInput">Min</label>
+                </div>
+                <!-- max -->
+                <div class="form-floating">
+                    <input type="number" name="Price[]" class="form-control" id="floatingPassword" placeholder="Max" value="<?php echo $_GET['Price'][0] ?? '' ?>">
+                    <label for="floatingPassword">Max</label>
+                </div>
             </div>
 
             <!-- Submit && reset -->

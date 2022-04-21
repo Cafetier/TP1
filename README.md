@@ -64,6 +64,7 @@ localhost/Product/[id]
 - [error] cooler 404 page
 - [Shop] margin-top pagination
 - background needs a gradient
+- arrow to redirect to top
 
 
 ### Xavier

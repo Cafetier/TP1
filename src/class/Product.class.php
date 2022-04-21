@@ -133,9 +133,9 @@ class Product extends Database
         p.Listed,
         b.BrandName,
         t.TypeName,
-        JSON_ARRAYAGG(i.ImageName) AS ImageName,
-        JSON_ARRAYAGG(s.Size) AS Size,
-        JSON_ARRAYAGG(c.ColorName) AS ColorName
+        i.ImageName,
+        s.Size,
+        c.ColorName
         FROM
             Product p
         LEFT JOIN Brand b ON p.BRANDID = b.BRANDID
@@ -209,7 +209,7 @@ class Product extends Database
         }
 
         // append group by
-        $sqlquery = $sqlquery.'GROUP BY p.PRODUCTID ';
+        // $sqlquery = $sqlquery.'GROUP BY p.PRODUCTID ';
 
         // WORKS Order
         if(isset($Filter['Order'])){
@@ -217,7 +217,7 @@ class Product extends Database
             $sqlquery = $sqlquery.'ORDER BY p.DateCreated '.$Filter['Order'];
             unset($Filter['Order']);  // unset order
         }
-
+        
         // query and return query
         try{
             $products = $this->Query($this->db_conn, $sqlquery, $param);
