@@ -80,8 +80,6 @@ localhost/Product/[id]
     - faire deux tableaux a linterieur
 - [Footer] Better aligned text in footer
 - [Shop] Ajouter images de produits
-- Filmer la video pour montrer le site
-
 
 
 ## Resources
