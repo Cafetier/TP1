@@ -12,7 +12,7 @@
 
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
         <link rel="stylesheet" href="../../public/css/style.css">
-        <title><?php echo $PageTitle; ?></title>
+        <link rel="icon" type="image/x-icon" href="../../public/img/favicon.png">
+        <title>SPS - <?php echo $PageTitle ?? '' ?></title>
     </head>
     <body class="preloader">

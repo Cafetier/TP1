@@ -81,7 +81,7 @@ RewriteRule ^(.*)$ $1.php
     Header append Vary User-Agent
 </IfModule>
 
-# Crawling & Indexing
-<FilesMatch ".(docx|pdf)$">
-    Header add X-robots-tag "noindex, noarchive, nosnippet"
-</FilesMatch>
+# # Crawling & Indexing
+# <FilesMatch ".(docx|pdf)$">
+#     Header add X-robots-tag "noindex, noarchive, nosnippet"
+# </FilesMatch>

@@ -44,7 +44,7 @@ async function AssignAsyncForms(){
 
 window.addEventListener('DOMContentLoaded', (e) => {
     // remove the preloader
-    //document.querySelector('.preloader').classList.remove("preloader");
+    document.querySelector('.preloader').classList.remove("preloader");
 
     //assign js async submit
     // AssignAsyncForms();
