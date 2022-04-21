@@ -33,6 +33,8 @@ You can just wishlist shoes and it shows where it is avalaible with links and ph
 
 ## What is left to do 
 ### PHP
+- Add to cart/wishlist
+- Remove from cart/wishlist
 - Nullable checkbox for each filter (so you can deactivate the filter)
 - [Shop] Reset btn doesnt work
 - Combine images/colors/sizes into array
@@ -65,6 +67,9 @@ localhost/Product/[id]
 - [Shop] margin-top pagination
 - background needs a gradient
 - arrow to redirect to top
+
+### Database
+- Remove size_product and replace only by size (because 1 can have many)
 
 
 ### Xavier
