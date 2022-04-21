@@ -174,7 +174,7 @@ include_once "../template/alert.php";
             <?php endif;?>
 
             <?php foreach ($products as $k => $v): ?>
-                <a href="Product?id=<?php echo $v['PRODUCTID'] ?>">
+                <a href="Product?id=<?php echo $v['PRODUCTID'] ?>" class="product-card">
                     <!-- Img carousel -->
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">

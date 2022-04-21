@@ -66,36 +66,38 @@ class Cart extends Database{
     public function GetAll($UserID){
         // check if inputs are not empty and are numbers
         if (empty($UserID) && ctype_digit($UserID))
-            throw new Error('Param must not be empty and must be numbers');
+            throw new Error('id must not be empty and must be a number');
 
-        $sql_query = 'SELECT u.USERID, c.DateAdded,   
-        p.PRODUCTID, p.ProductName, p.ProductDescription, p.Price, p.DateCreated,
-        t.TypeName, b.BrandName, s.Size,i.ImageName
+        $sql_query = "SELECT
+        u.USERID,
+        c.DateAdded,
+        p.PRODUCTID,
+        p.ProductName,
+        p.ProductDescription,
+        p.Price,
+        p.DateCreated,
+        t.TypeName,
+        b.BrandName,
+        s.Size,
+        JSON_ARRAYAGG(i.ImageName) AS ImageName
         FROM cart c
-        -- products
-        LEFT JOIN product p ON
-            c.PRODUCTID = p.PRODUCTID
-        -- user
-        LEFT JOIN user u ON
-            c.USERID = u.USERID
-        -- type
-        LEFT JOIN ptype t ON
-            t.TYPEID = p.TYPEID
-        -- brand
-        LEFT JOIN brand b ON
-            b.BRANDID = p.BRANDID
-        -- sizes
-        LEFT JOIN psize_product sp ON
-            sp.PRODUCTID = p.PRODUCTID
-        LEFT JOIN psize s ON
-            s.SIZEID = sp.SIZEID
-        -- images
-        LEFT JOIN pimage_product ip ON
-            ip.PRODUCTID = p.PRODUCTID
-        LEFT JOIN pimage i ON
-            i.IMAGEID = ip.IMAGEID
-        -- Condition
-        WHERE u.USERID = ?';
+            -- products
+        LEFT JOIN product p ON c.PRODUCTID = p.PRODUCTID
+            -- user
+        LEFT JOIN USER u ON c.USERID = u.USERID
+            -- type
+        LEFT JOIN ptype t ON t.TYPEID = p.TYPEID
+            -- brand
+        LEFT JOIN brand b ON b.BRANDID = p.BRANDID
+            -- sizes
+        LEFT JOIN psize_product sp ON sp.PRODUCTID = p.PRODUCTID
+        LEFT JOIN psize s ON s.SIZEID = sp.SIZEID
+            -- images
+        LEFT JOIN pimage_product ip ON ip.PRODUCTID = p.PRODUCTID
+        LEFT JOIN pimage i ON i.IMAGEID = ip.IMAGEID
+        WHERE u.USERID = ?
+        GROUP BY s.Size";
+
         // query the cart of the user
         try {
             $result = $this->Query($this->db_conn, $sql_query, [$UserID]);

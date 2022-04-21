@@ -21,6 +21,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
         <link rel="stylesheet" href="../../public/css/style.css">
         <link rel="icon" type="image/x-icon" href="../../public/img/favicon.png">
-        <title><?php echo $PageTitle ?? '' ?></title>
+        <title>SPS - <?php echo $PageTitle ?? '' ?></title>
     </head>
     <body class="preloader">

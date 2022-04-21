@@ -124,18 +124,30 @@ class Product extends Database
         $param = [];
 
         // sql start
-        $sqlquery = 'SELECT p.PRODUCTID,p.ProductName,p.ProductDescription,p.Price,
-        p.DateCreated, p.Listed, b.BrandName, t.TypeName, i.ImageName, s.Size, c.ColorName 
-        FROM Product p 
-        LEFT JOIN Brand b ON p.BRANDID = b.BRANDID 
-        LEFT JOIN pType t ON p.TYPEID = t.TYPEID 
-        LEFT JOIN pImage_Product ip ON p.PRODUCTID=ip.PRODUCTID 
-        LEFT JOIN pImage i ON i.IMAGEID=ip.IMAGEID 
-        LEFT JOIN Color_Product cp ON cp.PRODUCTID=p.PRODUCTID 
-        LEFT JOIN Color c ON c.COLORID=cp.COLORID 
-        LEFT JOIN pSize_Product sp ON sp.PRODUCTID=p.PRODUCTID 
-        LEFT JOIN pSize s ON s.SIZEID=sp.SIZEID 
-        WHERE p.Listed = 1 AND P.PRODUCTID <= 50 ';
+        $sqlquery = 'SELECT DISTINCT
+        p.PRODUCTID,
+        p.ProductName,
+        p.ProductDescription,
+        p.Price,
+        p.DateCreated,
+        p.Listed,
+        b.BrandName,
+        t.TypeName,
+        JSON_ARRAYAGG(i.ImageName) AS ImageName,
+        JSON_ARRAYAGG(s.Size) AS Size,
+        JSON_ARRAYAGG(c.ColorName) AS ColorName
+        FROM
+            Product p
+        LEFT JOIN Brand b ON p.BRANDID = b.BRANDID
+        LEFT JOIN pType t ON p.TYPEID = t.TYPEID
+        LEFT JOIN pImage_Product ip ON p.PRODUCTID = ip.PRODUCTID
+        LEFT JOIN pImage i ON i.IMAGEID = ip.IMAGEID
+        LEFT JOIN Color_Product cp ON cp.PRODUCTID = p.PRODUCTID
+        LEFT JOIN Color c ON c.COLORID = cp.COLORID
+        LEFT JOIN pSize_Product sp ON sp.PRODUCTID = p.PRODUCTID
+        LEFT JOIN pSize s ON s.SIZEID = sp.SIZEID
+        WHERE
+            p.Listed = 1 AND 0 < P.PRODUCTID <= 50 ';
 
         // NAME
         if(isset($Filter['Name'])){
@@ -195,6 +207,9 @@ class Product extends Database
             // append to param array
             foreach ($Filter['Price'] as $v) array_push($param, $v); 
         }
+
+        // append group by
+        $sqlquery = $sqlquery.'GROUP BY p.PRODUCTID ';
 
         // WORKS Order
         if(isset($Filter['Order'])){

@@ -7,9 +7,9 @@ This project will be using
 - bootswatch/bootstrap
 
 ## Requirement
-~~- Une liste (ordonnée ou non) (select)~~
+- ~~Une liste (ordonnée ou non) (select)~~
 - Deux tableaux (table, td, tr)
-~~- Deux images (img)~~
+- ~~Deux images (img)~~
 
 Un à deux formulaire(s) d'envoi de données, qui contiennent au moins :
 - ~~Quatre zones de texte (input text)~~
@@ -28,6 +28,9 @@ Promo
 - ~~Buy 1 get one half~~
 - ~~order 200 or more get a free tshirt~~
 
+### New idea
+You can just wishlist shoes and it shows where it is avalaible with links and photo
+
 ## What is left to do 
 ### PHP
 - Nullable checkbox for each filter (so you can deactivate the filter)
@@ -38,8 +41,7 @@ Promo
 - [Shop] sql query should only return the first 50
 - [Account] show input in value information already in bd
 - [Index] Suggestion de soulier
-- [Register] if 16 yo or less, cannot signup
-- [Connection] On login, update date to now in db
+- [DB] Add more dummy data
 - Show successfull alert when good thing (inscription successfull, changed information successfully)
 - Ajouter pagination
 - Add Phone number bd...
@@ -50,6 +52,7 @@ localhost/Product/[id]
 - Remove index.php and make htaccess redirect to the real index
 - Female/male shoes db ?
 - Breadcrumbs
+- Alt text for image in db
 
 ### Design
 - [nav] Register and Connection should be right aligned
@@ -60,6 +63,7 @@ localhost/Product/[id]
 - [Shop] Hover card product
 - [error] cooler 404 page
 - [Shop] margin-top pagination
+- background needs a gradient
 
 
 ### Xavier
@@ -70,6 +74,7 @@ localhost/Product/[id]
     - faire deux tableaux a linterieur
 - [Footer] Better aligned text in footer
 - [Shop] Ajouter images de produits
+- Filmer la video pour montrer le site
 
 
 
@@ -90,3 +95,4 @@ Web             :
 Be SURE to do all the steps below before going into prod :
 - NO default password in database
 - Create special user for application in db
+- Deactivate the __DEBUG__ constant in src/constants.php

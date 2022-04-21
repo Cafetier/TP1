@@ -35,13 +35,6 @@ input[type=month], input[type=radio] {
     cursor: pointer;
 }
 
-.grid-3 img{
-    width: 100%;
-    height: 250px;
-    display: block;
-    aspect-ratio: 1 / 1;
-}
-
 a:hover{
     color: var(--raisin-black);
 }
@@ -101,10 +94,6 @@ a{
     .grid-4 > *, .grid-3 > *, 
     .grid-2 > *, .grid > *{
         width: 100%;
-        position: relative;
-        background-color: var(--isabelline);
-        color: var(--raisin-black);
-        padding: 15px;
     }
 
 .grid-4{
@@ -286,6 +275,10 @@ h1{
     text-align: center;
     min-height: 200px;
     height: auto;
+    position: relative;
+    background-color: var(--isabelline);
+    color: var(--raisin-black);
+    padding: 15px;
 }
 
 #shop_brand h4{
@@ -297,10 +290,6 @@ h1{
     justify-content: center;
     align-items: flex-start;
 }
-
-    #shop_page .grid-3 > * *{
-        cursor: pointer!important;
-    }
 
     #shop_page > *{
         width: 100%;
@@ -395,6 +384,26 @@ h1{
 
     .filter-title > *:not(:first-child){
         padding-left: 10px;
+    }
+
+.product-card{
+    position: relative;
+    background-color: var(--isabelline);
+    color: var(--raisin-black);
+    padding: 15px;
+}
+
+    .product-card *{
+        cursor: pointer!important;
+    }
+
+    .product-card img{
+        width: 100%;
+        height: 250px;
+        display: block;
+        background-color: var(--bone);
+        border: none;
+        aspect-ratio: 1 / 1;
     }
 
 

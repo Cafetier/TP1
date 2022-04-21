@@ -68,34 +68,35 @@ class Wishlist extends Database{
         if (empty($UserID) && ctype_digit($UserID))
             throw new Error('Param must not be empty and must be numbers');
 
-        $sql_query = 'SELECT u.USERID, w.DateAdded,   
-        p.PRODUCTID, p.ProductName, p.ProductDescription, p.Price, p.DateCreated,
-        t.TypeName, b.BrandName, s.Size,i.ImageName
-        FROM wishlist w
-        -- products
-        LEFT JOIN product p ON
-            w.PRODUCTID = p.PRODUCTID
-        -- user
-        LEFT JOIN user u ON
-            w.USERID = u.USERID
-        -- type
-        LEFT JOIN ptype t ON
-            t.TYPEID = p.TYPEID
-        -- brand
-        LEFT JOIN brand b ON
-            b.BRANDID = p.BRANDID
-        -- sizes
-        LEFT JOIN psize_product sp ON
-            sp.PRODUCTID = p.PRODUCTID
-        LEFT JOIN psize s ON
-            s.SIZEID = sp.SIZEID
-        -- images
-        LEFT JOIN pimage_product ip ON
-            ip.PRODUCTID = p.PRODUCTID
-        LEFT JOIN pimage i ON
-            i.IMAGEID = ip.IMAGEID
-        -- Condition
-        WHERE u.USERID = ?';
+        $sql_query = 'SELECT DISTINCT
+        u.USERID,
+        c.DateAdded,
+        p.PRODUCTID,
+        p.ProductName,
+        p.ProductDescription,
+        p.Price,
+        p.DateCreated,
+        t.TypeName,
+        b.BrandName,
+        JSON_ARRAYAGG(s.Size) AS Size,
+        JSON_ARRAYAGG(i.ImageName) AS ImageName
+        FROM wishlist c
+            -- products
+        LEFT JOIN product p ON c.PRODUCTID = p.PRODUCTID
+            -- user
+        LEFT JOIN USER u ON c.USERID = u.USERID
+            -- type
+        LEFT JOIN ptype t ON t.TYPEID = p.TYPEID
+            -- brand
+        LEFT JOIN brand b ON b.BRANDID = p.BRANDID
+            -- sizes
+        LEFT JOIN psize_product sp ON sp.PRODUCTID = p.PRODUCTID
+        LEFT JOIN psize s ON s.SIZEID = sp.SIZEID
+            -- images
+        LEFT JOIN pimage_product ip ON ip.PRODUCTID = p.PRODUCTID
+        LEFT JOIN pimage i ON i.IMAGEID = ip.IMAGEID
+        WHERE u.USERID = ?
+        GROUP BY p.PRODUCTID';
         // query the cart of the user
         try {
             $result = $this->Query($this->db_conn, $sql_query, [$UserID]);
