@@ -73,13 +73,20 @@ localhost/Product/[id]
 
 
 ### Xavier
-- [nav] Page active (dans le menu de navigation)
-- Traduction anglaise
-- Page produit
 - Contenu de la page a propos
+
     - faire deux tableaux a linterieur
+
+- Page produit
+
+- Traduction anglaise
+
+- [nav] Page active (dans le menu de navigation)
+
 - [Footer] Better aligned text in footer
+
 - [Shop] Ajouter images de produits
+
 
 
 ## Resources

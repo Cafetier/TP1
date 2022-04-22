@@ -45,8 +45,8 @@ include_once "../template/alert.php";
             </div>
             <!-- Password -->
             <div class="form-floating mb-3">
-                <input required type="password" name="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
-                <label for="floatingPassword">Mot de passe</label>
+                <input required type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
             </div>
         </div>
 

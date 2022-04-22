@@ -76,12 +76,12 @@ include_once "../template/alert.php";
             <!-- Rechercher -->
             <div>
                 <div class="filter-title">
-                    <h5>Rechercher</h5>
+                    <h5>Search</h5>
                     <div><input type="checkbox" class="form-check-input" name="Name" value=""></div>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="SearchInput" name="Name" placeholder="Rechercher" value="<?php echo $_GET['Name'] ?? '' ?>">
-                    <label for="SearchInput">Rechercher</label>
+                    <input type="text" class="form-control" id="SearchInput" name="Name" placeholder="Search" value="<?php echo $_GET['Name'] ?? '' ?>">
+                    <label for="SearchInput">Search</label>
                 </div>
             </div>
             <!-- Brand -->
