@@ -408,6 +408,16 @@ h1{
         width: 100%;
     }
 
+#return-top-btn > svg{
+    display: fixed;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 10;
+    width: 20px;
+    fill: white;
+}
+
 .product-card{
     position: relative;
     background-color: var(--isabelline);

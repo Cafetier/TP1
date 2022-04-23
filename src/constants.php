@@ -8,7 +8,7 @@
 // database information
 define('dbHost','localhost');
 define('dbUsername','root');
-define('dbPW','root');
+define('dbPW','');
 define('dbDB','OnlineStore');
 
 // the relative path to project
