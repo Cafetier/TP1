@@ -9,6 +9,18 @@ if(!$user->IsLoggedIn()){
     exit();
 }
 
+// check if post request
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $pid = $_POST['pid'];
+    
+    try{
+        $cart->Remove($pid, $_SESSION['USERID']);  //login the user
+    }
+    catch(Error $e){
+        $error = $e->getMessage();
+    }
+}
+
 // get all wishlisted items linked to the account in the session
 $cart_items = $cart->GetAll($_SESSION['USERID']);
 
@@ -24,14 +36,16 @@ include_once "../template/alert.php";
     <div class="grid-4">
         <?php foreach($cart_items as $k=>$v): ?>
             <a href="Product?id=<?php echo $v['PRODUCTID']?>" class="product-card">
-                <?php $pimg = json_decode($v['ImageName'], true) ?>
+            <?php $pimg = json_decode($v['Images'], true) ?>
                 <!-- caroussel -->
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <!-- imgs -->
                         <?php foreach ($pimg as $kk => $vv) : ?>
                         <div class="carousel-item <?php if ($kk === 0) echo 'active' ?>">
-                            <img src="../../public/products/<?php echo $vv ?>" alt="The image of the product">
+                            <img src="../../public/products/<?php echo $vv['Name'] ?? '' ?>" 
+                            alt="<?php echo $vv['Alt'] ?? '' ?>"
+                            title="<?php echo $vv['Title'] ?? '' ?>">
                         </div>
                         <?php endforeach; ?>
                     </div>
@@ -47,9 +61,9 @@ include_once "../template/alert.php";
                     </button>
                 </div>
                 <!-- Name -->
-                <h5><?php echo $v['ProductName'] ?></h5>
+                <h5><?php echo $v['pName'] ?></h5>
                 <!-- Brand -->
-                <h6><?php echo $v['BrandName'] ?></h6>
+                <h6><?php echo $v['bName'] ?></h6>
                 <!-- Price -->
                 <p><?php echo $v['Price'] ?></p>
                 <!-- Size -->
@@ -58,9 +72,13 @@ include_once "../template/alert.php";
                 <!-- date added -->
                 <span>Added : <?php echo $v['DateAdded'] ?></span> 
                 <!-- Remove icon -->
-                <i class="remove-btn"></i>
+                <form id="remove_form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+                    <input type="text" name="pid" value="<?php echo $v['PRODUCTID'] ?>" hidden>
+                    <i class="remove-btn" onclick="document.querySelector('#remove_form').submit();"></i>
+                </form>
+                
 
-                        </a>
+            </a>
         <?php endforeach; ?>
     </div>
 </section>

@@ -39,8 +39,8 @@ include_once "../template/alert.php";
     <h1>Shop brands</h1>
     <div class="grid-3" id="shop_brand">
         <?php foreach($brands as $k=>$v): ?>
-            <a href="Shop?Brand%5B%5D=<?php echo $v['BrandName'] ?>">
-                <h4><?php echo $v['BrandName'] ?></h4>
+            <a href="Shop?Brand%5B%5D=<?php echo $v['bName'] ?>">
+                <h4><?php echo $v['bName'] ?></h4>
             </a>
         <?php endforeach; ?>
     </div>

@@ -41,6 +41,9 @@ class Database{
      * 
      */
     protected function Query($DBConn, $SQLQuery, $SQLValue){
+        // print the query if debug is true
+        if (__DEBUG__) echo($SQLQuery.'<br><br>');
+
         // count the number of ? (prepared var) in query
         if (substr_count($SQLQuery, '?') !== count($SQLValue)) 
             throw new Error('Number of param does not match number of value');

@@ -49,7 +49,7 @@ class Cart extends Database{
         // query the db to remove the product
         try {
             $this->Query($this->db_conn, 
-            'DELETE FROM cart c WHERE c.PRODUCTID = ? AND c.USERID = ?', 
+            'DELETE FROM cart WHERE PRODUCTID = ? AND USERID = ?', 
             [$ProductID, $UserID]);
         } catch (Error $e) {
             return $e;
@@ -70,33 +70,43 @@ class Cart extends Database{
 
         $sql_query = "SELECT
         u.USERID,
-        c.DateAdded,
         p.PRODUCTID,
-        p.ProductName,
-        p.ProductDescription,
-        p.Price,
-        p.DateCreated,
-        t.TypeName,
-        b.BrandName,
+        w.CARTID, w.DateAdded,
+        p.pName, p.pDescription, p.Price,
         s.Size,
-        JSON_ARRAYAGG(i.ImageName) AS ImageName
-        FROM cart c
-            -- products
-        LEFT JOIN product p ON c.PRODUCTID = p.PRODUCTID
-            -- user
-        LEFT JOIN USER u ON c.USERID = u.USERID
-            -- type
-        LEFT JOIN ptype t ON t.TYPEID = p.TYPEID
-            -- brand
-        LEFT JOIN brand b ON b.BRANDID = p.BRANDID
-            -- sizes
-        LEFT JOIN psize_product sp ON sp.PRODUCTID = p.PRODUCTID
-        LEFT JOIN psize s ON s.SIZEID = sp.SIZEID
-            -- images
-        LEFT JOIN pimage_product ip ON ip.PRODUCTID = p.PRODUCTID
-        LEFT JOIN pimage i ON i.IMAGEID = ip.IMAGEID
-        WHERE u.USERID = ?
-        GROUP BY s.Size";
+        c.cName, HEX(c.Hex) as color_hex,
+        b.bName, 
+        t.tName,
+        JSON_ARRAYAGG(
+            JSON_OBJECT(
+                'Name', i.iName,
+                'Alt', i.Alt,
+                'Title', i.Title
+            )
+        ) AS Images
+        
+        FROM cart w
+        
+        -- sizes
+        LEFT JOIN size s ON s.SIZEID=w.SIZEID
+        -- product
+        LEFT JOIN product p ON w.PRODUCTID=w.PRODUCTID
+        -- color
+        LEFT JOIN color c ON c.COLORID=w.COLORID
+        -- user
+        LEFT JOIN user u ON w.USERID=u.USERID
+        -- brand
+        LEFT JOIN brand b ON p.BRANDID=b.BRANDID
+        -- type
+        LEFT JOIN ptype t ON t.TYPEID=p.TYPEID
+        -- images
+        LEFT JOIN pimage_product ip ON ip.PRODUCTID=p.PRODUCTID
+        LEFT JOIN pimage i ON i.IMAGEID=ip.IMAGEID
+
+        WHERE u.USERID=?
+        
+        GROUP BY w.CARTID
+        ORDER BY w.DateAdded DESC";
 
         // query the cart of the user
         try {
