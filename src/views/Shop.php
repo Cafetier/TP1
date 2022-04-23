@@ -28,7 +28,7 @@ foreach ($_GET as $k => $v) {
             break;
             
         case 'Color':
-            $filters['ColorName'] = $v;
+            $filters['Color'] = $v;
             break;
 
         case 'Name':
@@ -92,17 +92,17 @@ include_once "../template/alert.php";
                 </div>
                 <div class="grid-2">
                     <?php foreach ($categories['Brands'] as $k => $v): ?>
-                        <label class="form-check-label" for="<?php echo $v['BrandName'] ?>">
+                        <label class="form-check-label" for="<?php echo $v['bName'] ?>">
                             <!-- Input -->
                             <input class="form-check-input" type="checkbox" 
                             name="Brand[]" 
-                            value="<?php echo $v['BrandName'] ?>" id="<?php echo $v['BrandName'] ?>"
+                            value="<?php echo $v['bName'] ?>" id="<?php echo $v['bName'] ?>"
 
-                            <?php if(is_array($_GET['Brand'] ?? '') && in_array($v['BrandName'], $_GET['Brand'] ?? [])) echo 'checked' ?>
+                            <?php if(is_array($_GET['Brand'] ?? '') && in_array($v['bName'], $_GET['Brand'] ?? [])) echo 'checked' ?>
                             >
 
                             <!-- Text -->
-                            <?php echo $v['BrandName'] ?>
+                            <?php echo $v['bName'] ?>
                         </label>
                     <?php endforeach; ?>
                 </div>
@@ -116,10 +116,10 @@ include_once "../template/alert.php";
                 <?php foreach ($categories['Types'] as $k => $v): ?>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Type" value="<?php echo $v['TypeName'] ?>"
-                            <?php if(($_GET['Type'] ?? '') === $v['TypeName']) echo 'checked' ?>
+                            <input type="radio" class="form-check-input" name="Type" value="<?php echo $v['tName'] ?>"
+                            <?php if(($_GET['Type'] ?? '') === $v['tName']) echo 'checked' ?>
                             >
-                            <?php echo $v['TypeName'] ?>
+                            <?php echo $v['tName'] ?>
                         </label>
                     </div>
                 <?php endforeach; ?>
@@ -133,8 +133,8 @@ include_once "../template/alert.php";
                 <select class="form-select" name="Color">
                     <option value="" hidden>Color</option>
                     <?php foreach ($categories['Colors'] as $k => $v): ?>
-                        <option value="<?php echo $v['ColorName'] ?>" <?php if(($_GET['Color'] ?? '') === $v['ColorName']) echo 'selected' ?>>
-                            <?php echo $v['ColorName'] ?>
+                        <option value="<?php echo $v['cName'] ?>" <?php if(($_GET['Color'] ?? '') === $v['cName']) echo 'selected' ?>>
+                            <?php echo $v['cName'] ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -204,35 +204,39 @@ include_once "../template/alert.php";
 
             <?php foreach ($products as $k => $v): ?>
                 <a href="Product?id=<?php echo $v['PRODUCTID'] ?>" class="product-card">
-                    <!-- Img carousel -->
+                    <?php 
+                    $pimg =         json_decode($v['Images'], true);
+                    //$ColorName =    array_unique(json_decode($v['cName'], true));
+                    ?>
+                    <!-- caroussel -->
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="../../public/products/" alt="">
+                            <!-- imgs -->
+                            <?php foreach ($pimg as $kk => $vv) : ?>
+                            <div class="carousel-item <?php if ($kk === 0) echo 'active' ?>">
+                                <img src="../../public/products/<?php echo $vv['Name'] ?? '' ?>" 
+                                alt="<?php echo $vv['Alt'] ?? '' ?>"
+                                title="<?php echo $vv['Title'] ?? '' ?>">
                             </div>
-                            <!-- <div class="carousel-item">
-                                <img class="d-block w-100" src="../../public/img/promo/Promo_200ormore.png" alt="200 or more get a free t-shirt 2022">
-                            </div> -->
+                            <?php endforeach; ?>
                         </div>
+                        <!-- back -->
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
+                        <!-- forth -->
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
                     <!-- Name -->
-                    <h4><?php echo $v['ProductName'] ?></h4>
+                    <h4><?php echo $v['pName'] ?></h4>
                     <!-- Brand -->
-                    <h6><?php echo $v['BrandName'] ?></h6>
+                    <h6><?php echo $v['bName'] ?></h6>
                     <!-- Price -->
                     <p><?php echo $v['Price'] ?></p>
-                    <!-- Colors -->
-                    <span><?php echo $v['ColorName'] ?></span>
-                    <!-- Sizes -->
-                    <span><?php echo $v['Size'] ?></span>
                 </a>
             <?php endforeach; ?>
         </div>
