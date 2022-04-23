@@ -23,7 +23,7 @@ VALUES
 ('PUMA'), 
 ('Champion'), 
 ('Under Armour'), 
-('NewBalance');
+('New Balance');
 
 INSERT INTO pType (tName)
 VALUES 

@@ -35,10 +35,9 @@ You can just wishlist shoes and it shows where it is avalaible with links and ph
 
 ## What is left to do 
 ### PHP
-- Nullable checkbox for each filter (so you can deactivate the filter)
+- Filmer la video pour montrer le site
 - Add to cart/wishlist
 - Remove from cart/wishlist
-- [Shop] Reset btn doesnt work
 - Combine images/colors/sizes into array
 - [Shop] Filter size do not return just 10.5, but 10 too
 - Add placeholder image for product who do not have one
@@ -52,7 +51,7 @@ ex : localhost/Login
 localhost/Product/[id]
 - Remove index.php and make htaccess redirect to the real index
 - Breadcrumbs
-- Filmer la video pour montrer le site
+- Promo pages
 
 ### Design
 - [nav] Register and Connection should be right aligned

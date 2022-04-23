@@ -77,7 +77,10 @@ include_once "../template/alert.php";
             <div>
                 <div class="filter-title">
                     <h5>Rechercher</h5>
-                    <div><input type="checkbox" class="form-check-input" name="Name" value=""></div>
+                    <div>
+                        <input type="checkbox" class="form-check-input" 
+                        <?php echo !empty($_GET['Name'])? 'checked': '' ?>>
+                    </div>
                 </div>
                 <div class="form-floating">
                     <input type="text" class="form-control" id="SearchInput" name="Name" placeholder="Rechercher" value="<?php echo $_GET['Name'] ?? '' ?>">
@@ -88,7 +91,10 @@ include_once "../template/alert.php";
             <div>
                 <div class="filter-title">
                     <h5>Brand</h5>
-                    <div><input type="checkbox" class="form-check-input" name="Brand[]" value=""></div>
+                    <div>
+                        <input type="checkbox" class="form-check-input"
+                        <?php echo !empty($_GET['Brand'])? 'checked': '' ?>>
+                    </div>
                 </div>
                 <div class="grid-2">
                     <?php foreach ($categories['Brands'] as $k => $v): ?>
@@ -102,7 +108,7 @@ include_once "../template/alert.php";
                             >
 
                             <!-- Text -->
-                            <?php echo $v['bName'] ?>
+                            <span><?php echo $v['bName'] ?></span>
                         </label>
                     <?php endforeach; ?>
                 </div>
@@ -111,7 +117,10 @@ include_once "../template/alert.php";
             <div>
                 <div class="filter-title">
                     <h5>Types</h5>
-                    <div><input type="checkbox" class="form-check-input" name="Type" value=""></div>
+                    <div>
+                        <input type="checkbox" class="form-check-input"
+                        <?php echo !empty($_GET['Type'])? 'checked': '' ?>>
+                    </div>
                 </div>
                 <?php foreach ($categories['Types'] as $k => $v): ?>
                     <div class="form-check">
@@ -119,7 +128,7 @@ include_once "../template/alert.php";
                             <input type="radio" class="form-check-input" name="Type" value="<?php echo $v['tName'] ?>"
                             <?php if(($_GET['Type'] ?? '') === $v['tName']) echo 'checked' ?>
                             >
-                            <?php echo $v['tName'] ?>
+                            <span><?php echo $v['tName'] ?></span>
                         </label>
                     </div>
                 <?php endforeach; ?>
@@ -128,7 +137,10 @@ include_once "../template/alert.php";
             <div>
                 <div class="filter-title">
                     <h5>Colors</h5>
-                    <div><input type="checkbox" class="form-check-input" name="Color" value=""></div>
+                    <div>
+                        <input type="checkbox" class="form-check-input"
+                        <?php echo !empty($_GET['Color'])? 'checked': '' ?>>
+                    </div>
                 </div>
                 <select class="form-select" name="Color">
                     <option value="" hidden>Color</option>
@@ -145,7 +157,10 @@ include_once "../template/alert.php";
                 <div class="filter-title">
                     <h5>Sizes</h5>
                     <h6>9.5</h6>
-                    <div><input type="checkbox" class="form-check-input" name="Size" value=""></div>
+                    <div>
+                        <input type="checkbox" class="form-check-input"
+                        <?php echo !empty($_GET['Size'])? 'checked': '' ?>>
+                    </div>
                 </div>
                 <div id="sizes_div">
                     <div>
@@ -162,7 +177,10 @@ include_once "../template/alert.php";
             <div>
                 <div class="filter-title">
                     <h5>Price</h5>
-                    <div><input type="checkbox" class="form-check-input" name="Price[]" value=""></div>
+                    <div>
+                        <input type="checkbox" class="form-check-input"
+                        <?php echo !empty($_GET['Price'])? 'checked': '' ?>>
+                    </div>
                 </div>
                 <!-- min -->
                 <div class="form-floating ">
@@ -181,13 +199,13 @@ include_once "../template/alert.php";
                 <!-- Submit btn -->
                 <div class="row">
                     <div class="col text-center">
-                        <button type="submit" class="btn btn-primary col ">Update</button>
+                        <button type="submit" class="btn btn-primary col">Update</button>
                     </div>
                 </div>
                 <!-- Reset btn -->
                 <div class="row">
                     <div class="col text-center">
-                        <button type="reset" class="btn btn-primary col ">Reset</button>
+                        <button type="reset" class="btn btn-primary col" id="filter_reset">Reset</button>
                     </div>
                 </div>
             </div>
@@ -290,4 +308,5 @@ include_once "../template/alert.php";
         const t = e.target;
         size_txt.textContent = t.value;
     };
+
 </script>

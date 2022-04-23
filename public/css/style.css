@@ -116,11 +116,24 @@ a{
 }
 
 .grid-2{
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 }
 
 .grid{
     grid-template-columns: 1fr;
+}
+
+input[disabled],
+select[disabled],
+input[disabled] ~ label,
+input[disabled] ~ span{
+    opacity: 0.5!important;
+    cursor: default;
+    transition: opacity 0.1s;
+}
+
+input{
+    transition: opacity 0.1s;
 }
 
 .btn-primary{
