@@ -1,8 +1,8 @@
 -- Insert dummy DATA
-INSERT INTO Gender (gName)
+INSERT INTO Gender (GenderName)
 VALUES ('Man'), ('Woman'), ('Other');
 
-INSERT INTO pImage (iName)
+INSERT INTO pImage (ImageName)
 VALUES 
 ('AdidasSuperstarWhite.png'),
 ('ReebokNPCIIWhite.png'),
@@ -11,28 +11,16 @@ VALUES
 ('VansClassicBlack.png'),
 ('VansClassicRed.png');
 
-INSERT INTO Brand (bName)
+INSERT INTO Brand (BrandName)
 VALUES 
 ('Adidas'), 
 ('Reebok'), 
-('Vans'),
-('Nike'), 
-('Jordan'), 
-('Converse'), 
-('Crocs'), 
-('PUMA'), 
-('Champion'), 
-('Under Armour'), 
-('NewBalance');
+('Vans');
 
-INSERT INTO pType (tName)
-VALUES 
-('Running'), 
-('Training'), 
-('Casual'),
-('Basketball');
+INSERT INTO pType (TypeName)
+VALUES ('Running'), ('Training'), ('Everyday');
 
-INSERT INTO Size (Size)
+INSERT INTO pSize (Size)
 VALUES 
 (5), (5.5), 
 (6), (6.5), 
@@ -44,14 +32,14 @@ VALUES
 (12), (12.5),
 (13);
 
-INSERT INTO Color (cName, Hex)
+INSERT INTO Color (ColorName, Hex)
 VALUES 
 ('Black', UNHEX('000000')), 
 ('White', UNHEX('FFFFFF')), 
 ('Red', UNHEX('FF0000'));
 
 INSERT INTO Product 
-(pName, pDescription, Price, Listed, BRANDID, TYPEID, GENDERID)
+(ProductName, ProductDescription, Price, Listed, BRANDID, TYPEID)
 VALUES 
 ('Superstar', 
 'Originally made for basketball courts in the 70s. Celebrated by hip hop royalty in the 80s. 
@@ -59,15 +47,9 @@ The adidas Superstar shoe is now a lifestyle staple for streetwear enthusiasts.
 The world-famous shell toe feature remains, providing style and protection. Just like it did on the B-ball courts back in the day.
 Now, whether at a festival or walking in the street you can enjoy yourself without the fear of being stepped on.
 The serrated 3-Stripes detail and adidas Superstar box logo adds OG authenticity to your look.', 
-120.00, 1, 1, 3, 3),
-('NPC II', 'Reebok classic shoes', 99.99, 1, 2, 1, 3),
-('Classic', 'Vans classic old skool', 98.99, 1, 3, 3, 3),
-('Flow Velociti SE', 'Running shoes', 159.99, 1, 10, 1, 1),
-('Nicekicks Kamikaze', '', 160.00, 1, 2, 1, 1),
-('NMD V2 Core', '', 189.99, 1, 1, 3, 1),
-('NMD R1', '', 189.99, 1, 1, 3, 1),
-('Zoom Freak 3', '', 159.99, 1, 4, 3, 1),
-('Originals Yeezy 700 MNVN', 'West classic shoes', 300.00, 1, 1, 3, 1);
+120.00, 1, 1, 3),
+('NPC II', 'Reebok classic shoes', 99.99, 1, 2, 1),
+('Classic', 'Vans classic old skool', 98.99, 1, 3, 3);
 
 INSERT INTO User 
 (LastName, FirstName, Email, Password, BirthDate, GENDERID)
@@ -76,11 +58,11 @@ VALUES
 ('Doe', 'John', 'john.doe@exemple.com', '$2y$10$cqIjtwlAgdecF4U5oO3hJeyqwIBnnh7o1J9x9chg.nhfIlxOgT88e', '2002-06-08', 1),
 ('Doe', 'Jane', 'jane.doe@exemple.com', '$2y$10$uwzVtW9PAqiadLK5ILkzje2Dv2/6fHUykfBPw/ljARxPIGIZlF63m', '2002-06-08', 2);
 
-INSERT INTO Wishlist (PRODUCTID, USERID, COLORID, SIZEID)
-VALUES (1, 1, 1, 12), (2, 1, 1, 12), (3, 1, 2, 12);
+INSERT INTO Wishlist (PRODUCTID, USERID)
+VALUES (1, 1), (2,1), (3,1);
 
-INSERT INTO Cart (PRODUCTID, USERID, COLORID, SIZEID)
-VALUES (1, 1, 1, 12);
+INSERT INTO Cart (PRODUCTID, USERID)
+VALUES (1, 1);
 
 INSERT INTO pImage_Product (IMAGEID, PRODUCTID)
 VALUES (1, 1), (2,2), (3,2), (4,3), (5,3), (6,3);
@@ -97,7 +79,7 @@ VALUES
 (2, 3),
 (3, 3);
 
-INSERT INTO Size_Product (SIZEID, PRODUCTID)
+INSERT INTO pSize_Product (SIZEID, PRODUCTID)
 VALUES 
 -- Superstar
 (1, 1), 

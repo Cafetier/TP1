@@ -69,7 +69,7 @@ class Product extends Database
      */
     public function GetColors(){
         // query and return query
-        $brands = $this->Query($this->db_conn, "SELECT c.COLORID, c.ColorName, HEX(c.Hex) as color_hex FROM color c", []);
+        $brands = $this->Query($this->db_conn, "SELECT c.COLORID, c.cName, HEX(c.Hex) as color_hex FROM color c", []);
         return $brands;
     }
 
@@ -82,7 +82,7 @@ class Product extends Database
      */
     public function GetSizes(){
         // query and return query
-        $brands = $this->Query($this->db_conn, "SELECT * FROM psize", []);
+        $brands = $this->Query($this->db_conn, "SELECT * FROM Size", []);
         return $brands;
     }
 
@@ -107,7 +107,7 @@ class Product extends Database
      * @param object    $Filter                     Filter you want applied (all below)
         * @param string    ['Name']                 Search the name of the product ex : Superstar
         * @param array     ['Brand']                Brand of the product ex : [Adidas, Reebok]
-        * @param string    ['ColorName']            The name of the color
+        * @param string    ['Color']            The name of the color
         * @param double    ['Size']                 Size of the shoe (10.5, 8.0...)
         * @param string    ['Type']                 Type of shoe (Running, everyday...)
         * @param array     ['Price[min, max]']      Price of the shoe (ex : $Price[50.00, 70.00])
@@ -119,40 +119,63 @@ class Product extends Database
     public function GetAllProduct($ProductOffset, $Filter){
         // check if ProductOffset is empty or is not a number
         if (!empty($ProductOffset) && !ctype_digit($ProductOffset)) 
-            throw new Error('There must be a number of product');
+            throw new Error('There must be a product offset');
 
         $param = [];
 
         // sql start
-        $sqlquery = 'SELECT DISTINCT
-        p.PRODUCTID,
-        p.ProductName,
-        p.ProductDescription,
-        p.Price,
-        p.DateCreated,
-        p.Listed,
-        b.BrandName,
-        t.TypeName,
-        i.ImageName,
-        s.Size,
-        c.ColorName
+        $sqlquery = "
+        SELECT DISTINCT
+            p.PRODUCTID,
+            p.pName,
+            p.pDescription,
+            p.Price,
+            p.DateCreated,
+            p.Listed,
+            b.bName,
+            t.tName,
+            JSON_ARRAYAGG(
+                JSON_OBJECT(
+                    'Name',
+                    i.iName,
+                    'Alt',
+                    i.Alt,
+                    'Title',
+                    i.Title
+                )
+            ) AS Images,
+            JSON_ARRAYAGG(s.Size) AS Size,
+            JSON_ARRAYAGG(c.cName) AS cName
         FROM
             Product p
-        LEFT JOIN Brand b ON p.BRANDID = b.BRANDID
-        LEFT JOIN pType t ON p.TYPEID = t.TYPEID
-        LEFT JOIN pImage_Product ip ON p.PRODUCTID = ip.PRODUCTID
-        LEFT JOIN pImage i ON i.IMAGEID = ip.IMAGEID
-        LEFT JOIN Color_Product cp ON cp.PRODUCTID = p.PRODUCTID
-        LEFT JOIN Color c ON c.COLORID = cp.COLORID
-        LEFT JOIN pSize_Product sp ON sp.PRODUCTID = p.PRODUCTID
-        LEFT JOIN pSize s ON s.SIZEID = sp.SIZEID
+            -- brand
+        LEFT JOIN Brand b ON
+            p.BRANDID = b.BRANDID
+            -- type
+        LEFT JOIN pType t ON
+            p.TYPEID = t.TYPEID
+            -- img
+        LEFT JOIN pImage_Product ip ON
+            p.PRODUCTID = ip.PRODUCTID
+        LEFT JOIN pImage i ON
+            i.IMAGEID = ip.IMAGEID
+            -- color
+        LEFT JOIN Color_Product cp ON
+            cp.PRODUCTID = p.PRODUCTID
+        LEFT JOIN Color c ON
+            c.COLORID = cp.COLORID
+            -- size
+        LEFT JOIN Size_Product sp ON
+            sp.PRODUCTID = p.PRODUCTID
+        LEFT JOIN Size s ON
+            s.SIZEID = sp.SIZEID
         WHERE
-            p.Listed = 1 AND 0 < P.PRODUCTID <= 50 ';
+            p.Listed = 1 AND 0 < P.PRODUCTID <= 50 ";
 
         // NAME
         if(isset($Filter['Name'])){
             // append to sql query where statement
-            $sqlquery = $sqlquery.'AND p.ProductName LIKE ? ';
+            $sqlquery = $sqlquery.'AND p.pName LIKE ? ';
 
             // append to array
             array_push($param, '%'.$Filter['Name'].'%');
@@ -164,8 +187,8 @@ class Product extends Database
                 // append to sql query where statement
                 // if first then add a AND instead of or
                 $k === 0?
-                    $sqlquery = $sqlquery.'AND b.BrandName = ? ':
-                    $sqlquery = $sqlquery.'OR b.BrandName = ? ';
+                    $sqlquery = $sqlquery.'AND b.bName = ? ':
+                    $sqlquery = $sqlquery.'OR b.bName = ? ';
 
                 // append to param array
                 array_push($param, $v);
@@ -173,12 +196,12 @@ class Product extends Database
         }
 
         // if color exists
-        if(isset($Filter['ColorName'])){
+        if(isset($Filter['Color'])){
             // append to sql query where statement
-            $sqlquery = $sqlquery.'AND c.ColorName = ? ';
+            $sqlquery = $sqlquery.'AND c.cName = ? ';
 
             // append to param array
-            array_push($param, $Filter['ColorName']);
+            array_push($param, $Filter['Color']);
         }
 
         // size
@@ -193,7 +216,7 @@ class Product extends Database
         // Type
         if(isset($Filter['Type'])){
             // append to sql query where statement
-            $sqlquery = $sqlquery.'AND t.TypeName = ? ';
+            $sqlquery = $sqlquery.'AND t.tName = ? ';
 
             // append to param array
             array_push($param, $Filter['Type']);
@@ -209,7 +232,7 @@ class Product extends Database
         }
 
         // append group by
-        // $sqlquery = $sqlquery.'GROUP BY p.PRODUCTID ';
+        $sqlquery = $sqlquery.'GROUP BY p.PRODUCTID ';
 
         // WORKS Order
         if(isset($Filter['Order'])){
