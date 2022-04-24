@@ -65,16 +65,17 @@ localhost/Product/[id]
 - background needs a gradient
 - arrow to redirect to top
 
-### Database
-
-
 ### Xavier
-- [nav] Page active (dans le menu de navigation)
-- Traduction anglaise
-- Page produit
 - Contenu de la page a propos
+
     - faire deux tableaux a linterieur
+
+- Page produit
+
+- [nav] Page active (dans le menu de navigation)
+
 - [Footer] Better aligned text in footer
+
 - [Shop] Ajouter images de produits
 
 

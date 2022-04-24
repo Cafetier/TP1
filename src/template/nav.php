@@ -14,17 +14,17 @@
                 </li>
                 <!-- Home -->
                 <li class="nav-item">
-                    <a class="nav-link active" href="Index">Accueil
+                    <a class="nav-link active" href="Index">Home
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
                 <!-- Nouveaute -->
                 <li class="nav-item">
-                    <a class="nav-link" href="Shop">Magasiner</a>
+                    <a class="nav-link" href="Shop">Shop</a>
                 </li>
                 <!-- More -->
                 <li class="nav-item">
-                    <a class="nav-link" href="About">À propos</a>
+                    <a class="nav-link" href="About">About</a>
                 </li>
 
                 <?php if($user->IsLoggedIn()) : ?>
@@ -32,22 +32,22 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['Email'] ?> </a>
                         <div class="dropdown-menu">
-                            <?php //<a class="dropdown-item" href="Cart">Panier</a> ?>
-                            <a class="dropdown-item" href="Wishlist">Liste de souhait</a>
-                            <a class="dropdown-item" href="Account">Modifier votre compte</a>
+                            <?php //<a class="dropdown-item" href="Cart">Cart</a>?>
+                            <a class="dropdown-item" href="Wishlist">Wishlist</a>
+                            <a class="dropdown-item" href="Account">Modify Account</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="?logout">Se déconnecter</a>
+                            <a class="dropdown-item" href="?logout">Logout</a>
                         </div>
                     </li>
                 <?php else : ?>
                     <!-- Login -->
                     <li class="nav-item">
-                        <a class="nav-link" href="Login">Se connecter</a>
+                        <a class="nav-link" href="Login">Login</a>
                     </li>
 
                     <!-- Register -->
                     <li class="nav-item">
-                        <a class="nav-link" href="Register">S'inscrire</a>
+                        <a class="nav-link" href="Register">Register</a>
                     </li>
                 <?php endif; ?>
             </ul>

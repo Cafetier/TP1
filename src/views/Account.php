@@ -40,7 +40,7 @@ include_once "../template/alert.php";
 ?>
 
 <section class="container small-container">
-    <h1>Votre compte</h1>
+    <h1>Your Account</h1>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
         
         <div class="form-group">
@@ -69,12 +69,12 @@ include_once "../template/alert.php";
             <!-- Password -->
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" placeholder="Nouveau mot de passe" name="Password">
-                <label>Nouveau mot de passe</label>
+                <label>New Password</label>
             </div>
             <!-- Conf password -->
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" placeholder="Confirmation mot de passe" name="ConfirmPassword">
-                <label>Confirmation mot de passe</label>
+                <label>Confirm Password</label>
             </div>
 
             <!-- Birth date -->

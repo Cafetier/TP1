@@ -17,7 +17,7 @@ require "../template/nav.php";
 include_once "../template/alert.php";
 ?>
 <section class="container">
-    <a href="Index">Retourner l'accueil</a>
+    <a href="Index">Go Back To Homepage</a>
 
     <h1><?php echo $e; ?> Error</h1>
 </section>
