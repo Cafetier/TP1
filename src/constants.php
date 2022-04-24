@@ -9,7 +9,7 @@
 define('dbHost','localhost');
 define('dbUsername','root');
 define('dbPW','');
-define('dbDB','OnlineStore');
+define('dbDB','NewOnlineStore');
 
 // the relative path to project
 define('__ROOT__', dirname(dirname(__FILE__))); 

@@ -1,5 +1,5 @@
 <!-- Nav -->
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav id="nav" class="navbar navbar-expand-lg navbar-light">
     <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,7 +32,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['Email'] ?> </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="Cart">Cart</a>
+                            <?php //<a class="dropdown-item" href="Cart">Cart</a>?>
                             <a class="dropdown-item" href="Wishlist">Wishlist</a>
                             <a class="dropdown-item" href="Account">Modify Account</a>
                             <div class="dropdown-divider"></div>

@@ -46,10 +46,6 @@ input[type=month], input[type=radio] {
     cursor: pointer;
 }
 
-a:hover{
-    color: var(--raisin-black);
-}
-
 .carousel button span{
     cursor: pointer!important;    
 }
@@ -83,10 +79,6 @@ footer{
     padding-top: 30px;
 }
 
-a{
-    text-decoration: none;
-}
-
 .preloader *{
     transition: none!important;
 }
@@ -116,11 +108,24 @@ a{
 }
 
 .grid-2{
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 }
 
 .grid{
     grid-template-columns: 1fr;
+}
+
+input[disabled],
+select[disabled],
+input[disabled] ~ label,
+input[disabled] ~ span{
+    opacity: 0.5!important;
+    cursor: default;
+    transition: opacity 0.1s;
+}
+
+input{
+    transition: opacity 0.1s;
 }
 
 .btn-primary{
@@ -290,6 +295,7 @@ h1{
     background-color: var(--isabelline);
     color: var(--raisin-black);
     padding: 15px;
+    text-decoration: none!important;
 }
 
 #shop_brand h4{
@@ -408,11 +414,22 @@ h1{
         width: 100%;
     }
 
+#return-top-btn > svg{
+    display: fixed;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 10;
+    width: 20px;
+    fill: white;
+}
+
 .product-card{
     position: relative;
     background-color: var(--isabelline);
-    color: var(--raisin-black);
+    color: var(--raisin-black)!important;
     padding: 15px;
+    text-decoration: none!important;
 }
 
     .product-card *{

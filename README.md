@@ -5,6 +5,8 @@ This project will be using
 - CSS
 - JS
 - bootswatch/bootstrap
+- MySQL 8.0.27
+
 
 ## Requirement
 - ~~Une liste (ordonnée ou non) (select)~~
@@ -33,28 +35,23 @@ You can just wishlist shoes and it shows where it is avalaible with links and ph
 
 ## What is left to do 
 ### PHP
+- Filmer la video pour montrer le site
 - Add to cart/wishlist
 - Remove from cart/wishlist
-- Nullable checkbox for each filter (so you can deactivate the filter)
-- [Shop] Reset btn doesnt work
 - Combine images/colors/sizes into array
 - [Shop] Filter size do not return just 10.5, but 10 too
+- Add placeholder image for product who do not have one
 - Offset product (Product.class)
-- [Shop] sql query should only return the first 50
-- [Account] show input in value information already in bd
 - [Index] Suggestion de soulier
-- [DB] Add more dummy data
+- if db cannot connect, redirect to error page with message "There was an error contacting the db"
 - Show successfull alert when good thing (inscription successfull, changed information successfully)
 - Ajouter pagination
-- Add Phone number bd...
-- Add admin in db to add products
 - Remove sub directory in url and not show index page
 ex : localhost/Login
 localhost/Product/[id]
 - Remove index.php and make htaccess redirect to the real index
-- Female/male shoes db ?
 - Breadcrumbs
-- Alt text for image in db
+- Promo pages
 
 ### Design
 - [nav] Register and Connection should be right aligned
@@ -68,18 +65,12 @@ localhost/Product/[id]
 - background needs a gradient
 - arrow to redirect to top
 
-### Database
-- Remove size_product and replace only by size (because 1 can have many)
-
-
 ### Xavier
 - Contenu de la page a propos
 
     - faire deux tableaux a linterieur
 
 - Page produit
-
-- Traduction anglaise
 
 - [nav] Page active (dans le menu de navigation)
 

@@ -49,21 +49,21 @@ include_once "../template/alert.php";
                 <div class="col">
                     <!-- First name -->
                     <div class="form-floating mb-3">
-                        <input required type="text" class="form-control" name="FirstName" placeholder="First name" value="<?php echo $_POST['FirstName'] ?? $user_info['FirstName'] ?>">
+                        <input required type="text" class="form-control" name="FirstName" placeholder="First name" value="<?php echo $_POST['FirstName'] ?? $user_info['FirstName'] ?? '' ?>">
                         <label>First name</label>
                     </div>
                 </div>
                 <div class="col">
                     <!-- Last name -->
                     <div class="form-floating mb-3">
-                        <input required type="text" class="form-control" name="LastName" placeholder="Last Name" value="<?php echo $_POST['LastName'] ?? $user_info['LastName'] ?>">
+                        <input required type="text" class="form-control" name="LastName" placeholder="Last Name" value="<?php echo $_POST['LastName'] ?? $user_info['LastName'] ?? '' ?>">
                         <label>Last Name</label>
                     </div>
                 </div>
             </div>
             <!-- Email -->
             <div class="form-floating mb-3">
-                <input required type="email" class="form-control" name="Email" placeholder="Email" value="<?php echo $_POST['Email'] ?? $user_info['Email'] ?>">
+                <input required type="email" class="form-control" name="Email" placeholder="Email" value="<?php echo $_POST['Email'] ?? $user_info['Email'] ?? '' ?>">
                 <label for="floatingInput">Email</label>
             </div>
             <!-- Password -->
@@ -79,7 +79,7 @@ include_once "../template/alert.php";
 
             <!-- Birth date -->
             <div class="form-floating mb-3">
-                <input required type="date" class="form-control" placeholder="Birth date" name="BirthDate" value="<?php echo $_POST['BirthDate'] ?? $user_info['BirthDate'] ?>">
+                <input required type="date" class="form-control" placeholder="Birth date" name="BirthDate" value="<?php echo $_POST['BirthDate'] ?? $user_info['BirthDate'] ?? '' ?>">
                 <label>Birth date</label>
             </div>
             <!-- Gender -->
@@ -87,7 +87,7 @@ include_once "../template/alert.php";
                 <select required class="form-select" name="Gender">
                     <option value="" hidden>Gender</option>
                     <?php foreach($genders as $k=>$v): ?>
-                        <option value="<?php echo $v['GENDERID'] ?>" <?php if (isset($_POST['Gender']) && $_POST['Gender']==$k || $user_info['GENDERID'] == $k) echo "selected" ?>><?php echo $v["GenderName"] ?></option>
+                        <option value="<?php echo $v['GENDERID'] ?>" <?php if (isset($_POST['Gender']) && $_POST['Gender']==$v['GENDERID'] || $user_info['GENDERID'] == $v['GENDERID']) echo "selected" ?>><?php echo $v["gName"] ?? '' ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
