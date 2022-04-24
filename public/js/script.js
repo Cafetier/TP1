@@ -90,6 +90,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     });
 
     const filter_btn_reset = document.querySelector('#filter_reset');
+    if (filter_btn_reset === null) return;
     filter_btn_reset.onclick = e => {
         const inputs = document.querySelectorAll('.filter-title input');
         inputs.forEach(e=>{

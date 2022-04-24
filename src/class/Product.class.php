@@ -30,7 +30,49 @@ class Product extends Database
     public function GetProduct($ProductID){
         if (empty($ProductID)) return;  // check if param empty
         // query and return query
-        $product = $this->Query($this->db_conn, "SELECT * FROM Product WHERE PRODUCTID = ?", [$ProductID]);
+        $product = $this->Query($this->db_conn, "
+        SELECT
+        p.PRODUCTID, p.pName, p.pDescription, p.Price, p.DateCreated,
+        b.bName,
+        t.tName,
+        g.gName,
+        JSON_ARRAYAGG(
+            JSON_OBJECT(
+                'Name',
+                i.iName,
+                'Alt',
+                i.Alt,
+                'Title',
+                i.Title
+            )
+        ) AS Images,
+        JSON_ARRAYAGG(c.cName) AS cName,
+        JSON_ARRAYAGG(s.Size) AS Size,
+        w.USERID,
+        ca.USERID
+        
+        FROM Product p
+        -- brand
+        LEFT JOIN brand b ON p.BRANDID=b.BRANDID
+        -- type
+        LEFT JOIN ptype t ON p.TYPEID=t.TYPEID
+        -- gender
+        LEFT JOIN gender g ON p.GENDERID=g.GENDERID
+        -- imgs
+        LEFT JOIN pimage_product ip ON ip.PRODUCTID=p.PRODUCTID
+        LEFT JOIN pimage i ON i.IMAGEID=ip.IMAGEID
+        -- colors
+        LEFT JOIN color_product cp ON cp.PRODUCTID=p.PRODUCTID
+        LEFT JOIN color c ON c.COLORID=cp.COLORID
+        -- Sizes
+        LEFT JOIN size_product sp ON sp.PRODUCTID=p.PRODUCTID
+        LEFT JOIN size s ON s.SIZEID=sp.SIZEID
+        -- cart
+        JOIN cart ca ON ca.PRODUCTID=p.PRODUCTID
+        -- wishlist
+        JOIN wishlist w ON w.PRODUCTID=p.PRODUCTID
+        
+        WHERE p.PRODUCTID = ?", [$ProductID]);
         return $product[0];
     }
 

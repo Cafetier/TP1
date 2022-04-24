@@ -135,7 +135,7 @@ class User extends Database{
      */
     public function GetAllGenders(){
         // query and return query
-        $genders = $this->Query($this->db_conn, "SELECT * FROM gender", []);
+        $genders = $this->Query($this->db_conn, "SELECT * FROM gender ORDER BY GENDERID", []);
         return $genders;
     }
 

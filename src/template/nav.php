@@ -32,7 +32,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['Email'] ?> </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="Cart">Panier</a>
+                            <?php //<a class="dropdown-item" href="Cart">Panier</a> ?>
                             <a class="dropdown-item" href="Wishlist">Liste de souhait</a>
                             <a class="dropdown-item" href="Account">Modifier votre compte</a>
                             <div class="dropdown-divider"></div>
