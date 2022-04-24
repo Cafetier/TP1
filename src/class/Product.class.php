@@ -246,10 +246,6 @@ class Product extends Database
             array_push($param, $Filter['Color']);
         }
 
-            // append to param array
-            array_push($param, $Filter['ColorName']);
-        }
-
         // size
         if(isset($Filter['Size']) && ctype_digit($Filter['Size'])){
             // append to sql query where statement
@@ -263,10 +259,6 @@ class Product extends Database
         if(isset($Filter['Type'])){
             // append to sql query where statement
             $sqlquery = $sqlquery.'AND t.tName = ? ';
-
-            // append to param array
-            array_push($param, $Filter['Type']);
-        }
 
             // append to param array
             array_push($param, $Filter['Type']);
