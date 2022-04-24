@@ -1,5 +1,5 @@
 <?php 
-$PageTitle = 'Magasiner';
+$PageTitle = 'Shop';
 require "../template/header.php";
 require "../template/nav.php";
 

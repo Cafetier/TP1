@@ -1,5 +1,5 @@
 <?php 
-$PageTitle = 'Votre compte';
+$PageTitle = 'Your account';
 require "../template/header.php";
 require "../template/nav.php";
 

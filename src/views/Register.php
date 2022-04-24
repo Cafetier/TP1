@@ -1,5 +1,5 @@
 <?php 
-$PageTitle = "S'enregister";
+$PageTitle = "Register";
 require "../template/header.php";
 require "../template/nav.php";
 

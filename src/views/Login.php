@@ -1,5 +1,5 @@
 <?php 
-$PageTitle = 'Connection';
+$PageTitle = 'Login';
 require "../template/header.php";
 require "../template/nav.php";
 

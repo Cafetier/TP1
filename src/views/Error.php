@@ -10,7 +10,7 @@ if (!isset($_GET['error'])){
 }
 $e = $_GET['error'];
 
-$PageTitle = $e.' Error';
+$PageTitle = $e;
 require "../template/header.php";
 require "../template/nav.php";
 
