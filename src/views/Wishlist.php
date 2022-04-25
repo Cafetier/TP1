@@ -9,6 +9,20 @@ if(!$user->IsLoggedIn()){
     exit();
 }
 
+// check if post request
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $pid = $_POST['PRODUCTID'] ?? null;
+
+    // remove item from wishlist
+    try{
+        $wishlist->Remove($pid, $_SESSION['USERID']);
+        $success = 'Item successfully deleted !';
+    }
+    catch(Error $e){
+        $error = $e->getMessage();
+    }
+}
+
 // get all wishlisted items linked to the account in the session
 $wishlist_items = $wishlist->GetAll($_SESSION['USERID']) ?? [];
 
@@ -53,13 +67,14 @@ include_once "../template/alert.php";
                 <h6><?php echo $v['bName'] ?></h6>
                 <!-- Price -->
                 <p><?php echo $v['Price'] ?></p>
-                <!-- Size -->
-                <span>Size <?php echo $v['Size'] ?></span><br>
                 <hr>
                 <!-- date added -->
                 <span>Added : <?php echo $v['DateAdded'] ?></span> 
-                <!-- Remove icon -->
-                <i class="remove-btn"></i>
+                <!-- Remove btn -->
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+                    <input type="text" name="PRODUCTID" value="<?php echo $v['PRODUCTID'] ?>" hidden>
+                    <button type="submit" class="remove_btn">Remove</button>
+                </form>
 
             </a>
         <?php endforeach; ?>

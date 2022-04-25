@@ -1,15 +1,34 @@
+-- select database
+USE NewOnlineStore;
+
+-- Purge all data
+DELETE FROM user;
+DELETE FROM cart;
+DELETE FROM wishlist;
+DELETE FROM gender;
+DELETE FROM product;
+DELETE FROM size;
+DELETE FROM color;
+DELETE FROM pimage;
+DELETE FROM size_product;
+DELETE FROM pimage_product;
+DELETE FROM color_product;
+DELETE FROM brand;
+DELETE FROM ptype;
+
+
 -- Insert dummy DATA
 INSERT INTO Gender (gName)
 VALUES ('Man'), ('Woman'), ('Other');
 
 INSERT INTO pImage (iName)
 VALUES 
-('AdidasSuperstarWhite.png'),
-('ReebokNPCIIWhite.png'),
-('ReebokNPCIIBlack.png'),
-('VansClassicWhite.png'),
-('VansClassicBlack.png'),
-('VansClassicRed.png');
+('AdidasSuperstarWhite.webp'),
+('ReebokNPCIIWhite.webp'),
+('ReebokNPCIIBlack.webp'),
+('VansClassicWhite.jpg'),
+('VansClassicBlack.jpg'),
+('VansClassicRed.jpg');
 
 INSERT INTO Brand (bName)
 VALUES 
@@ -76,8 +95,8 @@ VALUES
 ('Doe', 'John', 'john.doe@exemple.com', '$2y$10$cqIjtwlAgdecF4U5oO3hJeyqwIBnnh7o1J9x9chg.nhfIlxOgT88e', '2002-06-08', 1),
 ('Doe', 'Jane', 'jane.doe@exemple.com', '$2y$10$uwzVtW9PAqiadLK5ILkzje2Dv2/6fHUykfBPw/ljARxPIGIZlF63m', '2002-06-08', 2);
 
-INSERT INTO Wishlist (PRODUCTID, USERID, COLORID, SIZEID)
-VALUES (1, 1, 1, 12), (2, 1, 1, 12), (3, 1, 2, 12);
+INSERT INTO Wishlist (PRODUCTID, USERID)
+VALUES (1, 1), (2, 1), (3, 1);
 
 INSERT INTO Cart (PRODUCTID, USERID, COLORID, SIZEID)
 VALUES (1, 1, 1, 12);

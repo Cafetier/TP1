@@ -55,6 +55,20 @@ foreach ($_GET as $k => $v) {
     }
 }
 
+// check if post request
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $pid = $_POST['PRODUCTID'] ?? null;
+
+    // remove item from wishlist
+    try{
+        $wishlist->Add($pid, $_SESSION['USERID']);
+        $success = 'Item successfully added to wishlist !';
+    }
+    catch(Error $e){
+        $error = $e->getMessage();
+    }
+}
+
 // fetch products
 try{
     $products = $product->GetAllProduct(0, $filters);
@@ -232,7 +246,7 @@ include_once "../template/alert.php";
                             <!-- imgs -->
                             <?php foreach ($pimg as $kk => $vv) : ?>
                             <div class="carousel-item <?php if ($kk === 0) echo 'active' ?>">
-                                <img src="../../public/products/<?php echo $vv['Name'] ?? '' ?>" 
+                                <img src="../../public/img/products/<?php echo $vv['Name'] ?? '' ?>" 
                                 alt="<?php echo $vv['Alt'] ?? '' ?>"
                                 title="<?php echo $vv['Title'] ?? '' ?>">
                             </div>
@@ -255,6 +269,11 @@ include_once "../template/alert.php";
                     <h6><?php echo $v['bName'] ?></h6>
                     <!-- Price -->
                     <p><?php echo $v['Price'] ?></p>
+                    <!-- add btn -->
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+                        <input type="text" name="PRODUCTID" value="<?php echo $v['PRODUCTID'] ?>" hidden>
+                        <button type="submit" class="remove_btn">Add Wishlist</button>
+                    </form>
                 </a>
             <?php endforeach; ?>
         </div>

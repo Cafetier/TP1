@@ -71,10 +71,9 @@ include_once "../template/alert.php";
                 <hr>
                 <!-- date added -->
                 <span>Added : <?php echo $v['DateAdded'] ?></span> 
-                <!-- Remove icon -->
+                <!-- Remove btn -->
                 <form id="remove_form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
-                    <input type="text" name="pid" value="<?php echo $v['PRODUCTID'] ?>" hidden>
-                    <i class="remove-btn" onclick="document.querySelector('#remove_form').submit();"></i>
+                    <button type="submit">Remove</button>
                 </form>
                 
 

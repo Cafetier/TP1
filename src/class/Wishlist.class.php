@@ -22,13 +22,13 @@ class Wishlist extends Database{
      */
     public function Add($ProductID, $UserID){
         // check if inputs are not empty and are numbers
-        if (empty($UserID || $ProductID) && ctype_digit($UserID && $ProductID))
-            throw new Error('Param must not be empty and must be numbers');
+        if (empty($UserID || $ProductID) && !ctype_digit($UserID && $ProductID))
+            throw new Error('This product does not exists');
 
         // query the db to remove the product
         try {
             $this->Query($this->db_conn, 
-            'INSERT INTO wishlist w (w.PRODUCTID, w.USERID)
+            'INSERT INTO wishlist (PRODUCTID, USERID)
             VALUES (?, ?)', 
             [$ProductID, $UserID]);
         } catch (Error $e) {
@@ -43,13 +43,13 @@ class Wishlist extends Database{
      */
     public function Remove($ProductID, $UserID){
         // check if inputs are not empty and are numbers
-        if (empty($UserID || $ProductID) && ctype_digit($UserID && $ProductID))
-            throw new Error('Param must not be empty and must be numbers');
+        if (empty($UserID || $ProductID) && !ctype_digit($UserID && $ProductID))
+            throw new Error('You do not have this product');
 
         // query the db to remove the product
         try {
             $this->Query($this->db_conn, 
-            'DELETE FROM wishlist w WHERE w.PRODUCTID = ? AND w.USERID = ?', 
+            'DELETE FROM wishlist WHERE PRODUCTID = ? AND USERID = ?', 
             [$ProductID, $UserID]);
         } catch (Error $e) {
             return $e;
@@ -65,8 +65,8 @@ class Wishlist extends Database{
      */
     public function GetAll($UserID){
         // check if inputs are not empty and are numbers
-        if (empty($UserID) && ctype_digit($UserID))
-            throw new Error('Param must not be empty and must be numbers');
+        if (empty($UserID) && !ctype_digit($UserID))
+            throw new Error('You are not connected');
 
         $sql_query = "SELECT
         u.USERID,
@@ -90,7 +90,7 @@ class Wishlist extends Database{
         -- sizes
         LEFT JOIN size s ON s.SIZEID=w.SIZEID
         -- product
-        LEFT JOIN product p ON w.PRODUCTID=w.PRODUCTID
+        LEFT JOIN product p ON w.PRODUCTID=p.PRODUCTID
         -- color
         LEFT JOIN color c ON c.COLORID=w.COLORID
         -- user
@@ -105,7 +105,7 @@ class Wishlist extends Database{
 
         WHERE u.USERID=?
         
-        GROUP BY w.WISHLISTID
+        GROUP BY p.PRODUCTID
         ORDER BY w.DateAdded DESC";
         // query the cart of the user
         try {

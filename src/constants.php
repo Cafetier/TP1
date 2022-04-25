@@ -23,7 +23,7 @@ define('__ROOT__', dirname(dirname(__FILE__)));
  * database, code...
  * 
  */
-define('__DEBUG__',true);
+define('__DEBUG__',false);
 
 // absolute link to images in server
 define('srvimg', __ROOT__.'/public/img/');

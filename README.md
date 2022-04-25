@@ -36,22 +36,23 @@ You can just wishlist shoes and it shows where it is avalaible with links and ph
 ## What is left to do 
 ### PHP
 - Filmer la video pour montrer le site
-- Add to cart/wishlist
-- Remove from cart/wishlist
+- check if item already in wishlist/cart
+- Add to cart
+- Remove from cart
 - Combine images/colors/sizes into array
 - [Shop] Filter size do not return just 10.5, but 10 too
 - Add placeholder image for product who do not have one
 - Offset product (Product.class)
 - [Index] Suggestion de soulier
 - if db cannot connect, redirect to error page with message "There was an error contacting the db"
-- Show successfull alert when good thing (inscription successfull, changed information successfully)
+- Show successfull alert when inscription successfull
 - Ajouter pagination
 - Remove sub directory in url and not show index page
 ex : localhost/Login
 localhost/Product/[id]
 - Remove index.php and make htaccess redirect to the real index
 - Breadcrumbs
-- Promo pages
+- Promo pages (in db)
 
 ### Design
 - [nav] Register and Connection should be right aligned
@@ -63,7 +64,6 @@ localhost/Product/[id]
 - [error] cooler 404 page
 - [Shop] margin-top pagination
 - background needs a gradient
-- arrow to redirect to top
 
 ### Xavier
 - Contenu de la page a propos
