@@ -36,7 +36,8 @@ include_once "../template/alert.php";
     <!-- Cart items -->
     <div class="grid-4">
         <?php foreach($wishlist_items as $k=>$v): ?>
-            <a href="Product?id=<?php echo $v['PRODUCTID']?>" class="product-card">
+            <!-- <a href="Product?id=<?php echo $v['PRODUCTID']?>" class="product-card"> -->
+            <a href="#" class="product-card">
                 <?php $pimg = json_decode($v['Images'], true) ?>
                 <!-- caroussel -->
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">

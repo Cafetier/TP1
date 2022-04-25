@@ -235,7 +235,8 @@ include_once "../template/alert.php";
             <?php endif;?>
 
             <?php foreach ($products as $k => $v): ?>
-                <a href="Product?id=<?php echo $v['PRODUCTID'] ?>" class="product-card">
+                <!-- <a href="Product?id=<?php echo $v['PRODUCTID'] ?>" class="product-card"> -->
+                <a href="#" class="product-card">
                     <?php 
                     $pimg =         json_decode($v['Images'], true);
                     //$ColorName =    array_unique(json_decode($v['cName'], true));

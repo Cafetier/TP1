@@ -7,9 +7,14 @@
         <!-- Footer -->
         <footer class="page-footer font-small blue">
             <div class="container">
+                <h3>HOME</h3>
+                <a href="Index">Index</a>
+
+                <br>
                 <h3>SHOP</h3>
                 <a href="Shop">Home</a>
 
+                <br>
                 <h3>COMPANY</h3>
                 <a href="About">About</a>
 

@@ -14,8 +14,9 @@
                 </li>
                 <!-- Home -->
                 <li class="nav-item">
-                    <a class="nav-link active" href="Index">Home
-                        <span class="visually-hidden">(current)</span>
+                    <a class="nav-link" href="Index">Home
+                    <!-- <a class="nav-link active" href="Index">Home -->
+                        <!-- <span class="visually-hidden">(current)</span> -->
                     </a>
                 </li>
                 <!-- Nouveaute -->

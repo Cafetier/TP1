@@ -47,9 +47,9 @@ class Product extends Database
             )
         ) AS Images,
         JSON_ARRAYAGG(c.cName) AS cName,
-        JSON_ARRAYAGG(s.Size) AS Size,
-        w.USERID,
-        ca.USERID
+        JSON_ARRAYAGG(s.Size) AS Size
+        -- w.USERID,
+        -- ca.USERID
         
         FROM Product p
         -- brand
@@ -68,11 +68,12 @@ class Product extends Database
         LEFT JOIN size_product sp ON sp.PRODUCTID=p.PRODUCTID
         LEFT JOIN size s ON s.SIZEID=sp.SIZEID
         -- cart
-        JOIN cart ca ON ca.PRODUCTID=p.PRODUCTID
+        -- JOIN cart ca ON ca.PRODUCTID=p.PRODUCTID
         -- wishlist
-        JOIN wishlist w ON w.PRODUCTID=p.PRODUCTID
+        -- JOIN wishlist w ON w.PRODUCTID=p.PRODUCTID
         
-        WHERE p.PRODUCTID = ?", [$ProductID]);
+        WHERE p.PRODUCTID=?
+        GROUP BY p.PRODUCTID", [$ProductID]);
         return $product[0];
     }
 

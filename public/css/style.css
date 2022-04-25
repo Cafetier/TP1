@@ -59,7 +59,8 @@ body, html {
 
 body{
     background-image: none;
-    background-color: var(--grulio);
+    background: rgb(169,153,133);
+background: linear-gradient(90deg, rgba(169,153,133,1) 0%, rgba(187,173,155,1) 100%);
 }
 
 nav{
@@ -71,7 +72,6 @@ section{
     height: auto;
     padding-top: 15px!important;
     padding-bottom: 50px;
-    background-color: var(--grulio);
 }
 
 footer{
@@ -206,7 +206,7 @@ input{
     height: 35px;
     border: 1px solid #b1b1b1;
     margin-left: auto;
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: #e7e7e7;
     transition: background-color 0.1s;
 }
