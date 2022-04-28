@@ -1,5 +1,5 @@
 -- select database
-USE NewOnlineStore;
+USE `OnlineStore`;
 
 -- Purge all data
 DELETE FROM user;
@@ -88,7 +88,7 @@ The serrated 3-Stripes detail and adidas Superstar box logo adds OG authenticity
 ('Zoom Freak 3', '', 159.99, 1, 4, 3, 1),
 ('Originals Yeezy 700 MNVN', 'West classic shoes', 300.00, 1, 1, 3, 1);
 
-INSERT INTO User 
+INSERT INTO `User`
 (LastName, FirstName, Email, Password, BirthDate, GENDERID)
 VALUES 
 ('Gauthier', 'Dany', 'danygauthier57@yahoo.ca', '$2y$10$tHhqhrzl1rE6HXNHPX3cP.JNjSIXhGKb.C/moQ4rOcHCDkDY7sYZC', '2002-06-08', 1),

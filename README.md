@@ -10,7 +10,7 @@ This project will be using
 
 ## Requirement
 - ~~Une liste (ordonnée ou non) (select)~~
-- Deux tableaux (table, td, tr)
+- ~~Deux tableaux (table, td, tr)~~
 - ~~Deux images (img)~~
 
 Un à deux formulaire(s) d'envoi de données, qui contiennent au moins :
@@ -35,10 +35,10 @@ You can just wishlist shoes and it shows where it is avalaible with links and ph
 
 ## What is left to do 
 ### PHP
-- Filmer la video pour montrer le site
+- Page produit
 - check if item already in wishlist/cart
-- Add to cart
-- Remove from cart
+- Cart
+- [nav] Page active (dans le menu de navigation)
 - Combine images/colors/sizes into array
 - [Shop] Filter size do not return just 10.5, but 10 too
 - Add placeholder image for product who do not have one
@@ -64,21 +64,6 @@ localhost/Product/[id]
 - [error] cooler 404 page
 - [Shop] margin-top pagination
 - background needs a gradient
-
-### Xavier
-- Contenu de la page a propos
-
-    - faire deux tableaux a linterieur
-
-- Page produit
-
-- [nav] Page active (dans le menu de navigation)
-
-- [Footer] Better aligned text in footer
-
-- [Shop] Ajouter images de produits
-
-
 
 ## Resources
 Storing hex code for color : https://www.itsolutionstuff.com/post/mysql-hexadecimal-color-code-store-in-binary-datatype

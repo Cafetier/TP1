@@ -8,8 +8,8 @@
 // database information
 define('dbHost','localhost');
 define('dbUsername','root');
-define('dbPW','');
-define('dbDB','NewOnlineStore');
+define('dbPW','root');
+define('dbDB','OnlineStore');
 
 // the relative path to project
 define('__ROOT__', dirname(dirname(__FILE__))); 
