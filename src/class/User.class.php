@@ -1,55 +1,47 @@
 <?php
 
 /**
- * 
  * This file handles all user interaction
  * Child class of Database (DB.class.php)
- * 
  * @author Dany Gauthier
- * 
  */
-
-class User extends Database{
+class User extends Database
+{
     function __construct()
     {
-        // create a db connection using parent function
         $this->db_conn = $this->Connect();
-
         // name regex which support multilanguage
         $this->NameRegex = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u";
     }
 
     /**
-     * 
      * Used to check if a user exists
-     * 
      * @param string    $Email      Email of the user
      * 
      * @return array    returns the user if he exists
-     * 
      */
-    public function UserExist($Email){
+    public function UserExist($Email)
+    {
         if (empty($Email)) return;  // check if param empty
         // query and return query
-        $user = $this->Query($this->db_conn, "SELECT * FROM User WHERE Email = ?", [$Email]);
-        if(!empty($user)) return $user[0];
+        $user = $this->Query($this->db_conn,
+            "SELECT * FROM User WHERE Email = ?", [$Email]);
+        if (!empty($user)) return $user[0];
     }
 
     /**
-     * 
      * Add the user to the bd
-     * 
      * @param string    $FirstName
      * @param string    $LastName
      * @param string    $Email
      * @param string    $Password
      * @param string    $BirthDate
      * @param string    $Gender
-     * 
      */
-    public function Register($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender){
+    public function Register($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender)
+    {
         // check if inputs are empty
-        if (empty($FirstName || $LastName || $Email || $Password || $BirthDate || $Gender)) 
+        if (empty($FirstName || $LastName || $Email || $Password || $BirthDate || $Gender))
             throw new Error('Inputs must not be empty');
 
         // check if email using php filter_var()
@@ -70,52 +62,58 @@ class User extends Database{
         $timeBirthDate = strtotime($BirthDate) ?? '';
         if (strtotime("1900-01-01") > $timeBirthDate)
             throw new Error('Your birth date is incorrect');
-        
+
         // check if at least 16 yo
-        if ($timeBirthDate > strtotime((date('Y')-16)."-".date('m-d')))
+        if ($timeBirthDate > strtotime((date('Y') - 16) . "-" . date('m-d')))
             throw new Error('You must be at least 16 years old to use this website');
 
         // hash password
         $hashed_pwd = password_hash($Password, PASSWORD_DEFAULT);
-        
+
         // create record in db
         try {
-            $this->Query($this->db_conn, "INSERT INTO User 
+            $this->Query(
+                $this->db_conn,
+                "INSERT INTO User 
             (LastName, FirstName, Email, Password, BirthDate, GENDERID)
             VALUES 
-            (?, ?, ?, ?, ?, ?)", 
-            [$LastName, $FirstName, $Email, $hashed_pwd, $BirthDate, $Gender]);
-        } catch (Error $e) {
+            (?, ?, ?, ?, ?, ?)",
+                [$LastName, $FirstName, $Email, $hashed_pwd, $BirthDate, $Gender]
+            );
+        } catch (Error) {
             throw new Error('There was an error');
         }
     }
 
 
     /**
-     * 
      * Add the user to the bd
-     * 
      * @param string    $Email
      * @param string    $Password
-     * 
      */
-    public function Login($Email, $Password){
+    public function Login($Email, $Password)
+    {
         // check if inputs are not empty
-        if (empty($Email || $Password)) throw new Error('Inputs must not be empty');
+        if (empty($Email || $Password)) 
+            throw new Error('Inputs must not be empty');
 
         // check if email using php filter_var()
-        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) throw new Error('Email is not valid');
+        if (!filter_var($Email, FILTER_VALIDATE_EMAIL))
+            throw new Error('Email is not valid');
 
         // check if the user exist in db
         $dbUser = $this->UserExist($Email);
-        if (empty($dbUser)) throw new Error('This user does not exist');
-        
+        if (empty($dbUser))
+            throw new Error('This user does not exist');
+
         // check if hashed password is the same as db
         $pwDB = $dbUser['Password'];
-        if (!password_verify($Password, $pwDB)) throw new Error('Password does not match');
+        if (!password_verify($Password, $pwDB))
+            throw new Error('Password does not match');
 
         // update LastLogin
-        $genders = $this->Query($this->db_conn, "UPDATE user SET LastLogin = NOW() WHERE USERID=?", [$dbUser['USERID']]);
+        $genders = $this->Query($this->db_conn,
+            "UPDATE user SET LastLogin = NOW() WHERE USERID=?", [$dbUser['USERID']]);
 
         $this->LogOut(); // destroy active session if there is
         session_start(); // start sessions handler
@@ -127,36 +125,28 @@ class User extends Database{
     }
 
     /**
-     * 
      * Get a list of all genders
-     * 
      * @return object a list of all genders
-     * 
      */
-    public function GetAllGenders(){
-        // query and return query
-        $genders = $this->Query($this->db_conn, "SELECT * FROM gender ORDER BY GENDERID", []);
-        return $genders;
+    public function GetAllGenders()
+    {
+        return $this->Query($this->db_conn, "SELECT * FROM gender ORDER BY GENDERID", []);
     }
-
-
     /**
-     * 
      * Update information of the user
-     * 
      * @param string    $FirstName
      * @param string    $LastName
      * @param string    $Email
      * @param string    $Password
      * @param string    $BirthDate
      * @param string    $Gender
-     * 
      */
-    public function UpdateInformations($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender){
+    public function UpdateInformations($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender)
+    {
         $sqlquery = 'UPDATE User SET LastName = ?, FirstName = ?, Email = ?, BirthDate = ?, GENDERID = ?';
         $param = [$LastName, $FirstName, $Email, $BirthDate, $Gender];
         // check if inputs are empty
-        if (empty($FirstName || $LastName || $Email || $BirthDate || $Gender)) 
+        if (empty($FirstName || $LastName || $Email || $BirthDate || $Gender))
             throw new Error('Inputs must not be empty');
 
         // check if email using php filter_var()
@@ -172,8 +162,8 @@ class User extends Database{
             throw new Error('Birth date incorrect');
 
         // if password not empty
-        if (!empty($Password)){
-            $sqlquery = $sqlquery.', Password = ?';  // append to query
+        if (!empty($Password)) {
+            $sqlquery = $sqlquery . ', Password = ?';  // append to query
 
             // hash password
             $hashed_pwd = password_hash($Password, PASSWORD_DEFAULT);
@@ -187,35 +177,32 @@ class User extends Database{
 
         // update record in db
         try {
-            $this->Query($this->db_conn, $sqlquery." WHERE Email = ?", 
-            $param);
+            $this->Query(
+                $this->db_conn,
+                $sqlquery . " WHERE Email = ?",
+                $param
+            );
         } catch (Error $e) {
             if (__DEBUG__) echo $e;
         }
     }
-    
-    /**
-     * 
-     * Check if the user as a session id
-     * 
-     * @return bool
-     * 
-     */
-    public function IsLoggedIn(){
-        // check if there is a session
-        if (isset($_SESSION['USERID'])) return true;
 
-        // by default return false
-        return false;
+    /**
+     * Check if the user as a session id
+     * @return bool
+     */
+    public function IsLoggedIn()
+    {
+        // check if there is a session
+        isset($_SESSION['USERID']);
     }
 
     /**
-     * 
      * Log out the user, 
      * destroy active session and unset them
-     * 
      */
-    public function LogOut(){
+    public function LogOut()
+    {
         // Destroy and unset active session
         session_unset();
         session_destroy();

@@ -1,8 +1,7 @@
-<?php 
+<?php
 $PageTitle = 'About';
 require "../template/header.php";
 require "../template/nav.php";
-
 include_once "../template/alert.php";
 ?>
 
@@ -24,7 +23,7 @@ include_once "../template/alert.php";
     </table>
     <br>
 
-    
+
     <h4>Leading more shoes into people's feet.</h4>
     <ul>
         <li>We give 5% of our profits to organizations that help the people in need.</li>

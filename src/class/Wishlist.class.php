@@ -1,69 +1,65 @@
 <?php
 
 /**
- * 
  * This file handle all the wishlist interactions
- * 
  * @author Dany Gauthier
- * 
  */
-
-class Wishlist extends Database{
+class Wishlist extends Database
+{
     function __construct()
     {
-        // create a db connection using parent function
         $this->db_conn = $this->Connect();
     }
 
     /**
-     * 
      * Add item to Wishlist
-     * 
      */
-    public function Add($ProductID, $UserID){
+    public function Add($ProductID, $UserID)
+    {
         // check if inputs are not empty and are numbers
         if (empty($UserID || $ProductID) && !ctype_digit($UserID && $ProductID))
             throw new Error('This product does not exists');
 
         // query the db to remove the product
         try {
-            $this->Query($this->db_conn, 
-            'INSERT INTO wishlist (PRODUCTID, USERID)
-            VALUES (?, ?)', 
-            [$ProductID, $UserID]);
+            $this->Query(
+                $this->db_conn,
+                'INSERT INTO wishlist (PRODUCTID, USERID)
+            VALUES (?, ?)',
+                [$ProductID, $UserID]
+            );
         } catch (Error $e) {
             return $e;
         }
     }
 
     /**
-     * 
      * Remove item from Wishlist
-     * 
      */
-    public function Remove($ProductID, $UserID){
+    public function Remove($ProductID, $UserID)
+    {
         // check if inputs are not empty and are numbers
         if (empty($UserID || $ProductID) && !ctype_digit($UserID && $ProductID))
             throw new Error('You do not have this product');
 
         // query the db to remove the product
         try {
-            $this->Query($this->db_conn, 
-            'DELETE FROM wishlist WHERE PRODUCTID = ? AND USERID = ?', 
-            [$ProductID, $UserID]);
+            $this->Query(
+                $this->db_conn,
+                'DELETE FROM wishlist WHERE PRODUCTID = ? AND USERID = ?',
+                [$ProductID, $UserID]
+            );
         } catch (Error $e) {
             return $e;
         }
     }
 
     /**
-     * 
      * Get items from Wishlist
-     * 
      * @return object all the items in the Wishlist
-     * 
      */
-    public function GetAll($UserID){
+    public function GetAll($UserID)
+    {
         // check if inputs are not empty and are numbers
         if (empty($UserID) && !ctype_digit($UserID))
             throw new Error('You are not connected');

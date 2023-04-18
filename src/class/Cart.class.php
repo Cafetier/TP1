@@ -1,69 +1,65 @@
 <?php
 
 /**
- * 
  * This file handle all the cart interactions
- * 
  * @author Dany Gauthier
- * 
  */
-
-class Cart extends Database{
+class Cart extends Database
+{
     function __construct()
     {
-        // create a db connection using parent function
         $this->db_conn = $this->Connect();
     }
 
     /**
-     * 
      * Add item to cart
-     * 
      */
-    public function Add($ProductID, $UserID){
+    public function Add($ProductID, $UserID)
+    {
         // check if inputs are not empty and are numbers
         if (empty($UserID || $ProductID) && ctype_digit($UserID && $ProductID))
             throw new Error('Param must not be empty and must be numbers');
 
         // query the db to remove the product
         try {
-            $this->Query($this->db_conn, 
-            'INSERT INTO cart c (c.PRODUCTID, c.USERID)
-            VALUES (?, ?)', 
-            [$ProductID, $UserID]);
+            $this->Query(
+                $this->db_conn,
+                'INSERT INTO cart c (c.PRODUCTID, c.USERID)
+            VALUES (?, ?)',
+                [$ProductID, $UserID]
+            );
         } catch (Error $e) {
             return $e;
         }
     }
 
     /**
-     * 
      * Remove item from cart
-     * 
      */
-    public function Remove($ProductID, $UserID){
+    public function Remove($ProductID, $UserID)
+    {
         // check if inputs are not empty and are numbers
         if (empty($UserID || $ProductID) && ctype_digit($UserID && $ProductID))
             throw new Error('Param must not be empty and must be numbers');
 
         // query the db to remove the product
         try {
-            $this->Query($this->db_conn, 
-            'DELETE FROM cart WHERE PRODUCTID = ? AND USERID = ?', 
-            [$ProductID, $UserID]);
+            $this->Query(
+                $this->db_conn,
+                'DELETE FROM cart WHERE PRODUCTID = ? AND USERID = ?',
+                [$ProductID, $UserID]
+            );
         } catch (Error $e) {
             return $e;
         }
     }
 
     /**
-     * 
      * Get items from cart
-     * 
      * @return object all the items in the cart
-     * 
      */
-    public function GetAll($UserID){
+    public function GetAll($UserID)
+    {
         // check if inputs are not empty and are numbers
         if (empty($UserID) && ctype_digit($UserID))
             throw new Error('id must not be empty and must be a number');
