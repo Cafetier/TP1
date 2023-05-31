@@ -73,7 +73,7 @@ class Product extends Database
      */
     public function GetBrands()
     {
-        return $this->Query($this->db_conn, "SELECT * FROM brand", []);
+        return $this->Query($this->db_conn, "SELECT * FROM Brand", []);
     }
 
     /**
@@ -82,7 +82,7 @@ class Product extends Database
      */
     public function GetTypes()
     {
-        return $this->Query($this->db_conn, "SELECT * FROM ptype", []);
+        return $this->Query($this->db_conn, "SELECT * FROM pType", []);
     }
 
     /**
@@ -93,7 +93,7 @@ class Product extends Database
     {
         return $this->Query(
             $this->db_conn,
-            "SELECT c.COLORID, c.cName, HEX(c.Hex) as color_hex FROM color c", []
+            "SELECT c.COLORID, c.cName, HEX(c.Hex) as color_hex FROM Color c", []
         );
     }
 
@@ -184,7 +184,7 @@ class Product extends Database
         LEFT JOIN Size s ON
             s.SIZEID = sp.SIZEID
         WHERE
-            p.Listed = 1 AND 0 < P.PRODUCTID <= 50 ";
+            p.Listed = 1 AND 0 < p.PRODUCTID <= 50 ";
 
         // NAME
         if (isset($Filter['Name'])) {

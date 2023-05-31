@@ -113,10 +113,11 @@ class User extends Database
 
         // update LastLogin
         $genders = $this->Query($this->db_conn,
-            "UPDATE user SET LastLogin = NOW() WHERE USERID=?", [$dbUser['USERID']]);
+            "UPDATE User SET LastLogin = NOW() WHERE USERID=?", [$dbUser['USERID']]);
 
         $this->LogOut(); // destroy active session if there is
         session_start(); // start sessions handler
+
         // Set sessions attributes to user id
         $_SESSION['USERID'] = $dbUser['USERID'];
         $_SESSION['LastName'] = $dbUser['LastName'];
@@ -130,8 +131,9 @@ class User extends Database
      */
     public function GetAllGenders()
     {
-        return $this->Query($this->db_conn, "SELECT * FROM gender ORDER BY GENDERID", []);
+        return $this->Query($this->db_conn, "SELECT * FROM Gender ORDER BY GENDERID", []);
     }
+
     /**
      * Update information of the user
      * @param string    $FirstName
@@ -193,7 +195,6 @@ class User extends Database
      */
     public function IsLoggedIn()
     {
-        // check if there is a session
         isset($_SESSION['USERID']);
     }
 
@@ -203,7 +204,6 @@ class User extends Database
      */
     public function LogOut()
     {
-        // Destroy and unset active session
         session_unset();
         session_destroy();
     }

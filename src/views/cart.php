@@ -1,22 +1,20 @@
 <?php 
-$PageTitle = 'Wishlist';
+$PageTitle = 'Cart';
 require "../template/header.php";
 require "../template/nav.php";
 
 // if not logged redirect to register
 if(!$user->IsLoggedIn()){
-    header("Location: Register");  //redirect to the main page
+    header("Location: register.php");  //redirect to the main page
     exit();
 }
 
 // check if post request
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    $pid = $_POST['PRODUCTID'] ?? null;
-
-    // remove item from wishlist
+    $pid = $_POST['pid'];
+    
     try{
-        $wishlist->Remove($pid, $_SESSION['USERID']);
-        $success = 'Item successfully deleted !';
+        $cart->Remove($pid, $_SESSION['USERID']);  //login the user
     }
     catch(Error $e){
         $error = $e->getMessage();
@@ -24,21 +22,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 // get all wishlisted items linked to the account in the session
-$wishlist_items = $wishlist->GetAll($_SESSION['USERID']) ?? [];
+$cart_items = $cart->GetAll($_SESSION['USERID']);
 
 include_once "../template/alert.php";
 ?>
+
 <section class="container">
-    <h1>Wishlist</h1>
-    <?php if (!array_filter($wishlist_items)): ?>
-        <span>There is no items in your wishlist ! You can check out what's new <a href="Shop?Order=DESC">here</a> !</span>
+    <h1>Cart</h1>
+    <?php if (!array_filter($cart_items)): ?>
+        <span>There is no items in your cart ! You can shop by going <a href="Shop">here</a> !</span>
     <?php endif;?>
     <!-- Cart items -->
     <div class="grid-4">
-        <?php foreach($wishlist_items as $k=>$v): ?>
-            <!-- <a href="Product?id=<?php echo $v['PRODUCTID']?>" class="product-card"> -->
-            <a href="#" class="product-card">
-                <?php $pimg = json_decode($v['Images'], true) ?>
+        <?php foreach($cart_items as $k=>$v): ?>
+            <a href="product.php?id=<?php echo $v['PRODUCTID']?>" class="product-card">
+            <?php $pimg = json_decode($v['Images'], true) ?>
                 <!-- caroussel -->
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -68,14 +66,16 @@ include_once "../template/alert.php";
                 <h6><?php echo $v['bName'] ?></h6>
                 <!-- Price -->
                 <p><?php echo $v['Price'] ?></p>
+                <!-- Size -->
+                <span>Size <?php echo $v['Size'] ?></span><br>
                 <hr>
                 <!-- date added -->
                 <span>Added : <?php echo $v['DateAdded'] ?></span> 
                 <!-- Remove btn -->
-                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
-                    <input type="text" name="PRODUCTID" value="<?php echo $v['PRODUCTID'] ?>" hidden>
-                    <button type="submit" class="remove_btn">Remove</button>
+                <form id="remove_form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+                    <button type="submit">Remove</button>
                 </form>
+                
 
             </a>
         <?php endforeach; ?>

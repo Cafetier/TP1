@@ -1,8 +1,8 @@
 <?php
 // database information
-define('dbHost','localhost');
+define('dbHost','mysql');
 define('dbUsername','root');
-define('dbPW','root');
+define('dbPW','Abc123$');
 define('dbDB','OnlineStore');
 
 // the relative path to project

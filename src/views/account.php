@@ -5,7 +5,7 @@ require "../template/nav.php";
 
 // if not logged redirect to register
 if(!$user->IsLoggedIn()){
-    header("Location: Register");  //redirect to the main page
+    header("Location: register.php");  //redirect to the main page
     exit();
 }
 

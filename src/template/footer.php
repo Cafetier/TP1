@@ -8,15 +8,15 @@
         <footer class="page-footer font-small blue">
             <div class="container">
                 <h3>HOME</h3>
-                <a href="Index">Index</a>
+                <a href="index.php">Index</a>
 
                 <br>
                 <h3>SHOP</h3>
-                <a href="Shop">Home</a>
+                <a href="shop.php">Home</a>
 
                 <br>
                 <h3>COMPANY</h3>
-                <a href="About">About</a>
+                <a href="about.php">About</a>
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3">

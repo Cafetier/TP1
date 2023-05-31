@@ -24,7 +24,7 @@ class Wishlist extends Database
         try {
             $this->Query(
                 $this->db_conn,
-                'INSERT INTO wishlist (PRODUCTID, USERID)
+                'INSERT INTO Wishlist (PRODUCTID, USERID)
             VALUES (?, ?)',
                 [$ProductID, $UserID]
             );
@@ -46,7 +46,7 @@ class Wishlist extends Database
         try {
             $this->Query(
                 $this->db_conn,
-                'DELETE FROM wishlist WHERE PRODUCTID = ? AND USERID = ?',
+                'DELETE FROM Wishlist WHERE PRODUCTID = ? AND USERID = ?',
                 [$ProductID, $UserID]
             );
         } catch (Error $e) {
@@ -81,7 +81,7 @@ class Wishlist extends Database
             )
         ) AS Images
         
-        FROM wishlist w
+        FROM Wishlist w
         
         -- sizes
         LEFT JOIN size s ON s.SIZEID=w.SIZEID

@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  boutique:
+    build: .
+    image: boutique-php
+    container_name: boutique-php
+    ports:
+      - 81:80
+    volumes:
+      - ./src:/var/www/html/src
+      - ./index.php:/var/www/html/index.php
+      - ./public:/var/www/html/public
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Abc123$
+      MYSQL_DATABASE: OnlineStore
+    container_name: boutique-mysql
+    volumes:
+      - boutique-data:/var/lib/mysql
+      
+volumes:
+  boutique-data:

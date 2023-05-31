@@ -5,7 +5,7 @@ require "../template/nav.php";
 
 // if logged redirect to index
 if($user->IsLoggedIn()){
-    header("Location: Index");  //redirect to the main page
+    header("Location: index.php");  //redirect to the main page
     exit();
 }
 
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     try {
         $user->Register($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender);
-        header("Location: Login");  //redirect to the login page
+        header("Location: login.php");  //redirect to the login page
         $success = "You have successfully created an account";
         exit();
     } catch (Error $e) {

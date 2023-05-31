@@ -7,24 +7,24 @@
             <ul class="navbar-nav me-auto">
                 <!-- Logo -->
                 <li class="nav-item logo-nav">
-                    <a class="nav-link" href="Index">
+                    <a class="nav-link" href="index.php">
                         <img src="../../public/img/logo_full.svg" alt="Shoes Pro Shop Logo">
                     </a>
                 </li>
                 <!-- Home -->
                 <li class="nav-item">
-                    <a class="nav-link" href="Index">Home
+                    <a class="nav-link" href="index.php">Home
                         <!-- <a class="nav-link active" href="Index">Home -->
                         <!-- <span class="visually-hidden">(current)</span> -->
                     </a>
                 </li>
                 <!-- Nouveaute -->
                 <li class="nav-item">
-                    <a class="nav-link" href="Shop">Shop</a>
+                    <a class="nav-link" href="shop.php">Shop</a>
                 </li>
                 <!-- More -->
                 <li class="nav-item">
-                    <a class="nav-link" href="About">About</a>
+                    <a class="nav-link" href="about.php">About</a>
                 </li>
 
                 <?php if ($user->IsLoggedIn()) : ?>
@@ -34,8 +34,8 @@
                         <div class="dropdown-menu">
                             <?php //<a class="dropdown-item" href="Cart">Cart</a>
                             ?>
-                            <a class="dropdown-item" href="Wishlist">Wishlist</a>
-                            <a class="dropdown-item" href="Account">Modify Account</a>
+                            <a class="dropdown-item" href="wishlist.php">Wishlist</a>
+                            <a class="dropdown-item" href="account.php">Modify Account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="?logout">Logout</a>
                         </div>
@@ -43,12 +43,12 @@
                 <?php else : ?>
                     <!-- Login -->
                     <li class="nav-item">
-                        <a class="nav-link" href="Login">Login</a>
+                        <a class="nav-link" href="login.php">Login</a>
                     </li>
 
                     <!-- Register -->
                     <li class="nav-item">
-                        <a class="nav-link" href="Register">Register</a>
+                        <a class="nav-link" href="register.php">Register</a>
                     </li>
                 <?php endif; ?>
             </ul>

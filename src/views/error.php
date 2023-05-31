@@ -5,7 +5,7 @@
 // without any good reason
 if (!isset($_GET['error'])){
     //redirect to the main page
-    header("Location: Index");
+    header("Location: index.php");
     exit();
 }
 $e = $_GET['error'];
@@ -17,7 +17,7 @@ require "../template/nav.php";
 include_once "../template/alert.php";
 ?>
 <section class="container">
-    <a href="Index">Go Back To Homepage</a>
+    <a href="index.php">Go Back To Homepage</a>
 
     <h1><?php echo $e; ?> Error</h1>
 </section>
