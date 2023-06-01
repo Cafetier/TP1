@@ -8,19 +8,19 @@ class Product extends Database
 {
     function __construct()
     {
-        $this->db_conn = $this->Connect();
+        $this->dbConn = $this->connect();
     }
 
     /**
      * Check if a product exist using the product id
-     * @param int       $ProductID
+     * @param int       $productID
      * @return object   The product informations if it exists
      */
-    public function GetProduct($ProductID)
+    public function getProduct($productID)
     {
-        if (empty($ProductID)) return;
+        if (empty($productID)) return;
         // query and return query
-        $product = $this->Query($this->db_conn, "
+        $product = $this->query($this->dbConn, "
         SELECT
         p.PRODUCTID, p.pName, p.pDescription, p.Price, p.DateCreated,
         b.bName,
@@ -63,7 +63,7 @@ class Product extends Database
         -- JOIN wishlist w ON w.PRODUCTID=p.PRODUCTID
         
         WHERE p.PRODUCTID=?
-        GROUP BY p.PRODUCTID", [$ProductID]);
+        GROUP BY p.PRODUCTID", [$productID]);
         return $product ? $product[0] : null;
     }
 
@@ -71,28 +71,28 @@ class Product extends Database
      * This gets all the brand from the bd
      * @return object all the brands from db
      */
-    public function GetBrands()
+    public function getBrands()
     {
-        return $this->Query($this->db_conn, "SELECT * FROM Brand", []);
+        return $this->query($this->dbConn, "SELECT * FROM Brand", []);
     }
 
     /**
      * This gets all the types in db
      * @return object all the types from db
      */
-    public function GetTypes()
+    public function getTypes()
     {
-        return $this->Query($this->db_conn, "SELECT * FROM pType", []);
+        return $this->query($this->dbConn, "SELECT * FROM pType", []);
     }
 
     /**
      * This gets all the colors avalailable in db
      * @return object all the colors from db
      */
-    public function GetColors()
+    public function getColors()
     {
-        return $this->Query(
-            $this->db_conn,
+        return $this->query(
+            $this->dbConn,
             "SELECT c.COLORID, c.cName, HEX(c.Hex) as color_hex FROM Color c",
             []
         );
@@ -102,15 +102,15 @@ class Product extends Database
      * This gets all the sizes in db
      * @return object all the sizes from db
      */
-    public function GetSizes()
+    public function getSizes()
     {
-        return $this->Query($this->db_conn, "SELECT * FROM Size", []);
+        return $this->query($this->dbConn, "SELECT * FROM Size", []);
     }
 
     /**
      * Add a product to the db
      */
-    public function AddProduct()
+    public function addProduct()
     {
     }
 
@@ -130,16 +130,16 @@ class Product extends Database
      * 
      * @return object   All the products in order of new to old (date added)
      */
-    public function GetAllProduct($ProductOffset, $Filter)
+    public function getAllProduct($productOffset, $filter)
     {
         // check if ProductOffset is empty or is not a number
-        if (!empty($ProductOffset) && !ctype_digit($ProductOffset))
+        if (!empty($productOffset) && !ctype_digit($productOffset))
             throw new Error('There must be a product offset');
 
         $param = [];
 
         // sql start
-        $sqlquery = "
+        $sql = "
         SELECT DISTINCT
             p.PRODUCTID,
             p.pName,
@@ -188,22 +188,22 @@ class Product extends Database
             p.Listed = 1 AND 0 < p.PRODUCTID <= 50 ";
 
         // NAME
-        if (isset($Filter['Name'])) {
+        if (isset($filter['Name'])) {
             // append to sql query where statement
-            $sqlquery = $sqlquery . 'AND p.pName LIKE ? ';
+            $sql = $sql . 'AND p.pName LIKE ? ';
 
             // append to array
-            array_push($param, '%' . $Filter['Name'] . '%');
+            array_push($param, '%' . $filter['Name'] . '%');
         }
 
         // if brand is an array and exists
-        if (isset($Filter['Brand']) && is_array($Filter['Brand'])) {
-            foreach ($Filter['Brand'] as $k => $v) {
+        if (isset($filter['Brand']) && is_array($filter['Brand'])) {
+            foreach ($filter['Brand'] as $k => $v) {
                 // append to sql query where statement
                 // if first then add a AND instead of or
                 $k === 0 ?
-                    $sqlquery = $sqlquery . 'AND b.bName = ? ' :
-                    $sqlquery = $sqlquery . 'OR b.bName = ? ';
+                    $sql = $sql . 'AND b.bName = ? ' :
+                    $sql = $sql . 'OR b.bName = ? ';
 
                 // append to param array
                 array_push($param, $v);
@@ -211,54 +211,54 @@ class Product extends Database
         }
 
         // if color exists
-        if (isset($Filter['Color'])) {
+        if (isset($filter['Color'])) {
             // append to sql query where statement
-            $sqlquery = $sqlquery . 'AND c.cName = ? ';
+            $sql = $sql . 'AND c.cName = ? ';
 
             // append to param array
-            array_push($param, $Filter['Color']);
+            array_push($param, $filter['Color']);
         }
 
         // size
-        if (isset($Filter['Size']) && ctype_digit($Filter['Size'])) {
+        if (isset($filter['Size']) && ctype_digit($filter['Size'])) {
             // append to sql query where statement
-            $sqlquery = $sqlquery . 'AND s.Size = ? ';
+            $sql = $sql . 'AND s.Size = ? ';
 
             // append to param array
-            array_push($param, $Filter['Size']);
+            array_push($param, $filter['Size']);
         }
 
         // Type
-        if (isset($Filter['Type'])) {
+        if (isset($filter['Type'])) {
             // append to sql query where statement
-            $sqlquery = $sqlquery . 'AND t.tName = ? ';
+            $sql = $sql . 'AND t.tName = ? ';
 
             // append to param array
-            array_push($param, $Filter['Type']);
+            array_push($param, $filter['Type']);
         }
 
         // Price
-        if (isset($Filter['Price'])) {
+        if (isset($filter['Price'])) {
             // append to sql query where statement
-            $sqlquery = $sqlquery . 'AND p.Price > ? AND p.Price < ? ';
+            $sql = $sql . 'AND p.Price > ? AND p.Price < ? ';
 
             // append to param array
-            foreach ($Filter['Price'] as $v) array_push($param, $v);
+            foreach ($filter['Price'] as $v) array_push($param, $v);
         }
 
         // append group by
-        $sqlquery = $sqlquery . 'GROUP BY p.PRODUCTID ';
+        $sql = $sql . 'GROUP BY p.PRODUCTID ';
 
         // WORKS Order
-        if (isset($Filter['Order'])) {
+        if (isset($filter['Order'])) {
             // append to sql query where statement
-            $sqlquery = $sqlquery . 'ORDER BY p.DateCreated ' . $Filter['Order'];
-            unset($Filter['Order']);  // unset order
+            $sql = $sql . 'ORDER BY p.DateCreated ' . $filter['Order'];
+            unset($filter['Order']);  // unset order
         }
 
         // query and return query
         try {
-            $products = $this->Query($this->db_conn, $sqlquery, $param);
+            $products = $this->query($this->dbConn, $sql, $param);
             return $products;
         } catch (Error $e) {
             echo $e;
@@ -267,24 +267,24 @@ class Product extends Database
 
     /**
      * Remove a product from the database (it actually just unlist them)
-     * @param int $ProductID    ID of the product
+     * @param int $productID    ID of the product
      */
-    public function RemoveProduct($ProductID)
+    public function removeProduct($productID)
     {
         // check if empty param
-        if (empty($ProductID)) throw new Error('Must provide a product id');
+        if (empty($productID)) throw new Error('Must provide a product id');
 
         // check if exist in db
-        if (empty($this->GetProduct($ProductID)))
+        if (empty($this->getProduct($productID)))
             throw new Error('This product does not exist in the database');
 
         // unlist the product if it isnt already
         try {
-            $this->Query(
-                $this->db_conn,
+            $this->query(
+                $this->dbConn,
                 "UPDATE Product SET Listed = 0
             WHERE Listed != 0 AND PRODUCTID = ?;",
-                [$ProductID]
+                [$productID]
             );
         } catch (Error $e) {
             echo $e;
@@ -293,9 +293,9 @@ class Product extends Database
 
     /**
      * Update information of the product
-     * @param int $ProductID    ID of the product
+     * @param int $productID    ID of the product
      */
-    public function UpdateProduct($ProductID)
+    public function updateProduct($productID)
     {
     }
 }

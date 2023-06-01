@@ -4,7 +4,7 @@ require "../templates/header.php";
 require "../templates/nav.php";
 
 // if logged redirect to index
-if($user->IsLoggedIn()){
+if($user->isLoggedIn()){
     header("Location: index.php");  //redirect to the main page
     exit();
 }
@@ -15,7 +15,7 @@ if($reset === 'Reset') $_POST = [];
 
 
 // get all genders
-$genders = $user->GetAllGenders();
+$genders = $user->getAllGenders();
 
 
 // check if there is a post call
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if ($Password != $ConfPwd) $error = 'Password must match';
     
     try {
-        $user->Register($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender);
+        $user->register($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender);
         header("Location: login.php");  //redirect to the login page
         $success = "You have successfully created an account";
         exit();

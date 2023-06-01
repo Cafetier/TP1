@@ -27,7 +27,7 @@
                     <a class="nav-link" href="about.php">About</a>
                 </li>
 
-                <?php if ($user->IsLoggedIn()) : ?>
+                <?php if ($user->isLoggedIn()) : ?>
                     <!-- Account -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['Email'] ?> </a>

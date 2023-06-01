@@ -8,13 +8,13 @@ class Cart extends Database
 {
     function __construct()
     {
-        $this->db_conn = $this->Connect();
+        $this->dbConn = $this->connect();
     }
 
     /**
      * Add item to cart
      */
-    public function Add($ProductID, $UserID)
+    public function add($productID, $userID)
     {
         // check if inputs are not empty and are numbers
         if (
@@ -30,10 +30,10 @@ class Cart extends Database
         // query the db to remove the product
         try {
             $this->Query(
-                $this->db_conn,
+                $this->dbConn,
                 'INSERT INTO cart c (c.PRODUCTID, c.USERID)
             VALUES (?, ?)',
-                [$ProductID, $UserID]
+                [$productID, $userID]
             );
         } catch (PDOException $e) {
             return $e;
@@ -43,7 +43,7 @@ class Cart extends Database
     /**
      * Remove item from cart
      */
-    public function Remove($ProductID, $UserID)
+    public function remove($productID, $userID)
     {
         // check if inputs are not empty and are numbers
         if (
@@ -59,9 +59,9 @@ class Cart extends Database
         // query the db to remove the product
         try {
             $this->Query(
-                $this->db_conn,
+                $this->dbConn,
                 'DELETE FROM cart WHERE PRODUCTID = ? AND USERID = ?',
-                [$ProductID, $UserID]
+                [$productID, $userID]
             );
         } catch (PDOException $e) {
             return $e;
@@ -72,7 +72,7 @@ class Cart extends Database
      * Get items from cart
      * @return object all the items in the cart
      */
-    public function GetAll($UserID)
+    public function getAll($userID)
     {
         // check if inputs are not empty and are numbers
         if (empty($userID) || !ctype_digit($userID))
@@ -80,7 +80,7 @@ class Cart extends Database
                 'Invalid parameter: ID must not be empty and must be a number'
             );
 
-        $sql_query = "SELECT
+        $sqlQuery = "SELECT
         u.USERID,
         p.PRODUCTID,
         w.CARTID, w.DateAdded,
@@ -122,7 +122,7 @@ class Cart extends Database
 
         // query the cart of the user
         try {
-            $result = $this->Query($this->db_conn, $sql_query, [$UserID]);
+            $result = $this->query($this->dbConn, $sqlQuery, [$userID]);
             return $result;
         } catch (PDOException $e) {
             if (__DEBUG__) echo $e;

@@ -5,10 +5,10 @@ require "../templates/nav.php";
 
 // fetch all categories of filters and store in array
 $categories = [];
-$categories['Brands'] = $product->GetBrands();
-$categories['Types'] = $product->GetTypes();
-$categories['Colors'] = $product->GetColors();
-$categories['Sizes'] = $product->GetSizes();
+$categories['Brands'] = $product->getBrands();
+$categories['Types'] = $product->getTypes();
+$categories['Colors'] = $product->getColors();
+$categories['Sizes'] = $product->getSizes();
 
 // check if there is GET values and append to filters
 /**
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // remove item from wishlist
     try{
-        $wishlist->Add($pid, $_SESSION['USERID']);
+        $wishlist->add($pid, $_SESSION['USERID']);
         $success = 'Item successfully added to wishlist !';
     }
     catch(Error $e){
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 // fetch products
 try{
-    $products = $product->GetAllProduct(0, $filters);
+    $products = $product->getAllProduct(0, $filters);
 }
 catch(Error $e){
     $error = $e->getMessage();

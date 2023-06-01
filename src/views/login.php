@@ -4,7 +4,7 @@ require "../templates/header.php";
 require "../templates/nav.php";
 
 // if logged redirect to index
-if($user->IsLoggedIn()){
+if($user->isLoggedIn()){
     header("Location: index.php");  //redirect to the main page
     exit();
 }
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $pw = $_POST['password'];
     
     try{
-        $user->Login($email, $pw);  //login the user
+        $user->login($email, $pw);  //login the user
         header("Location: index.php");  //redirect to the main page
         exit();
     }

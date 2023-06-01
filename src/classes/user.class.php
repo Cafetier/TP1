@@ -9,25 +9,25 @@ class User extends Database
 {
     function __construct()
     {
-        $this->db_conn = $this->Connect();
+        $this->dbConn = $this->connect();
         // name regex which support multilanguage
-        $this->NameRegex = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u";
+        $this->nameRegex = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u";
     }
 
     /**
      * Used to check if a user exists
-     * @param string    $Email      Email of the user
+     * @param string    $email      Email of the user
      * 
      * @return array    returns the user if he exists
      */
-    public function UserExist($Email)
+    public function userExist($email)
     {
-        if (empty($Email)) return;  // check if param empty
+        if (empty($email)) return;  // check if param empty
         // query and return query
-        $user = $this->Query(
-            $this->db_conn,
+        $user = $this->query(
+            $this->dbConn,
             "SELECT * FROM User WHERE Email = ?",
-            [$Email]
+            [$email]
         );
         if (!empty($user)) return $user[0];
     }
@@ -36,33 +36,33 @@ class User extends Database
      * Add the user to the bd
      * @param string    $FirstName
      * @param string    $LastName
-     * @param string    $Email
+     * @param string    $email
      * @param string    $Password
      * @param string    $BirthDate
      * @param string    $Gender
      */
-    public function Register($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender)
+    public function register($firstName, $lastName, $email, $password, $birthDate, $gender)
     {
         // check if inputs are empty
-        if (empty($FirstName || $LastName || $Email || $Password || $BirthDate || $Gender))
+        if (empty($firstName || $lastName || $email || $password || $birthDate || $gender))
             throw new Error('Inputs must not be empty');
 
         // check if email using php filter_var()
-        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) throw new Error('Email is not valid');
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) throw new Error('Email is not valid');
 
         // check if names match name regex
-        if (!preg_match($this->NameRegex, $FirstName) || !preg_match($this->NameRegex, $LastName))
+        if (!preg_match($this->nameRegex, $firstName) || !preg_match($this->nameRegex, $lastName))
             throw new Error('Name must not contain special letter');
 
         // check if gender is a number (for genderid)
-        if (!ctype_digit($Gender)) throw new Error('Gender must be a number');
+        if (!ctype_digit($gender)) throw new Error('Gender must be a number');
 
         // check if email already exists in db
-        $dbUser = $this->UserExist($Email);
+        $dbUser = $this->userExist($email);
         if (!empty($dbUser)) throw new Error('This email is already taken');
 
         // check if birth date more than 1900
-        $timeBirthDate = strtotime($BirthDate) ?? '';
+        $timeBirthDate = strtotime($birthDate) ?? '';
         if (strtotime("1900-01-01") > $timeBirthDate)
             throw new Error('Your birth date is incorrect');
 
@@ -71,17 +71,17 @@ class User extends Database
             throw new Error('You must be at least 16 years old to use this website');
 
         // hash password
-        $hashed_pwd = password_hash($Password, PASSWORD_DEFAULT);
+        $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
         // create record in db
         try {
-            $this->Query(
-                $this->db_conn,
+            $this->query(
+                $this->dbConn,
                 "INSERT INTO User 
             (LastName, FirstName, Email, Password, BirthDate, GENDERID)
             VALUES 
             (?, ?, ?, ?, ?, ?)",
-                [$LastName, $FirstName, $Email, $hashed_pwd, $BirthDate, $Gender]
+                [$lastName, $firstName, $email, $hashedPwd, $birthDate, $gender]
             );
         } catch (Error) {
             throw new Error('There was an error');
@@ -91,37 +91,37 @@ class User extends Database
 
     /**
      * Add the user to the bd
-     * @param string    $Email
+     * @param string    $email
      * @param string    $Password
      */
-    public function Login($Email, $Password)
+    public function login($email, $password)
     {
         // check if inputs are not empty
-        if (empty($Email || $Password))
+        if (empty($email || $password))
             throw new Error('Inputs must not be empty');
 
         // check if email using php filter_var()
-        if (!filter_var($Email, FILTER_VALIDATE_EMAIL))
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             throw new Error('Email is not valid');
 
         // check if the user exist in db
-        $dbUser = $this->UserExist($Email);
+        $dbUser = $this->userExist($email);
         if (empty($dbUser))
             throw new Error('This user does not exist');
 
         // check if hashed password is the same as db
         $pwDB = $dbUser['Password'];
-        if (!password_verify($Password, $pwDB))
+        if (!password_verify($password, $pwDB))
             throw new Error('Password does not match');
 
         // update LastLogin
-        $genders = $this->Query(
-            $this->db_conn,
+        $genders = $this->query(
+            $this->dbConn,
             "UPDATE User SET LastLogin = NOW() WHERE USERID=?",
             [$dbUser['USERID']]
         );
 
-        $this->LogOut(); // destroy active session if there is
+        $this->logOut(); // destroy active session if there is
         session_start(); // start sessions handler
 
         // Set sessions attributes to user id
@@ -137,56 +137,57 @@ class User extends Database
      */
     public function GetAllGenders()
     {
-        return $this->Query($this->db_conn, "SELECT * FROM Gender ORDER BY GENDERID", []);
+        return $this->query($this->dbConn, "SELECT * FROM Gender ORDER BY GENDERID", []);
     }
 
     /**
      * Update information of the user
      * @param string    $FirstName
      * @param string    $LastName
-     * @param string    $Email
+     * @param string    $email
      * @param string    $Password
      * @param string    $BirthDate
      * @param string    $Gender
      */
-    public function UpdateInformations($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender)
+    public function updateInformations($firstName, $lastName, $email, $password, $birthDate, $gender)
     {
         $sqlquery = 'UPDATE User SET LastName = ?, FirstName = ?, Email = ?, BirthDate = ?, GENDERID = ?';
-        $param = [$LastName, $FirstName, $Email, $BirthDate, $Gender];
+        $param = [$lastName, $firstName, $email, $birthDate, $gender];
         // check if inputs are empty
-        if (empty($FirstName || $LastName || $Email || $BirthDate || $Gender))
+        if (empty($firstName || $lastName || $email || $birthDate || $gender))
             throw new Error('Inputs must not be empty');
 
         // check if email using php filter_var()
-        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) throw new Error('Email is not valid');
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+            throw new Error('Email is not valid');
 
         // check if names match name regex
-        if (!preg_match($this->NameRegex, $FirstName) && !preg_match($this->NameRegex, $LastName))
+        if (!preg_match($this->nameRegex, $firstName) && !preg_match($this->nameRegex, $lastName))
             throw new Error('Name must not contain special letter');
 
         // check if birth date > 1900 and more than the date of a 16 yo today
-        $timeBirthDate = strtotime($BirthDate);
+        $timeBirthDate = strtotime($birthDate);
         if (strtotime("1900-01-01") < $timeBirthDate && $timeBirthDate < date('Y-m-d'))
             throw new Error('Birth date incorrect');
 
         // if password not empty
-        if (!empty($Password)) {
+        if (!empty($password)) {
             $sqlquery = $sqlquery . ', Password = ?';  // append to query
 
             // hash password
-            $hashed_pwd = password_hash($Password, PASSWORD_DEFAULT);
+            $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
             // append to array
-            array_push($param, $hashed_pwd);
+            array_push($param, $hashedPwd);
         }
 
         // push email at the end
-        array_push($param, $Email);
+        array_push($param, $email);
 
         // update record in db
         try {
-            $this->Query(
-                $this->db_conn,
+            $this->query(
+                $this->dbConn,
                 $sqlquery . " WHERE Email = ?",
                 $param
             );
@@ -199,7 +200,7 @@ class User extends Database
      * Check if the user as a session id
      * @return bool
      */
-    public function IsLoggedIn()
+    public function isLoggedIn()
     {
         isset($_SESSION['USERID']);
     }
@@ -208,7 +209,7 @@ class User extends Database
      * Log out the user, 
      * destroy active session and unset them
      */
-    public function LogOut()
+    public function logOut()
     {
         session_unset();
         session_destroy();

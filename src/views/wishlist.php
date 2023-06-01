@@ -4,7 +4,7 @@ require "../templates/header.php";
 require "../templates/nav.php";
 
 // if not logged redirect to register
-if(!$user->IsLoggedIn()){
+if(!$user->isLoggedIn()){
     header("Location: register.php");  //redirect to the main page
     exit();
 }
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // remove item from wishlist
     try{
-        $wishlist->Remove($pid, $_SESSION['USERID']);
+        $wishlist->remove($pid, $_SESSION['USERID']);
         $success = 'Item successfully deleted !';
     }
     catch(Error $e){
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 // get all wishlisted items linked to the account in the session
-$wishlist_items = $wishlist->GetAll($_SESSION['USERID']) ?? [];
+$wishlist_items = $wishlist->getAll($_SESSION['USERID']) ?? [];
 
 include_once "../templates/alert.php";
 ?>

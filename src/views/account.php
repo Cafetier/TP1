@@ -4,13 +4,13 @@ require "../templates/header.php";
 require "../templates/nav.php";
 
 // if not logged redirect to register
-if(!$user->IsLoggedIn()){
+if(!$user->isLoggedIn()){
     header("Location: register.php");  //redirect to the main page
     exit();
 }
 
 // get all genders
-$genders = $user->GetAllGenders();
+$genders = $user->getAllGenders();
 
 
 // check if there is a post call
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if ($Password != $ConfPwd) $error = 'Password must match';
     
     try {
-        $user->UpdateInformations($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender);
+        $user->updateInformations($FirstName, $LastName, $Email, $Password, $BirthDate, $Gender);
         $success = 'Your informations was successfully updated';
     } catch (Error $e) {
         $error = $e->getMessage();
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 // fetch data from bd
-$user_info = $user->UserExist($_SESSION['Email']);
+$user_info = $user->userExist($_SESSION['Email']);
 
 include_once "../templates/alert.php";
 ?>

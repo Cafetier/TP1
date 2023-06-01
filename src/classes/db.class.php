@@ -11,7 +11,7 @@ class Database
      * Used to connect to database using PDO
      * @return object   Connection of the database
      */
-    protected function Connect()
+    protected function connect()
     {
         try {
             $conn = new PDO("mysql:host=" . dbHost . ";dbname=" . dbDB, dbUsername, dbPW);
@@ -33,7 +33,7 @@ class Database
      * 
      * @return object   the result of the query
      */
-    protected function Query($dbConn, $sqlQuery, $sqlValues)
+    protected function query($dbConn, $sqlQuery, $sqlValues)
     {
         // print the query if debug is true
         if (__DEBUG__) echo ($sqlQuery . '<br><br>');
@@ -61,7 +61,7 @@ class Database
      */
     public function isJson($string)
     {
-        $json_data = json_decode($string, true);
-        if ($json_data !== null) return $json_data;
+        $data = json_decode($string, true);
+        if ($data !== null) return $data;
     }
 }

@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // remove item from wishlist
     try{
-        $wishlist->Add($pid, $_SESSION['USERID']);
+        $wishlist->add($pid, $_SESSION['USERID']);
         $success = 'Item successfully added to wishlist !';
     }
     catch(Error $e){
@@ -26,7 +26,7 @@ if (!ctype_digit($urlID)){
 }
 
 // check if there is a product, returns the product info
-$product_info = $product->GetProduct($urlID);
+$product_info = $product->getProduct($urlID);
 
 // if id of product doest exist
 if (empty($product_info)) echo 'There is no product';

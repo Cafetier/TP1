@@ -4,7 +4,7 @@ require "../templates/header.php";
 require "../templates/nav.php";
 
 // if not logged redirect to register
-if(!$user->IsLoggedIn()){
+if(!$user->isLoggedIn()){
     header("Location: register.php");  //redirect to the main page
     exit();
 }
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $pid = $_POST['pid'];
     
     try{
-        $cart->Remove($pid, $_SESSION['USERID']);  //login the user
+        $cart->remove($pid, $_SESSION['USERID']);  //login the user
     }
     catch(Error $e){
         $error = $e->getMessage();
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 // get all wishlisted items linked to the account in the session
-$cart_items = $cart->GetAll($_SESSION['USERID']);
+$cart_items = $cart->getAll($_SESSION['USERID']);
 
 include_once "../templates/alert.php";
 ?>

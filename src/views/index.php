@@ -4,7 +4,7 @@ require "../templates/header.php";
 require "../templates/nav.php";
 
 // fetch brand data
-$brands = $product->GetBrands();
+$brands = $product->getBrands();
 
 // splice the array at 8 brand
 array_splice($brands, 8);
@@ -33,7 +33,6 @@ include_once "../templates/alert.php";
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-
 
     <!-- Shop by Brand -->
     <h1>Shop brands</h1>
