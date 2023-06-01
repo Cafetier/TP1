@@ -1,7 +1,7 @@
 <?php 
 $PageTitle = 'Cart';
-require "../template/header.php";
-require "../template/nav.php";
+require "../templates/header.php";
+require "../templates/nav.php";
 
 // if not logged redirect to register
 if(!$user->IsLoggedIn()){
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 // get all wishlisted items linked to the account in the session
 $cart_items = $cart->GetAll($_SESSION['USERID']);
 
-include_once "../template/alert.php";
+include_once "../templates/alert.php";
 ?>
 
 <section class="container">
@@ -82,4 +82,4 @@ include_once "../template/alert.php";
     </div>
 </section>
 
-<?php require_once('../template/footer.php'); ?>
+<?php require_once('../templates/footer.php'); ?>

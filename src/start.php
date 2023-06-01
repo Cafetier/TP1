@@ -6,11 +6,11 @@
  * @author Dany Gauthier
  */
 require_once 'constants.php';
-require_once __ROOT__.'/src/class/db.class.php';
-require_once __ROOT__.'/src/class/user.class.php';
-require_once __ROOT__.'/src/class/product.class.php';
-require_once __ROOT__.'/src/class/cart.class.php';
-require_once __ROOT__.'/src/class/wishlist.class.php';
+require_once __ROOT__.'/src/classes/db.class.php';
+require_once __ROOT__.'/src/classes/user.class.php';
+require_once __ROOT__.'/src/classes/product.class.php';
+require_once __ROOT__.'/src/classes/cart.class.php';
+require_once __ROOT__.'/src/classes/wishlist.class.php';
 
 // init classes
 $db = new Database();

@@ -1,7 +1,7 @@
 <?php 
 $PageTitle = 'Home';
-require "../template/header.php";
-require "../template/nav.php";
+require "../templates/header.php";
+require "../templates/nav.php";
 
 // fetch brand data
 $brands = $product->GetBrands();
@@ -9,7 +9,7 @@ $brands = $product->GetBrands();
 // splice the array at 8 brand
 array_splice($brands, 8);
 
-include_once "../template/alert.php";
+include_once "../templates/alert.php";
 ?>
 
 <section class="container" id="index_page">
@@ -53,4 +53,4 @@ include_once "../template/alert.php";
     </div> -->
 </section>
 
-<?php require_once('../template/footer.php'); ?>
+<?php require_once('../templates/footer.php'); ?>

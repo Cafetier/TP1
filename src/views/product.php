@@ -1,7 +1,7 @@
 <?php 
 $PageTitle = 'Product';
-require "../template/header.php";
-require "../template/nav.php";
+require "../templates/header.php";
+require "../templates/nav.php";
 
 // check if post request
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -33,7 +33,7 @@ if (empty($product_info)) echo 'There is no product';
 
 print_r($product_info);
 
-include_once "../template/alert.php";
+include_once "../templates/alert.php";
 ?>
 
 <section class="container">
@@ -51,4 +51,4 @@ include_once "../template/alert.php";
     </form>
 </section>
 
-<?php require_once('../template/footer.php'); ?>
+<?php require_once('../templates/footer.php'); ?>

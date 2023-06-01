@@ -1,7 +1,7 @@
 <?php 
 $PageTitle = 'Your account';
-require "../template/header.php";
-require "../template/nav.php";
+require "../templates/header.php";
+require "../templates/nav.php";
 
 // if not logged redirect to register
 if(!$user->IsLoggedIn()){
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 // fetch data from bd
 $user_info = $user->UserExist($_SESSION['Email']);
 
-include_once "../template/alert.php";
+include_once "../templates/alert.php";
 ?>
 
 <section class="container small-container">
@@ -101,4 +101,4 @@ include_once "../template/alert.php";
     </form>
 </section>
 
-<?php require_once('../template/footer.php'); ?>
+<?php require_once('../templates/footer.php'); ?>
