@@ -33,23 +33,23 @@ class Database
      * 
      * @return object   the result of the query
      */
-    protected function Query($DBConn, $SQLQuery, $SQLValue)
+    protected function Query($dbConn, $sqlQuery, $sqlValues)
     {
         // print the query if debug is true
-        if (__DEBUG__) echo ($SQLQuery . '<br><br>');
+        if (__DEBUG__) echo ($sqlQuery . '<br><br>');
 
         // count the number of ? (prepared var) in query
-        if (substr_count($SQLQuery, '?') !== count($SQLValue))
-            throw new Error('Number of param does not match number of value');
+        if (substr_count($sqlQuery, '?') !== count($sqlValues))
+            throw new Error('Number of parameters does not match number of values');
 
-        // prepare the sql
-        $sth = $DBConn->prepare($SQLQuery);
-        // check if the code ran successfully
-        if ($sth->execute($SQLValue)) {
-            return $sth->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            // doesnt give error if error in query if debug is false
-            if (__DEBUG__) exit($DBConn->error);
+        try {
+            $stmt = $dbConn->prepare($sqlQuery);
+            $stmt->execute($sqlValues);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            __DEBUG__ ? 
+                exit($e->getMessage()):
+                throw $e;
         }
     }
 

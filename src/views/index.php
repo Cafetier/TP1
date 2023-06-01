@@ -7,7 +7,7 @@ require "../template/nav.php";
 $brands = $product->GetBrands();
 
 // splice the array at 8 brand
-\array_splice($brands, 8);
+array_splice($brands, 8);
 
 include_once "../template/alert.php";
 ?>

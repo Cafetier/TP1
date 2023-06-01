@@ -24,8 +24,11 @@ class User extends Database
     {
         if (empty($Email)) return;  // check if param empty
         // query and return query
-        $user = $this->Query($this->db_conn,
-            "SELECT * FROM User WHERE Email = ?", [$Email]);
+        $user = $this->Query(
+            $this->db_conn,
+            "SELECT * FROM User WHERE Email = ?",
+            [$Email]
+        );
         if (!empty($user)) return $user[0];
     }
 
@@ -94,7 +97,7 @@ class User extends Database
     public function Login($Email, $Password)
     {
         // check if inputs are not empty
-        if (empty($Email || $Password)) 
+        if (empty($Email || $Password))
             throw new Error('Inputs must not be empty');
 
         // check if email using php filter_var()
@@ -112,8 +115,11 @@ class User extends Database
             throw new Error('Password does not match');
 
         // update LastLogin
-        $genders = $this->Query($this->db_conn,
-            "UPDATE User SET LastLogin = NOW() WHERE USERID=?", [$dbUser['USERID']]);
+        $genders = $this->Query(
+            $this->db_conn,
+            "UPDATE User SET LastLogin = NOW() WHERE USERID=?",
+            [$dbUser['USERID']]
+        );
 
         $this->LogOut(); // destroy active session if there is
         session_start(); // start sessions handler

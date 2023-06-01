@@ -64,7 +64,7 @@ class Product extends Database
         
         WHERE p.PRODUCTID=?
         GROUP BY p.PRODUCTID", [$ProductID]);
-        return $product[0];
+        return $product ? $product[0] : null;
     }
 
     /**
@@ -93,7 +93,8 @@ class Product extends Database
     {
         return $this->Query(
             $this->db_conn,
-            "SELECT c.COLORID, c.cName, HEX(c.Hex) as color_hex FROM Color c", []
+            "SELECT c.COLORID, c.cName, HEX(c.Hex) as color_hex FROM Color c",
+            []
         );
     }
 

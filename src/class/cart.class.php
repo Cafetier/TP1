@@ -17,8 +17,15 @@ class Cart extends Database
     public function Add($ProductID, $UserID)
     {
         // check if inputs are not empty and are numbers
-        if (empty($UserID || $ProductID) && ctype_digit($UserID && $ProductID))
-            throw new Error('Param must not be empty and must be numbers');
+        if (
+            empty($userID) ||
+            empty($productID) ||
+            !ctype_digit($userID) ||
+            !ctype_digit($productID)
+        )
+            throw new InvalidArgumentException(
+                'Invalid parameters: must not be empty and must be numbers'
+            );
 
         // query the db to remove the product
         try {
@@ -28,7 +35,7 @@ class Cart extends Database
             VALUES (?, ?)',
                 [$ProductID, $UserID]
             );
-        } catch (Error $e) {
+        } catch (PDOException $e) {
             return $e;
         }
     }
@@ -39,8 +46,15 @@ class Cart extends Database
     public function Remove($ProductID, $UserID)
     {
         // check if inputs are not empty and are numbers
-        if (empty($UserID || $ProductID) && ctype_digit($UserID && $ProductID))
-            throw new Error('Param must not be empty and must be numbers');
+        if (
+            empty($userID) ||
+            empty($productID) ||
+            !ctype_digit($userID) ||
+            !ctype_digit($productID)
+        )
+            throw new InvalidArgumentException(
+                'Invalid parameters: must not be empty and must be numbers'
+            );
 
         // query the db to remove the product
         try {
@@ -49,7 +63,7 @@ class Cart extends Database
                 'DELETE FROM cart WHERE PRODUCTID = ? AND USERID = ?',
                 [$ProductID, $UserID]
             );
-        } catch (Error $e) {
+        } catch (PDOException $e) {
             return $e;
         }
     }
@@ -61,8 +75,10 @@ class Cart extends Database
     public function GetAll($UserID)
     {
         // check if inputs are not empty and are numbers
-        if (empty($UserID) && ctype_digit($UserID))
-            throw new Error('id must not be empty and must be a number');
+        if (empty($userID) || !ctype_digit($userID))
+            throw new InvalidArgumentException(
+                'Invalid parameter: ID must not be empty and must be a number'
+            );
 
         $sql_query = "SELECT
         u.USERID,
@@ -108,7 +124,7 @@ class Cart extends Database
         try {
             $result = $this->Query($this->db_conn, $sql_query, [$UserID]);
             return $result;
-        } catch (Error $e) {
+        } catch (PDOException $e) {
             if (__DEBUG__) echo $e;
         }
     }
