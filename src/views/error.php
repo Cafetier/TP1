@@ -13,7 +13,6 @@ $e = $_GET['error'];
 $PageTitle = $e;
 require "../templates/header.php";
 require "../templates/nav.php";
-
 include_once "../templates/alert.php";
 ?>
 <section class="container">

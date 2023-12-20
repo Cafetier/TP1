@@ -1,8 +1,6 @@
 <?php 
 $PageTitle = "Register";
 require "../templates/header.php";
-require "../templates/nav.php";
-
 // if logged redirect to index
 if($user->isLoggedIn()){
     header("Location: index.php");  //redirect to the main page
@@ -13,10 +11,8 @@ if($user->isLoggedIn()){
 $reset = $_POST['submit'] ?? 0;
 if($reset === 'Reset') $_POST = [];
 
-
 // get all genders
 $genders = $user->getAllGenders();
-
 
 // check if there is a post call
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -40,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 
+require "../templates/nav.php";
 include_once "../templates/alert.php";
 ?>
 

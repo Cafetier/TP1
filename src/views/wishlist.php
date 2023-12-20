@@ -1,7 +1,6 @@
 <?php 
 $PageTitle = 'Wishlist';
 require "../templates/header.php";
-require "../templates/nav.php";
 
 // if not logged redirect to register
 if(!$user->isLoggedIn()){
@@ -26,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 // get all wishlisted items linked to the account in the session
 $wishlist_items = $wishlist->getAll($_SESSION['USERID']) ?? [];
 
+require "../templates/nav.php";
 include_once "../templates/alert.php";
 ?>
 <section class="container">

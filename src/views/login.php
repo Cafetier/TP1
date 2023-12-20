@@ -1,7 +1,6 @@
 <?php 
 $PageTitle = 'Login';
 require "../templates/header.php";
-require "../templates/nav.php";
 
 // if logged redirect to index
 if($user->isLoggedIn()){
@@ -31,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 
+require "../templates/nav.php";
 include_once "../templates/alert.php";
 ?>
 

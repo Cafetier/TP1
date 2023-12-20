@@ -135,6 +135,7 @@ class User extends Database
         );
 
         $this->logOut(); // destroy active session if there is
+        session_start();
 
         // Set sessions attributes to user id
         $_SESSION['USERID'] = $dbUser['USERID'];
@@ -228,7 +229,7 @@ class User extends Database
      */
     public function isLoggedIn()
     {
-        isset($_SESSION['USERID']);
+        return isset($_SESSION['USERID']);
     }
 
     /**

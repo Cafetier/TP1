@@ -1,13 +1,13 @@
 <?php 
 $PageTitle = 'Cart';
 require "../templates/header.php";
-require "../templates/nav.php";
 
 // if not logged redirect to register
 if(!$user->isLoggedIn()){
     header("Location: register.php");  //redirect to the main page
     exit();
 }
+
 
 // check if post request
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 // get all wishlisted items linked to the account in the session
 $cart_items = $cart->getAll($_SESSION['USERID']);
 
+require "../templates/nav.php";
 include_once "../templates/alert.php";
 ?>
 
