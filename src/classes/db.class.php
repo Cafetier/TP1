@@ -14,13 +14,22 @@ class Database
     protected function connect()
     {
         try {
-            $conn = new PDO("mysql:host=" . dbHost . ";dbname=" . dbDB, dbUsername, dbPW);
+            $conn = new PDO(
+                "mysql:host=" . dbHost . ";dbname=" . dbDB,
+                dbUsername,
+                dbPW
+            );
             // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->setAttribute(
+                PDO::ATTR_ERRMODE,
+                PDO::ERRMODE_EXCEPTION
+            );
             return $conn;
         } catch (PDOException $e) {
             // give more info if debug is true
-            if (__DEBUG__) exit("Connection failed: " . $e->getMessage());
+            if (__DEBUG__)
+                exit("Connection failed: " . $e->getMessage());
+
             exit("There was an error");
         }
     }
@@ -36,7 +45,8 @@ class Database
     protected function query($dbConn, $sqlQuery, $sqlValues)
     {
         // print the query if debug is true
-        if (__DEBUG__) echo ($sqlQuery . '<br><br>');
+        if (__DEBUG__)
+            echo ($sqlQuery . '<br><br>');
 
         // count the number of ? (prepared var) in query
         if (substr_count($sqlQuery, '?') !== count($sqlValues))
@@ -47,8 +57,8 @@ class Database
             $stmt->execute($sqlValues);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            __DEBUG__ ? 
-                exit($e->getMessage()):
+            __DEBUG__ ?
+                exit($e->getMessage()) :
                 throw $e;
         }
     }
@@ -62,6 +72,7 @@ class Database
     public function isJson($string)
     {
         $data = json_decode($string, true);
-        if ($data !== null) return $data;
+        if ($data !== null)
+            return $data;
     }
 }

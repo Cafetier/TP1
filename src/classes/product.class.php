@@ -18,7 +18,9 @@ class Product extends Database
      */
     public function getProduct($productID)
     {
-        if (empty($productID)) return;
+        if (empty($productID))
+            return;
+
         // query and return query
         $product = $this->query($this->dbConn, "
         SELECT
@@ -73,7 +75,11 @@ class Product extends Database
      */
     public function getBrands()
     {
-        return $this->query($this->dbConn, "SELECT * FROM Brand", []);
+        return $this->query(
+            $this->dbConn,
+            "SELECT * FROM Brand",
+            []
+        );
     }
 
     /**
@@ -82,7 +88,11 @@ class Product extends Database
      */
     public function getTypes()
     {
-        return $this->query($this->dbConn, "SELECT * FROM pType", []);
+        return $this->query(
+            $this->dbConn,
+            "SELECT * FROM pType",
+            []
+        );
     }
 
     /**
@@ -104,7 +114,11 @@ class Product extends Database
      */
     public function getSizes()
     {
-        return $this->query($this->dbConn, "SELECT * FROM Size", []);
+        return $this->query(
+            $this->dbConn,
+            "SELECT * FROM Size",
+            []
+        );
     }
 
     /**
@@ -272,7 +286,8 @@ class Product extends Database
     public function removeProduct($productID)
     {
         // check if empty param
-        if (empty($productID)) throw new Error('Must provide a product id');
+        if (empty($productID))
+            throw new Error('Must provide a product id');
 
         // check if exist in db
         if (empty($this->getProduct($productID)))

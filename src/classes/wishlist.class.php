@@ -17,7 +17,10 @@ class Wishlist extends Database
     public function add($productID, $userID)
     {
         // check if inputs are not empty and are numbers
-        if (empty($userID || $productID) && !ctype_digit($userID && $productID))
+        if (
+            empty($userID || $productID) &&
+            !ctype_digit($userID && $productID)
+        )
             throw new Error('This product does not exists');
 
         // query the db to remove the product
@@ -39,7 +42,10 @@ class Wishlist extends Database
     public function remove($productID, $userID)
     {
         // check if inputs are not empty and are numbers
-        if (empty($userID || $productID) && !ctype_digit($userID && $productID))
+        if (
+            empty($userID || $productID) &&
+            !ctype_digit($userID && $productID)
+        )
             throw new Error('You do not have this product');
 
         // query the db to remove the product

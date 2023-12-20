@@ -22,14 +22,20 @@ class User extends Database
      */
     public function userExist($email)
     {
-        if (empty($email)) return;  // check if param empty
+        // check if param empty
+        if (empty($email))
+            return;
+
         // query and return query
         $user = $this->query(
             $this->dbConn,
             "SELECT * FROM User WHERE Email = ?",
             [$email]
         );
-        if (!empty($user)) return $user[0];
+
+        // check if no user
+        if (!empty($user))
+            return $user[0];
     }
 
     /**
@@ -48,18 +54,25 @@ class User extends Database
             throw new Error('Inputs must not be empty');
 
         // check if email using php filter_var()
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) throw new Error('Email is not valid');
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+            throw new Error('Email is not valid');
 
         // check if names match name regex
-        if (!preg_match($this->nameRegex, $firstName) || !preg_match($this->nameRegex, $lastName))
+        if (
+            !preg_match($this->nameRegex, $firstName) ||
+            !preg_match($this->nameRegex, $lastName)
+        )
+
             throw new Error('Name must not contain special letter');
 
         // check if gender is a number (for genderid)
-        if (!ctype_digit($gender)) throw new Error('Gender must be a number');
+        if (!ctype_digit($gender))
+            throw new Error('Gender must be a number');
 
         // check if email already exists in db
         $dbUser = $this->userExist($email);
-        if (!empty($dbUser)) throw new Error('This email is already taken');
+        if (!empty($dbUser))
+            throw new Error('This email is already taken');
 
         // check if birth date more than 1900
         $timeBirthDate = strtotime($birthDate) ?? '';
@@ -122,7 +135,6 @@ class User extends Database
         );
 
         $this->logOut(); // destroy active session if there is
-        session_start(); // start sessions handler
 
         // Set sessions attributes to user id
         $_SESSION['USERID'] = $dbUser['USERID'];
@@ -137,7 +149,11 @@ class User extends Database
      */
     public function GetAllGenders()
     {
-        return $this->query($this->dbConn, "SELECT * FROM Gender ORDER BY GENDERID", []);
+        return $this->query(
+            $this->dbConn,
+            "SELECT * FROM Gender ORDER BY GENDERID",
+            []
+        );
     }
 
     /**
@@ -151,10 +167,13 @@ class User extends Database
      */
     public function updateInformations($firstName, $lastName, $email, $password, $birthDate, $gender)
     {
-        $sqlquery = 'UPDATE User SET LastName = ?, FirstName = ?, Email = ?, BirthDate = ?, GENDERID = ?';
+        $sqlquery =
+            'UPDATE User SET LastName = ?, FirstName = ?, Email = ?, BirthDate = ?, GENDERID = ?';
+
         $param = [$lastName, $firstName, $email, $birthDate, $gender];
         // check if inputs are empty
-        if (empty($firstName || $lastName || $email || $birthDate || $gender))
+        if (empty($firstName || $lastName || $email ||
+            $birthDate || $gender))
             throw new Error('Inputs must not be empty');
 
         // check if email using php filter_var()
@@ -162,17 +181,24 @@ class User extends Database
             throw new Error('Email is not valid');
 
         // check if names match name regex
-        if (!preg_match($this->nameRegex, $firstName) && !preg_match($this->nameRegex, $lastName))
+        if (
+            !preg_match($this->nameRegex, $firstName) &&
+            !preg_match($this->nameRegex, $lastName)
+        )
             throw new Error('Name must not contain special letter');
 
         // check if birth date > 1900 and more than the date of a 16 yo today
         $timeBirthDate = strtotime($birthDate);
-        if (strtotime("1900-01-01") < $timeBirthDate && $timeBirthDate < date('Y-m-d'))
+        if (
+            strtotime("1900-01-01") < $timeBirthDate &&
+            $timeBirthDate < date('Y-m-d')
+        )
             throw new Error('Birth date incorrect');
 
         // if password not empty
         if (!empty($password)) {
-            $sqlquery = $sqlquery . ', Password = ?';  // append to query
+            // append to query
+            $sqlquery = $sqlquery . ', Password = ?';
 
             // hash password
             $hashedPwd = password_hash($password, PASSWORD_DEFAULT);

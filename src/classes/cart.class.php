@@ -122,7 +122,11 @@ class Cart extends Database
 
         // query the cart of the user
         try {
-            $result = $this->query($this->dbConn, $sqlQuery, [$userID]);
+            $result = $this->query(
+                $this->dbConn,
+                $sqlQuery,
+                [$userID]
+            );
             return $result;
         } catch (PDOException $e) {
             if (__DEBUG__) echo $e;

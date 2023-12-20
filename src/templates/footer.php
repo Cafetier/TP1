@@ -29,4 +29,5 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8-beta.1/jquery.inputmask.min.js"></script>
         <script src="../../public/js/script.js"></script>
         </body>
-</html>
+
+        </html>
