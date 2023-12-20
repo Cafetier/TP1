@@ -2,20 +2,6 @@
 USE `OnlineStore`;
 
 -- Purge all data
-DELETE FROM user;
-DELETE FROM cart;
-DELETE FROM wishlist;
-DELETE FROM gender;
-DELETE FROM product;
-DELETE FROM size;
-DELETE FROM color;
-DELETE FROM pimage;
-DELETE FROM size_product;
-DELETE FROM pimage_product;
-DELETE FROM color_product;
-DELETE FROM brand;
-DELETE FROM ptype;
-
 
 -- Insert dummy DATA
 INSERT INTO Gender (gName)

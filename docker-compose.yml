@@ -20,8 +20,11 @@ services:
       MYSQL_ROOT_PASSWORD: Abc123$
       MYSQL_DATABASE: OnlineStore
     container_name: boutique-mysql
+    ports:
+      - 3306:3306
     volumes:
       - boutique-data:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d
       
 volumes:
   boutique-data:
